@@ -7,6 +7,7 @@ package com.moai.animelist;
 public class Anime
 {
     //Variables de instancia
+    
     private int mal_id; //myanimelist_id
     private String name; //nombre
     private String type; //tipo de anime (movie,tv,web-series,special,ova) ->Mapa
@@ -64,7 +65,7 @@ public class Anime
         return genre;
     }
 
-    //Setters
+    //Setters - no se usarán, solo se añadieron por el requisito obligatorio de entrega 1
 
     public void setMal_id(int mal_id)
     {
@@ -112,17 +113,24 @@ public class Anime
     }
     
     //Constructor
-    
-    public Anime(int id,int episodes,int year,String name,String type,String duration,String rating,String studio,String genre)
+
+    public Anime()
     {
-        this.mal_id =id;
-        this.name =name;
-        this.type =type;
-        this.episodes =episodes;
-        this.duration =duration;
-        this.rating =rating;
-        this.year =year;
-        this.studio =studio;
-        this.genre =genre;
+    }
+    
+    //inicializar anime
+    public Anime initAnime(CSV animeList,String linea)
+    {
+        
+        this.setMal_id(Integer.parseInt(animeList.get_csvField(linea,0)));
+        this.setName(animeList.get_csvField(linea,1));
+        this.setType(animeList.get_csvField(linea,2));
+        this.setEpisodes(Integer.parseInt(animeList.get_csvField(linea,3)));
+        this.setDuration(animeList.get_csvField(linea,4));
+        this.setRating(animeList.get_csvField(linea,5));
+        this.setYear(Integer.parseInt(animeList.get_csvField(linea,6)));
+        this.setStudio(animeList.get_csvField(linea,7));
+        this.setGenre(animeList.get_csvField(linea,8));
+        return(this);
     }
 }
