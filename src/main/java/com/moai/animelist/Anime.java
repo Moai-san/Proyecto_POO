@@ -65,7 +65,7 @@ public class Anime
         return genre;
     }
 
-    //Setters - no se usarán, solo se añadieron por el requisito obligatorio de entrega 1
+    //Setters
 
     public void setMal_id(int mal_id)
     {
