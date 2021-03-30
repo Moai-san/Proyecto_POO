@@ -20,17 +20,33 @@ public class Funciones
     //importa catalogo
     public void importCatalogue() throws FileNotFoundException,IOException
     {
-        Anime toAdd =new Anime(); //anime a añadir en estructuras de datos
         CSV animeCSV =new CSV("DB"); //archivo csv
         String linea =animeCSV.firstLine();
-        toAdd.initAnime(animeCSV, linea); //inicializar valores del anime a añadir
+        Anime toAdd =new Anime(animeCSV, linea); //anime a añadir en estructuras de datos e inicializar valores del anime a añadir
         this.addAnime(toAdd);
         while(true)
         {
             linea =(null);
-            toAdd =new Anime();
             linea =animeCSV.nextLine();
-            toAdd.initAnime(animeCSV, linea);
+            toAdd =new Anime(animeCSV, linea);
+            if(linea==(null))
+            {
+                break;
+            }
+            this.addAnime(toAdd);
+        }
+    }
+    
+    //Sobrecarga Requisito ep.2
+    public void importCatalogue(CSV animeCSV,String linea) throws FileNotFoundException,IOException
+    {
+        Anime toAdd =new Anime(animeCSV, linea); //anime a añadir en estructuras de datos e inicializar valores del anime a añadir
+        this.addAnime(toAdd);
+        while(true)
+        {
+            linea =(null);
+            linea =animeCSV.nextLine();
+            toAdd =new Anime(animeCSV, linea);
             if(linea==(null))
             {
                 break;

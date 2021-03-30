@@ -25,8 +25,7 @@ public class CSV
     
     public String firstLine() throws IOException
     {
-        this.currentLine =this.file.readLine();
-        return(this.currentLine);
+        return nextLine();
     }
     
     public String nextLine() throws IOException
@@ -65,4 +64,34 @@ public class CSV
         return(null);
     }
     
+    //sobrecarga ep2
+    public String get_csvField(int field,String line)
+    {
+        Scanner s = new Scanner(line);
+        int index =(0);
+        s.useDelimiter(",|\\n");
+        String output;
+        while(s.hasNext())
+        {
+            output =(s.next());
+            if((output.charAt(0))==('\"'))
+            {
+                while (true)
+                {
+                    output =(output+","+(s.next()));
+                    if ((output.charAt((output.length())-1))==('\"'))
+                    {
+                        break;
+                    }
+                }
+            }
+            if (index==field)
+            {
+                return(output);
+            }
+            index =(index+1);
+        }
+        System.out.println("Campo "+field+" no Existe");
+        return(null);
+    }
 }

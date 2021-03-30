@@ -114,12 +114,7 @@ public class Anime
     
     //Constructor
 
-    public Anime()
-    {
-    }
-    
-    //inicializar anime
-    public Anime initAnime(CSV animeList,String linea)
+    public Anime(CSV animeList,String linea)
     {
         
         this.setMal_id(Integer.parseInt(animeList.get_csvField(linea,0)));
@@ -131,6 +126,5 @@ public class Anime
         this.setYear(Integer.parseInt(animeList.get_csvField(linea,6)));
         this.setStudio(animeList.get_csvField(linea,7));
         this.setGenre(animeList.get_csvField(linea,8));
-        return(this);
     }
 }
