@@ -18,9 +18,14 @@ public class CSV
     
     public CSV(String name) throws FileNotFoundException
     {
-        this.file =new BufferedReader(new FileReader("./"+name+".csv"));
+      this.file =new BufferedReader(new FileReader("./"+name+".csv"));
     }
     
+    public CSV()
+    {
+
+    }
+
     //Metodos/Funciones
     
     public String firstLine() throws IOException
