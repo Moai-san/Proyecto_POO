@@ -151,11 +151,11 @@ public class Funciones
     {
         linea =(null);
         linea =animeCSV.nextLine();
-        toAdd =new Anime(animeCSV, linea);
-        if(linea==(null))
+        if(linea.equals(""))
         {
             break;
         }
+        toAdd =new Anime(animeCSV, linea);
         this.addAnime(toAdd);
     }
   }
