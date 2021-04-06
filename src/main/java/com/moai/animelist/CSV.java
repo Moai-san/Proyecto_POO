@@ -52,20 +52,22 @@ public class CSV
             {
                 while (true)
                 {
-                    output =(output+","+(s.next()));
                     if ((output.charAt((output.length())-1))==('\"'))
                     {
                         break;
                     }
+                    output =(output+","+(s.next()));
                 }
             }
             if (index==field)
             {
+                s.close();
                 return(output);
             }
             index =(index+1);
         }
-        System.out.println("Campo "+field+" no Existe");
+        //System.out.println("Campo "+field+" no Existe");
+        s.close();
         return(null);
     }
     
@@ -96,7 +98,7 @@ public class CSV
             }
             index =(index+1);
         }
-        System.out.println("Campo "+field+" no Existe");
+        //System.out.println("Campo "+field+" no Existe");
         return(null);
     }
 }
