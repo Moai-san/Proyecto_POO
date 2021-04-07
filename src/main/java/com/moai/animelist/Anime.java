@@ -127,4 +127,17 @@ public class Anime
         this.setStudio(animeList.get_csvField(linea,7));
         this.setGenre(animeList.get_csvField(linea,8));
     }
+    
+    public Anime(Anime toCopy)
+    {
+        this.setMal_id(toCopy.getMal_id());
+        this.setName(toCopy.getName());
+        this.setType(toCopy.getType());
+        this.setEpisodes(toCopy.getEpisodes());
+        this.setDuration(toCopy.getDuration());
+        this.setRating(toCopy.getRating());
+        this.setYear(toCopy.getYear());
+        this.setStudio(toCopy.getStudio());
+        this.setGenre(toCopy.getGenre());
+    }
 }

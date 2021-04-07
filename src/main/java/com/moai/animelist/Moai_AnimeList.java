@@ -18,5 +18,6 @@ public class Moai_AnimeList
     {
         Funciones funcion =new Funciones();
         funcion.importCatalogue();
+        funcion.chupaloJava();
     }
 }

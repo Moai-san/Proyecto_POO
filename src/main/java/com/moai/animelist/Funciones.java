@@ -14,9 +14,9 @@ public class Funciones
 
   private LinkedList<Anime> catalogue =new LinkedList<Anime>(); //Lista doblemente enlazada
   //Tablas Hash con Arboles anidados, que contendran animes filtrados por genero, tipo y año
-  private HashMap<Object, TreeMap<Object, Anime>> genreMap =new HashMap<Object, TreeMap<Object, Anime>>();
-  private HashMap<Object, TreeMap<Object, Anime>> yearMap =new HashMap<Object, TreeMap<Object, Anime>>();
-  private HashMap<Object, TreeMap<Object, Anime>> typeMap =new HashMap<Object, TreeMap<Object, Anime>>();
+  private HashMap<Object, TreeMap<Integer, Anime>> genreMap =new HashMap<Object, TreeMap<Integer, Anime>>();
+  private HashMap<Object, TreeMap<Integer, Anime>> yearMap =new HashMap<Object, TreeMap<Integer, Anime>>();
+  private HashMap<Object, TreeMap<Integer, Anime>> typeMap =new HashMap<Object, TreeMap<Integer, Anime>>();
   
   //Constructor
 
@@ -31,14 +31,14 @@ public class Funciones
   public void addAnime(Anime toAdd)
   {
     //se inicializan los 3 arboles como el resultado de la busqueda con clave respectiva (cada nodo del hashmap debe contener un arbol con sus respectivos anime segun filtro)
-    TreeMap<Object, Anime> type = typeMap.get(toAdd.getType());
-    TreeMap<Object, Anime> genre = genreMap.get(toAdd.getGenre());
-    TreeMap<Object, Anime> year = yearMap.get(String.valueOf(toAdd.getYear()));
+    TreeMap<Integer, Anime> type = typeMap.get(toAdd.getType());
+    TreeMap<Integer, Anime> genre = genreMap.get(toAdd.getGenre());
+    TreeMap<Integer, Anime> year = yearMap.get(String.valueOf(toAdd.getYear()));
 
     //Añadir a HashMap de tipos
     if ((typeMap.get(toAdd.getType()))==null) //si no se encontró un arbol para la clave dentro de la tabla hash, se crea uno, se inicializa, y una vez con el anime dentro, se introduce a la tabla
     {
-      type = new TreeMap<Object, Anime>();
+      type = new TreeMap<Integer, Anime>();
       type.put((toAdd.getMal_id()), toAdd);
       typeMap.put((toAdd.getType()), type);
     }
@@ -48,9 +48,9 @@ public class Funciones
     }
     
     //Añadir a HashMap de años
-    if ((yearMap.get(toAdd.getYear()))==null) //si no se encontró un arbol para la clave dentro de la tabla hash, se crea uno, se inicializa, y una vez con el anime dentro, se introduce a la tabla
+    if ((yearMap.get(String.valueOf(toAdd.getYear())))==null) //si no se encontró un arbol para la clave dentro de la tabla hash, se crea uno, se inicializa, y una vez con el anime dentro, se introduce a la tabla
     {
-      year = new TreeMap<Object, Anime>();
+      year = new TreeMap<Integer, Anime>();
       year.put((toAdd.getMal_id()), toAdd);
       yearMap.put((String.valueOf(toAdd.getYear())), year);
     }
@@ -63,7 +63,7 @@ public class Funciones
     if ((genreMap.get(toAdd.getGenre()))==null) //si no se encontró un arbol para la clave dentro de la tabla hash, se crea uno, se inicializa, y una vez con el anime dentro, se introduce a la tabla
     {
       CSV pivoteGetCSV = new CSV();
-      genre = new TreeMap<Object, Anime>();
+      genre = new TreeMap<Integer, Anime>();
       genre.put((toAdd.getMal_id()), toAdd);
       String generos =(toAdd.getGenre());
       generos =(generos.substring(1,((generos.length())-1)));
@@ -77,12 +77,12 @@ public class Funciones
         {
           if ((genreMap.get (pivoteGetCSV.get_csvField(generos,i)))!=null)//se busca el filtro con el genero respectivo, de estar, solo se inserta el dato
           {
-            TreeMap<Object, Anime> genreAux =genreMap.get(pivoteGetCSV.get_csvField(generos,i));
+            TreeMap<Integer, Anime> genreAux =genreMap.get(pivoteGetCSV.get_csvField(generos,i));
             genreAux.put((toAdd.getMal_id()), toAdd);
           }
           else//de no estar, se crea un arbol, y se ingresa el dato
           {
-            TreeMap<Object, Anime> genre2 =new TreeMap<Object, Anime>();
+            TreeMap<Integer, Anime> genre2 =new TreeMap<Integer, Anime>();
             genreMap.put(pivoteGetCSV.get_csvField(generos, i), genre2);
           }
         }
@@ -105,12 +105,12 @@ public class Funciones
         {
           if ((genreMap.get (pivoteGetCSV.get_csvField(generos,i)))!=null)//se busca el filtro con el genero respectivo, de estar, solo se inserta el dato
           {
-            TreeMap<Object, Anime> genreAux =genreMap.get(pivoteGetCSV.get_csvField(generos,i));
+            TreeMap<Integer, Anime> genreAux =genreMap.get(pivoteGetCSV.get_csvField(generos,i));
             genreAux.put((toAdd.getMal_id()), toAdd);
           }
           else//de no estar, se crea un arbol, y se ingresa el dato
           {
-            TreeMap<Object, Anime> genre2 =new TreeMap<Object, Anime>();
+            TreeMap<Integer, Anime> genre2 =new TreeMap<Integer, Anime>();
             genreMap.put(pivoteGetCSV.get_csvField(generos, i), genre2);
           }
         }
@@ -158,5 +158,20 @@ public class Funciones
         toAdd =new Anime(animeCSV, linea);
         this.addAnime(toAdd);
     }
+  }
+  
+  public void chupaloJava()
+  {
+    TreeMap a =yearMap.get("1970");
+    System.out.println(a.size());
+    Collection c = a.values();
+    Iterator itr = c.iterator();
+    Anime k;
+    //iterate through TreeMap values iterator
+    while(itr.hasNext()==true)
+    {
+      k=(Anime)itr.next();
+      System.out.println(k.getName());
+    } 
   }
 }
