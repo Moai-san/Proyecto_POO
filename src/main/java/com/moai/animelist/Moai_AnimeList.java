@@ -12,13 +12,11 @@ import com.moai.animelist.*;
 
 public class Moai_AnimeList
 {
-    
     //Main class
     public static void main(String[] args) throws FileNotFoundException,IOException
     {
         Funciones funcion =new Funciones();
         funcion.importCatalogue();
         funcion.menu();
-        //funcion.chupaloJava();
     }
 }

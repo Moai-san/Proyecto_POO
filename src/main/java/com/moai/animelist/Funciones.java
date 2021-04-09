@@ -117,7 +117,6 @@ public class Funciones
                 }
             }
         }
-
         //Añadir al catalogo
         catalogue.add(toAdd);
     }
@@ -158,21 +157,6 @@ public class Funciones
             toAdd =new Anime(animeCSV, linea);
             this.addAnime(toAdd);
         }
-    }
-
-    public void chupaloJava()
-    {
-        TreeMap a =yearMap.get("1970");
-        System.out.println(a.size());
-        Collection c = a.values();
-        Iterator itr = c.iterator();
-        Anime k;
-        //iterate through TreeMap values iterator
-        while(itr.hasNext()==true)
-        {
-            k=(Anime)itr.next();
-            System.out.println(k.getName());
-        } 
     }
 
     public void agregarAnimu()
@@ -268,11 +252,13 @@ public class Funciones
 
     public void buscarPorAnio()
     {
+        boolean formato = true;
         System.out.println("Ingrese año que busca");
         Scanner sc = new Scanner(System.in);
         String anio;
         anio = sc.next();
         TreeMap<Integer, Anime> yearTreeMap = yearMap.get(anio);
+        System.out.println();
         if (yearTreeMap == null )
         {
             System.out.println("No exite ningun anime de ese año");
@@ -282,60 +268,113 @@ public class Funciones
             for(Map.Entry<Integer, Anime> entry : yearTreeMap.entrySet()) 
             {
                 Anime anime= entry.getValue();
-                System.out.println("Anime: " + anime.getName());
+                if(formato)
+                {
+                    System.out.printf("%-5s\t%C%-50.50s %C%-11.11s %C%-4s %C%-15.15s %C%-17.17s %C%-4s %C%-30.30s %C%-30.30s\n","ID", '|', "Nombre", '|',"Tipo", '|',"Capitulos", '|',"Duracion", '|',"Rating", '|',"Año", '|',"Estudio", '|',"Genero");
+                    System.out.printf("%-5d\t%C%-50.50s %C%-11.11s %C%-9d %C%-15.15s %C%-17.17s %C%-4d %C%-30.30s %C%-30.30s\n",anime.getMal_id(), '|', anime.getName(), '|', anime.getType(), '|', anime.getEpisodes(), '|', anime.getDuration(), '|', anime.getRating(), '|', anime.getYear(), '|', anime.getStudio(), '|', anime.getGenre());
+                    formato = false;
+                }
+                else
+                {
+                    System.out.printf("%-5d\t%C%-50.50s %C%-11.11s %C%-9d %C%-15.15s %C%-17.17s %C%-4d %C%-30.30s %C%-30.30s\n",anime.getMal_id(), '|', anime.getName(), '|', anime.getType(), '|', anime.getEpisodes(), '|', anime.getDuration(), '|', anime.getRating(), '|', anime.getYear(), '|', anime.getStudio(), '|', anime.getGenre());
+                }
             }
         }
+        System.out.println();
     }
 
     public void menu()
     {
         int option =0;
         Scanner scInt = new Scanner(System.in);
+        Scanner garbage = new Scanner(System.in);
         do
         {
-            System.out.println("Bienvenidos a Moai Anime List! :) ");
-            System.out.println("Por favor ingrese una opcion del 1 al 4");
-            System.out.println("1: Agregar Anime");
-            System.out.println("2: Agregar Año de publicacion del anime");
-            System.out.println("3: Mostar Años");
-            System.out.println("4: Buscar Anime por Años");
-            System.out.println("Si desea salir, por favor ingrese un 0");
-            option = scInt.nextInt();
-            switch(option)
+            try
             {
-                case 1:
+                System.out.printf("Bienvenidos a Moai Anime List! :) \n\n");
+                System.out.println("Por favor ingrese una opcion del 1 al 4");
+                System.out.println("1: Agregar Anime");
+                System.out.println("2: Agregar Año de publicacion del anime");
+                System.out.println("3: Mostar Años");
+                System.out.println("4: Buscar Anime por Años");
+                System.out.println("Si desea salir, por favor ingrese un 0");
+                option = scInt.nextInt();
+                switch(option)
                 {
-                    agregarAnimu();
-                    break;
-                }
-                case 2:
-                {
-                    agregarAnio();
-                    break;
-                }
-                case 3:
-                {
-                    mostrarPorAnio();
-                    break;
-                }
-                case 4: 
-                {
-                    buscarPorAnio();
-                    break;
-                }
-                case 0: 
-                {
-                    break;
-                }
-                default:
-                {
-                    System.out.println("Ingrese una opcion valida por favor");
-                    break;
-                }
-            }       
-            
+                    case 1:
+                    {
+                        clrScr();
+                        agregarAnimu();
+                        System.out.println("Ingrese un caracter para volver al menu");
+                        garbage.nextLine();
+                        break;
+                    }
+                    case 2:
+                    {
+                        clrScr();
+                        agregarAnio();
+                        System.out.println("Ingrese un caracter para volver al menu");
+                        garbage.nextLine();
+                        break;
+                    }
+                    case 3:
+                    {
+                        clrScr();
+                        mostrarPorAnio();
+                        System.out.println("Ingrese un caracter para volver al menu");
+                        garbage.nextLine();
+                        break;
+                    }
+                    case 4: 
+                    {
+                        clrScr();
+                        buscarPorAnio();
+                        System.out.println("Ingrese un caracter para volver al menu");
+                        garbage.nextLine();
+                        break;
+                    }
+                    case 0: 
+                    {
+                        break;
+                    }
+                    default:
+                    {
+                        System.out.println("Ingrese una opcion valida por favor");
+                        break;
+                    }
+                }       
+            }
+            catch(InputMismatchException e)
+            {
+                System.out.println("Ingrese opcion valida porfavor");
+                option = 9;
+                scInt.next();
+            }   
         }
         while (option !=0);
         scInt.close();
+    }
+    
+    public void clrScr()
+    {
+        try
+        {
+            if( System.getProperty( "os.name" ).startsWith( "Window" ) )
+            {
+                Runtime.getRuntime().exec("/c cls");
+            }
+            else
+            {
+                Runtime.getRuntime().exec("clear");
+            }
+        }
+        catch(IOException e)
+        {
+            for(int i = 0; i < 10; i++)
+            {
+                System.out.printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            }
+        }
     }
 }
