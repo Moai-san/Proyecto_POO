@@ -128,6 +128,19 @@ public class Anime
         this.setGenre(animeList.get_csvField(linea,8));
     }
     
+    public Anime(int mal_id,String name,String type,int episodes,String duration,String rating,int year,String studio,String genre)
+    {
+        this.mal_id = mal_id;
+        this.name = name;
+        this.type = type;
+        this.episodes = episodes;
+        this.duration = duration;
+        this.rating = rating;
+        this.year = year;
+        this.studio = studio;
+        this.genre = genre;
+    }
+
     public Anime(Anime toCopy)
     {
         this.setMal_id(toCopy.getMal_id());
