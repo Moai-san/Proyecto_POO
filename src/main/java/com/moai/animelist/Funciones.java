@@ -7,7 +7,6 @@ package com.moai.animelist;
 import java.io.*;
 import java.util.*;
 import com.moai.animelist.*;
-import java.util.Scanner;
 
 public class Funciones
 {
@@ -217,27 +216,34 @@ public class Funciones
         }
         return false;
     }
-
-    public void agregarAnio()
+    
+    public int addYear(String ano)
     {
-        Scanner sc = new Scanner(System.in);
-        String anio;
-        System.out.println("Por favor ingrese año que desea agregar");
-        anio =  sc.next();
-        TreeMap<Integer, Anime> year = yearMap.get(anio);
+        TreeMap<Integer, Anime> year = yearMap.get(ano);
         if (year == null)
         {
             year = new TreeMap<Integer, Anime>();
-            yearMap.put(anio,year); 
-            System.out.println("Año agregado correctamente"); 
+            yearMap.put(ano,year); 
+            return(0);
         }
         else
         {
-            System.out.println("Este año ya existe."); 
+            return (-1);
         }
     }
 
-
+    public Object[][] getYears()
+    {
+        int i =0;
+        Object tabla[][] =new Object[yearMap.size()][1];
+        for (Map.Entry mapElement : yearMap.entrySet()) 
+        {
+            int year = Integer.parseInt((String)mapElement.getKey());
+            tabla[i][0]=year;
+            i=(i+1);
+        }
+        return(tabla);
+    }
     public void mostrarPorAnio()
     {
         TreeMap<Object,Object> year =  new TreeMap<Object,Object>();
@@ -249,41 +255,32 @@ public class Funciones
         year.forEach((key, value)->System.out.println("Año: " + value));
     }
 
-
-    public void buscarPorAnio()
+    public Object[][] mostrarDel_ano(Object tabla[][],String ano)
     {
-        boolean formato = true;
-        System.out.println("Ingrese año que busca");
-        Scanner sc = new Scanner(System.in);
-        String anio;
-        anio = sc.next();
-        TreeMap<Integer, Anime> yearTreeMap = yearMap.get(anio);
-        System.out.println();
-        if (yearTreeMap == null )
+        TreeMap<Integer, Anime> pivoteAno = yearMap.get(ano);
+        if (pivoteAno == null )
         {
-            System.out.println("No exite ningun anime de ese año");
+            return tabla;
         }
-        else
+        tabla =new Object[pivoteAno.size()][9];
+        int i =0;
+        for(Map.Entry<Integer, Anime> entry : pivoteAno.entrySet()) 
         {
-            for(Map.Entry<Integer, Anime> entry : yearTreeMap.entrySet()) 
-            {
-                Anime anime= entry.getValue();
-                if(formato)
-                {
-                    System.out.printf("%-5s\t%C%-50.50s %C%-11.11s %C%-4s %C%-15.15s %C%-17.17s %C%-4s %C%-30.30s %C%-30.30s\n","ID", '|', "Nombre", '|',"Tipo", '|',"Capitulos", '|',"Duracion", '|',"Rating", '|',"Año", '|',"Estudio", '|',"Genero");
-                    System.out.printf("%-5d\t%C%-50.50s %C%-11.11s %C%-9d %C%-15.15s %C%-17.17s %C%-4d %C%-30.30s %C%-30.30s\n",anime.getMal_id(), '|', anime.getName(), '|', anime.getType(), '|', anime.getEpisodes(), '|', anime.getDuration(), '|', anime.getRating(), '|', anime.getYear(), '|', anime.getStudio(), '|', anime.getGenre());
-                    formato = false;
-                }
-                else
-                {
-                    System.out.printf("%-5d\t%C%-50.50s %C%-11.11s %C%-9d %C%-15.15s %C%-17.17s %C%-4d %C%-30.30s %C%-30.30s\n",anime.getMal_id(), '|', anime.getName(), '|', anime.getType(), '|', anime.getEpisodes(), '|', anime.getDuration(), '|', anime.getRating(), '|', anime.getYear(), '|', anime.getStudio(), '|', anime.getGenre());
-                }
-            }
+            Anime anime= entry.getValue();
+            tabla [i][0]=anime.getMal_id();
+            tabla [i][1]=anime.getName();
+            tabla [i][2]=anime.getType();
+            tabla [i][3]=anime.getEpisodes();
+            tabla [i][4]=anime.getDuration();
+            tabla [i][5]=anime.getRating();
+            tabla [i][6]=anime.getYear();
+            tabla [i][7]=anime.getStudio();
+            tabla [i][8]=anime.getGenre();
+            i =(i+1);
         }
-        System.out.println();
+        return tabla;
     }
-
-    public void menu()
+    /*public void menu()
     {
         int option =0;
         Scanner scInt = new Scanner(System.in);
@@ -376,5 +373,5 @@ public class Funciones
                 System.out.printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             }
         }
-    }
+    }*/
 }
