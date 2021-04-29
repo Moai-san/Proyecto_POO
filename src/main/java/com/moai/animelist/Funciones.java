@@ -17,12 +17,11 @@ public class Funciones
     private HashMap<Object, TreeMap<Integer, Anime>> genreMap =new HashMap<Object, TreeMap<Integer, Anime>>();
     private HashMap<Object, TreeMap<Integer, Anime>> yearMap =new HashMap<Object, TreeMap<Integer, Anime>>();
     private HashMap<Object, TreeMap<Integer, Anime>> typeMap =new HashMap<Object, TreeMap<Integer, Anime>>();
-
+    
     //Constructor
 
     public Funciones()
     {
-
     }
 
     //Metodos
@@ -230,6 +229,91 @@ public class Funciones
         {
             return (-1);
         }
+    }
+    
+    public Anime buscarAnime(int id){
+    
+        Anime animu;
+        for (int i = 0; i < catalogue.size(); i++)
+        {
+            animu = catalogue.get(i);
+            if (animu.getMal_id() == id)
+            {
+                return animu;
+            }
+        }
+        
+        return null;
+        
+    }
+    
+    public int eliminarAnime(String stringID){
+        
+        int id = Integer.parseInt(stringID);
+        return eliminarAnimeColecciones(id);
+
+    }
+    
+    public int eliminarAnimeColecciones(int id){
+        
+        boolean encontrado = false;
+        
+        Anime animu = null;
+        for (int i = 0; i < catalogue.size(); i++)
+        {
+            animu = catalogue.get(i);
+            if (animu.getMal_id() == id)
+            {
+                catalogue.remove(i);
+                encontrado = true;
+                break;
+            }
+        }
+        
+        if(animu == null || encontrado == false){
+            return (-1);
+        }
+    
+        //Obtenemos el treemap de tipos, y lo eliminamos
+        TreeMap<Integer, Anime> type = typeMap.get(animu.getType());
+        type.remove(id);
+        
+        //Obtenemos el treemap de generos, y lo eliminamos
+        TreeMap<Integer, Anime> genre = genreMap.get(animu.getGenre());
+        genre.remove(id);
+        
+        //Obtenemos el treemap de años, y lo eliminamos
+        TreeMap<Integer, Anime> year = yearMap.get(String.valueOf(animu.getYear()));
+        year.remove(id);
+        
+        return 0;
+    
+    }
+    
+    public int modificarID(String stringAnimeID, String stringNuevoID){
+        
+        int animeID = Integer.parseInt(stringAnimeID);
+        int nuevoID = Integer.parseInt(stringNuevoID);
+        Anime animu = buscarAnime(animeID);
+
+        //si es que el ID nuevo ya está ocupado por otro anime se retorna -1
+        if(buscarAnime(nuevoID) != null) return (-1);
+        
+        //si el dato no existe retorna -1
+        if(eliminarAnimeColecciones(animeID) == -1 || animu == null) return (-1);
+        
+        /*Si es que ninguno de los casos anteriores sucedió, siginifica que:
+        -hay un anime con el id entregado
+        -el nuevo id no está tomado por ningun otro anime
+        por lo tanto se procede a volver a agregar el dato a todas las colecciones
+        ya que fue eliminado por contar con la clave antigua en los treemaps*/
+        
+        //lo volvemos a agregar en todas las colecciones
+        animu.setMal_id(nuevoID);
+        addAnime(animu);
+        
+        return 0;
+
     }
 
     public Object[][] getYears()
