@@ -8,6 +8,11 @@ import java.io.*;
 import java.util.*;
 import com.moai.animelist.*;
 
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+
 public class Funciones
 {
     //Variables de instancia
@@ -66,6 +71,7 @@ public class Funciones
             genre.put((toAdd.getMal_id()), toAdd);
             String generos =(toAdd.getGenre());
             generos =(generos.substring(1,((generos.length())-1)));
+            
             for (int i = 0; i < 10; i++)//se subdivide el string en cada genero y luego se ingresa el anime a todas las listas filtradas que corresponda
             {
                 if (pivoteGetCSV.get_csvField(generos, i)==null)//si el string recortado es nulo, se rompe el bucle para no generar errores
@@ -94,6 +100,7 @@ public class Funciones
             CSV pivoteGetCSV = new CSV();
             String generos =(toAdd.getGenre());
             generos =(generos.substring(1,((generos.length())-1)));
+            
             for (int i = 0; i < 10; i++)//se subdivide el string en cada genero y luego se ingresa el anime a todas las listas filtradas que corresponda
             {
                 if (pivoteGetCSV.get_csvField(generos, i)==null)//si el string recortado es nulo, se rompe el bucle para no generar errores
@@ -126,14 +133,17 @@ public class Funciones
         String linea =animeCSV.firstLine();
         Anime toAdd =new Anime(animeCSV, linea); //anime a añadir en estructuras de datos e inicializar valores del anime a añadir
         this.addAnime(toAdd);
+        
         while(true)
         {
             linea =(null);
             linea =animeCSV.nextLine();
+            
             if(linea.equals(""))
             {
                 break;
             }
+            
             toAdd =new Anime(animeCSV, linea);
             this.addAnime(toAdd);
         }
@@ -148,63 +158,21 @@ public class Funciones
         {
             linea =(null);
             linea =animeCSV.nextLine();
+            
             if(linea.equals(""))
             {
                 break;
             }
+            
             toAdd =new Anime(animeCSV, linea);
             this.addAnime(toAdd);
         }
     }
 
-    public void agregarAnimu()
-    {
-        int mal_id; //myanimelist_id
-        String name; //nombre
-        String type; //tipo de anime (movie,tv,web-series,special,ova) ->Mapa
-        int episodes; //cantidad de episodios
-        String duration; //duracion
-        String rating; //rating (calificacion de contenido) ->Mapa
-        int year; //año lanzamiento ->Mapa
-        String studio; //estudio animacion ->Mapa
-        String genre; //genero anime ->Mapa
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Por favor ingrese ID,debe ser un numero sobre 37908, sin incluir este");
-        do
-        {
-            mal_id =  sc.nextInt(); 
-            sc.nextLine();
-            if (animeExiste(mal_id))
-            {
-                System.out.println("ID invalido, por favor ingrese uno nuevo");
-            }
-        }
-        while(animeExiste(mal_id));
-        System.out.println("Por favor ingrese nombre");
-        name  =  sc.nextLine();
-        System.out.println("Por favor ingrese tipo");
-        type =  sc.nextLine();
-        System.out.println("Por favor ingrese episodio");
-        episodes =  sc.nextInt();
-        sc.nextLine();
-        System.out.println("Por favor ingrese la duracion del episodio");
-        duration  =  sc.nextLine();
-        System.out.println("Por favor ingrese el rating del anime");
-        rating  =  sc.nextLine();
-        System.out.println("Por favor ingrese año");
-        year =  sc.nextInt();
-        sc.nextLine();
-        System.out.println("Por favor ingrese el estudio");
-        studio  =  sc.nextLine();
-        System.out.println("Por favor ingrese el genero");
-        genre  =  sc.nextLine();
-        Anime newanime = new Anime(mal_id,name,type,episodes,duration,rating,year,studio,genre);
-        addAnime(newanime); //se guarda nuevo anime
-    }
-
     public boolean animeExiste(int id)
     {
         Anime animu;
+        
         for (int i = 0; i < catalogue.size(); i++)
         {
             animu = catalogue.get(i);
@@ -219,6 +187,7 @@ public class Funciones
     public int addYear(String ano)
     {
         TreeMap<Integer, Anime> year = yearMap.get(ano);
+        
         if (year == null)
         {
             year = new TreeMap<Integer, Anime>();
@@ -231,12 +200,13 @@ public class Funciones
         }
     }
     
-    public Anime buscarAnime(int id){
-    
+    public Anime buscarAnime(int id)
+    {
         Anime animu;
+        
         for (int i = 0; i < catalogue.size(); i++)
         {
-            animu = catalogue.get(i);
+            animu = catalogue.get(i); 
             if (animu.getMal_id() == id)
             {
                 return animu;
@@ -244,24 +214,23 @@ public class Funciones
         }
         
         return null;
-        
     }
     
-    public int eliminarAnime(String stringID){
-        
+    public int eliminarAnime(String stringID)
+    {
         int id = Integer.parseInt(stringID);
         return eliminarAnimeColecciones(id);
-
     }
     
-    public int eliminarAnimeColecciones(int id){
-        
+    public int eliminarAnimeColecciones(int id)
+    {
         boolean encontrado = false;
         
         Anime animu = null;
         for (int i = 0; i < catalogue.size(); i++)
         {
             animu = catalogue.get(i);
+            
             if (animu.getMal_id() == id)
             {
                 catalogue.remove(i);
@@ -270,7 +239,8 @@ public class Funciones
             }
         }
         
-        if(animu == null || encontrado == false){
+        if(animu == null || encontrado == false)
+        {
             return (-1);
         }
     
@@ -287,11 +257,10 @@ public class Funciones
         year.remove(id);
         
         return 0;
-    
     }
     
-    public int modificarID(String stringAnimeID, String stringNuevoID){
-        
+    public int modificarID(String stringAnimeID, String stringNuevoID)
+    { 
         int animeID = Integer.parseInt(stringAnimeID);
         int nuevoID = Integer.parseInt(stringNuevoID);
         Anime animu = buscarAnime(animeID);
@@ -313,24 +282,27 @@ public class Funciones
         addAnime(animu);
         
         return 0;
-
     }
 
     public Object[][] getYears()
     {
         int i =0;
         Object tabla[][] =new Object[yearMap.size()][1];
+        
         for (Map.Entry mapElement : yearMap.entrySet()) 
         {
             int year = Integer.parseInt((String)mapElement.getKey());
             tabla[i][0]=year;
             i=(i+1);
         }
+        
         return(tabla);
     }
+    
     public void mostrarPorAnio()
     {
         TreeMap<Object,Object> year =  new TreeMap<Object,Object>();
+        
         for (Map.Entry mapElement : yearMap.entrySet()) 
         {
             int anio = Integer.parseInt((String)mapElement.getKey());
@@ -342,12 +314,14 @@ public class Funciones
     public Object[][] mostrarDel_ano(Object tabla[][],String ano)
     {
         TreeMap<Integer, Anime> pivoteAno = yearMap.get(ano);
-        if (pivoteAno == null )
+        
+        if (pivoteAno == null)
         {
             return tabla;
         }
         tabla =new Object[pivoteAno.size()][9];
         int i =0;
+        
         for(Map.Entry<Integer, Anime> entry : pivoteAno.entrySet()) 
         {
             Anime anime= entry.getValue();
@@ -362,100 +336,164 @@ public class Funciones
             tabla [i][8]=anime.getGenre();
             i =(i+1);
         }
+        
         return tabla;
     }
-    /*public void menu()
+    
+    public void crearArchivoExcel() throws IOException
     {
-        int option =0;
-        Scanner scInt = new Scanner(System.in);
-        Scanner garbage = new Scanner(System.in);
-        do
+        // Se crean las variables de libro (excel), plantilla (con nombre Animes), columna y fila de el excel (celdas).
+        XSSFWorkbook libro = new XSSFWorkbook();
+        XSSFSheet plantilla = libro.createSheet("Animes");
+        XSSFRow columna;
+        XSSFCell fila;
+        
+        // Ciclo que se mueve a travez de las columnas
+        for (int i = 0; i < catalogue.size(); i++)
         {
-            try
+            // Se crea una variable anime con los datos correspondientes y la columna del excel
+            Anime animu = catalogue.get(i);
+            columna = plantilla.createRow(i);
+            
+            // Ciclo que se mueve a travez de las filas
+            for (int j = 0; j < 9; j++)
             {
-                System.out.printf("Bienvenidos a Moai Anime List! :) \n\n");
-                System.out.println("Por favor ingrese una opcion del 1 al 4");
-                System.out.println("1: Agregar Anime");
-                System.out.println("2: Agregar Año de publicacion del anime");
-                System.out.println("3: Mostar Años");
-                System.out.println("4: Buscar Anime por Años");
-                System.out.println("Si desea salir, por favor ingrese un 0");
-                option = scInt.nextInt();
-                switch(option)
+                /* Se crea la fila de la columna y se guarda el valor que 
+                corresponde en cada fila mediante el switch*/
+                fila = columna.createCell(j);
+                
+                switch(j)
                 {
+                    case 0:
+                    {
+                        fila.setCellValue(animu.getMal_id());
+                        break;
+                    }
                     case 1:
                     {
-                        clrScr();
-                        agregarAnimu();
-                        System.out.println("Ingrese un caracter para volver al menu");
-                        garbage.nextLine();
+                        fila.setCellValue(animu.getName());
                         break;
                     }
                     case 2:
                     {
-                        clrScr();
-                        agregarAnio();
-                        System.out.println("Ingrese un caracter para volver al menu");
-                        garbage.nextLine();
+                        fila.setCellValue(animu.getType());
                         break;
                     }
                     case 3:
                     {
-                        clrScr();
-                        mostrarPorAnio();
-                        System.out.println("Ingrese un caracter para volver al menu");
-                        garbage.nextLine();
+                        fila.setCellValue(animu.getEpisodes());
                         break;
                     }
-                    case 4: 
+                    case 4:
                     {
-                        clrScr();
-                        buscarPorAnio();
-                        System.out.println("Ingrese un caracter para volver al menu");
-                        garbage.nextLine();
+                        fila.setCellValue(animu.getDuration());
                         break;
                     }
-                    case 0: 
+                    case 5:
                     {
+                        fila.setCellValue(animu.getRating());
                         break;
                     }
-                    default:
+                    case 6:
                     {
-                        System.out.println("Ingrese una opcion valida por favor");
+                        fila.setCellValue(animu.getYear());
                         break;
                     }
-                }       
+                    case 7:
+                    {
+                        fila.setCellValue(animu.getStudio());
+                        break;
+                    }
+                    case 8:
+                    {
+                        fila.setCellValue(animu.getGenre());
+                        break;
+                    }
+                }
             }
-            catch(InputMismatchException e)
-            {
-                System.out.println("Ingrese opcion valida porfavor");
-                option = 9;
-                scInt.next();
-            }   
         }
-        while (option !=0);
-        scInt.close();
+        
+        // Se crea el excel con el nombre Moai_AnimeList_Excel y los datos de la variable libro
+        FileOutputStream excel = new FileOutputStream("Moai_AnimeList_Excel.xlsx");
+        libro.write(excel);
     }
     
-    public void clrScr()
+    public void crearArchivoCSV() throws IOException
     {
-        try
+        // Se crea el CSV con el nombre Moai_AnimeList_CSV
+        FileWriter line = new FileWriter("Moai_AnimeList_CSV.csv");
+        
+        // Ciclo que se mueve por las columnas
+        for (int i = 0; i < catalogue.size(); i++)
         {
-            if( System.getProperty( "os.name" ).startsWith( "Window" ) )
+            System.out.println(catalogue.size());
+            // Se crea una variable anime con los datos correspondientes
+            Anime animu = catalogue.get(i);
+            
+            for (int j = 0; j < 9; j++)
             {
-                Runtime.getRuntime().exec("/c cls");
-            }
-            else
-            {
-                Runtime.getRuntime().exec("clear");
+                /*Se guarda los valores con comas mediante el uso de switch 
+                y el ciclo for que se mueve por las filas*/
+                switch(j)
+                {
+                    case 0:
+                    {
+                        line.append(Integer.toString(animu.getMal_id()));
+                        line.append(",");
+                        break;
+                    }
+                    case 1:
+                    {
+                        line.append(animu.getName());
+                        line.append(",");
+                        break;
+                    }
+                    case 2:
+                    {
+                        line.append(animu.getType());
+                        line.append(",");
+                        break;
+                    }
+                    case 3:
+                    {
+                        line.append(Integer.toString(animu.getEpisodes()));
+                        line.append(",");
+                        break;
+                    }
+                    case 4:
+                    {
+                        line.append(animu.getDuration());
+                        line.append(",");
+                        break;
+                    }
+                    case 5:
+                    {
+                        line.append(animu.getRating());
+                        line.append(",");
+                        break;
+                    }
+                    case 6:
+                    {
+                        line.append(Integer.toString(animu.getYear()));
+                        line.append(",");
+                        break;
+                    }
+                    case 7:
+                    {
+                        line.append(animu.getStudio());
+                        line.append(",");
+                        break;
+                    }
+                    case 8:
+                    {
+                        line.append(animu.getGenre());
+                        line.append("\n");
+                        break;
+                    }
+                }
             }
         }
-        catch(IOException e)
-        {
-            for(int i = 0; i < 10; i++)
-            {
-                System.out.printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-            }
-        }
-    }*/
+        line.flush();
+        line.close();
+    }
 }

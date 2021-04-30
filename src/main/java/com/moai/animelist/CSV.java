@@ -23,7 +23,6 @@ public class CSV
     
     public CSV()
     {
-
     }
 
     //Metodos/Funciones
@@ -45,6 +44,7 @@ public class CSV
         int index =(0);
         s.useDelimiter(",|\\n");
         String output;
+        
         while(s.hasNext())
         {
             output =(s.next());
@@ -59,6 +59,7 @@ public class CSV
                     output =(output+","+(s.next()));
                 }
             }
+            
             if (index==field)
             {
                 s.close();
@@ -78,6 +79,7 @@ public class CSV
         int index =(0);
         s.useDelimiter(",|\\n");
         String output;
+        
         while(s.hasNext())
         {
             output =(s.next());
@@ -92,6 +94,7 @@ public class CSV
                     }
                 }
             }
+            
             if (index==field)
             {
                 return(output);
