@@ -222,15 +222,64 @@ public class Funciones
         return eliminarAnimeColecciones(id);
     }
     
+    public int eliminarAno(String ano)
+    {
+        /* Se crea una variable treeMap que contenga los animes del año a eliminar
+        y una LinkedList con las id de esos animes.*/
+        TreeMap<Integer, Anime> year = yearMap.get(ano);
+        LinkedList <Integer> id = new LinkedList<Integer>();
+        
+        if (year == null) return (-1);
+        
+        // Se navega a traves del treeMap de animes y se guarda las id en la LinkedList
+        for(Map.Entry<Integer, Anime> entry : year.entrySet()) 
+        {
+            int key = entry.getKey();
+            id.add(key);
+        }
+        
+        /*El ciclo for llama a el metodo de eliminacion de anime en las colecciones del programa,
+        el cual elimina los animes del año seleccionado*/
+        for (int i = 0; i < id.size(); i++)
+        {
+            eliminarAnimeColecciones(id.get(i));
+        }
+        
+        // Con los animes eliminados de las colecciones se elimina la clave del año
+        yearMap.remove(ano);
+
+        return 0;
+    }
+    
+    public int modificarAno(String viejo, String nuevo)
+    {
+        TreeMap<Integer, Anime> year = yearMap.get(viejo);
+        if (year == null) return (-1);
+        int largo =year.size();
+        Anime aniArray[] =new Anime[largo];
+        int i =0;
+        for(Map.Entry<Integer, Anime> entry : year.entrySet())
+        {
+            Anime a=new Anime(entry.getValue());
+            aniArray[i] =a;
+            aniArray[i].setYear(Integer.parseInt(nuevo));
+            i++;
+        }
+        eliminarAno(viejo);
+        for(i=0;i<largo;i++)
+        {
+            addAnime(aniArray[i]);
+        }
+        return (0);
+    }
+    
     public int eliminarAnimeColecciones(int id)
     {
         boolean encontrado = false;
-        
         Anime animu = null;
         for (int i = 0; i < catalogue.size(); i++)
         {
             animu = catalogue.get(i);
-            
             if (animu.getMal_id() == id)
             {
                 catalogue.remove(i);
@@ -238,7 +287,6 @@ public class Funciones
                 break;
             }
         }
-        
         if(animu == null || encontrado == false)
         {
             return (-1);
@@ -426,7 +474,6 @@ public class Funciones
         // Ciclo que se mueve por las columnas
         for (int i = 0; i < catalogue.size(); i++)
         {
-            System.out.println(catalogue.size());
             // Se crea una variable anime con los datos correspondientes
             Anime animu = catalogue.get(i);
             
