@@ -1,12 +1,15 @@
-package com.moai.animelist;
+package com.moai.animelist.controlador;
+
 /**
- *
- * @author moai
+ * 
+ * @author moai-san (Leonardo Gonzalez)
+ * 
  */
 
+import com.moai.animelist.modelo.CSV;
+import com.moai.animelist.modelo.Anime;
 import java.io.*;
 import java.util.*;
-import com.moai.animelist.*;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -16,8 +19,15 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 public class Funciones
 {
     //Variables de instancia
-
-    private LinkedList<Anime> catalogue =new LinkedList<Anime>(); //Lista doblemente enlazada
+    //Catalogo sin filtrar
+    private LinkedList<Anime> catalogue =new LinkedList<Anime>();
+    //Listas de usuario
+    private LinkedList<Anime> watched =new LinkedList<Anime>();
+    private LinkedList<Anime> faved =new LinkedList<Anime>();
+    private LinkedList<Anime> hated =new LinkedList<Anime>();
+    //Tops a nivel aplicacion
+    private TreeMap<Integer,HashMap<Integer,Anime>> most_faved;
+    private TreeMap<Integer,HashMap<Integer,Anime>> most_hated;
     //Tablas Hash con Arboles anidados, que contendran animes filtrados por genero, tipo y año
     private HashMap<Object, TreeMap<Integer, Anime>> genreMap =new HashMap<Object, TreeMap<Integer, Anime>>();
     private HashMap<Object, TreeMap<Integer, Anime>> yearMap =new HashMap<Object, TreeMap<Integer, Anime>>();
@@ -253,11 +263,14 @@ public class Funciones
     
     public int modificarAno(String viejo, String nuevo)
     {
+        //se crea treemap para obtener los animes de ese año y tambien para tener el largo del array que se usa
         TreeMap<Integer, Anime> year = yearMap.get(viejo);
+        //si el treemap es nulo, el año no existe, por lo que se retorna -1, que es nuestro "flag de error"
         if (year == null) return (-1);
         int largo =year.size();
         Anime aniArray[] =new Anime[largo];
         int i =0;
+        //se recorre el treemap y se rellena el arreglo de animes, modificando el año en cada uno de ellos
         for(Map.Entry<Integer, Anime> entry : year.entrySet())
         {
             Anime a=new Anime(entry.getValue());
@@ -265,6 +278,8 @@ public class Funciones
             aniArray[i].setYear(Integer.parseInt(nuevo));
             i++;
         }
+        //se elimina el año que se deseaba modificar, y luego, se insetan todos los anime con el año ya modificado, lo cual en  caso de existir ya el año, se agregarian al arbol de ese año
+        //y en caso de no existir, se crearia un arbol nuevo
         eliminarAno(viejo);
         for(i=0;i<largo;i++)
         {
@@ -336,14 +351,18 @@ public class Funciones
     {
         int i =0;
         Object tabla[][] =new Object[yearMap.size()][1];
-        
+        Integer array[] =new Integer[yearMap.size()];
         for (Map.Entry mapElement : yearMap.entrySet()) 
         {
             int year = Integer.parseInt((String)mapElement.getKey());
-            tabla[i][0]=year;
+            array[i]=year;
             i=(i+1);
         }
-        
+        Arrays.sort(array);
+        for(i=0;i<yearMap.size();i++)
+        {
+            tabla[i][0]=array[i];
+        }
         return(tabla);
     }
     
@@ -359,30 +378,92 @@ public class Funciones
         year.forEach((key, value)->System.out.println("Año: " + value));
     }
 
-    public Object[][] mostrarDel_ano(Object tabla[][],String ano)
+    public Object[][] mostrarPor_filtro(Object tabla[][],String filtro, int a)
     {
-        TreeMap<Integer, Anime> pivoteAno = yearMap.get(ano);
+        int i;
         
-        if (pivoteAno == null)
+        switch(a)
         {
-            return tabla;
-        }
-        tabla =new Object[pivoteAno.size()][9];
-        int i =0;
+            case 0:
+                TreeMap<Integer, Anime> pivoteAno = yearMap.get(filtro);
         
-        for(Map.Entry<Integer, Anime> entry : pivoteAno.entrySet()) 
-        {
-            Anime anime= entry.getValue();
-            tabla [i][0]=anime.getMal_id();
-            tabla [i][1]=anime.getName();
-            tabla [i][2]=anime.getType();
-            tabla [i][3]=anime.getEpisodes();
-            tabla [i][4]=anime.getDuration();
-            tabla [i][5]=anime.getRating();
-            tabla [i][6]=anime.getYear();
-            tabla [i][7]=anime.getStudio();
-            tabla [i][8]=anime.getGenre();
-            i =(i+1);
+                if (pivoteAno == null)
+                {
+                    return tabla;
+                }
+                tabla =new Object[pivoteAno.size()][9];
+                i = 0;
+
+                for(Map.Entry<Integer, Anime> entry : pivoteAno.entrySet()) 
+                {
+                    Anime anime= entry.getValue();
+                    tabla [i][0]=anime.getMal_id();
+                    tabla [i][1]=anime.getName();
+                    tabla [i][2]=anime.getType();
+                    tabla [i][3]=anime.getEpisodes();
+                    tabla [i][4]=anime.getDuration();
+                    tabla [i][5]=anime.getRating();
+                    tabla [i][6]=anime.getYear();
+                    tabla [i][7]=anime.getStudio();
+                    tabla [i][8]=anime.getGenre();
+                    i =(i+1);
+                }
+
+                return tabla;
+                
+            case 1:
+                TreeMap<Integer, Anime> pivoteType = typeMap.get(filtro);
+        
+                if (pivoteType == null)
+                {
+                    return tabla;
+                }
+                tabla =new Object[pivoteType.size()][9];
+                i = 0;
+
+                for(Map.Entry<Integer, Anime> entry : pivoteType.entrySet()) 
+                {
+                    Anime anime= entry.getValue();
+                    tabla [i][0]=anime.getMal_id();
+                    tabla [i][1]=anime.getName();
+                    tabla [i][2]=anime.getType();
+                    tabla [i][3]=anime.getEpisodes();
+                    tabla [i][4]=anime.getDuration();
+                    tabla [i][5]=anime.getRating();
+                    tabla [i][6]=anime.getYear();
+                    tabla [i][7]=anime.getStudio();
+                    tabla [i][8]=anime.getGenre();
+                    i =(i+1);
+                }
+
+                return tabla;
+                
+            case 2:
+                TreeMap<Integer, Anime> pivoteGenre = genreMap.get(filtro);
+        
+                if (pivoteGenre == null)
+                {
+                    return tabla;
+                }
+                tabla =new Object[pivoteGenre.size()][9];
+                i = 0;
+
+                for(Map.Entry<Integer, Anime> entry : pivoteGenre.entrySet()) 
+                {
+                    Anime anime= entry.getValue();
+                    tabla [i][0]=anime.getMal_id();
+                    tabla [i][1]=anime.getName();
+                    tabla [i][2]=anime.getType();
+                    tabla [i][3]=anime.getEpisodes();
+                    tabla [i][4]=anime.getDuration();
+                    tabla [i][5]=anime.getRating();
+                    tabla [i][6]=anime.getYear();
+                    tabla [i][7]=anime.getStudio();
+                    tabla [i][8]=anime.getGenre();
+                    i = (i+1);
+                }
+
+                return tabla;
         }
         
         return tabla;
@@ -466,81 +547,250 @@ public class Funciones
         libro.write(excel);
     }
     
+    public void writeAnime_intoCSV(Anime animu, FileWriter line)throws IOException
+    {
+        for (int j = 0; j < 9; j++)
+        {
+            /*Se guarda los valores con comas mediante el uso de switch 
+            y el ciclo for que se mueve por las filas*/
+            switch(j)
+            {
+                case 0:
+                {
+                    line.append(Integer.toString(animu.getMal_id()));
+                    line.append(",");
+                    break;
+                }
+                case 1:
+                {
+                    line.append(animu.getName());
+                    line.append(",");
+                    break;
+                }
+                case 2:
+                {
+                    line.append(animu.getType());
+                    line.append(",");
+                    break;
+                }
+                case 3:
+                {
+                    line.append(Integer.toString(animu.getEpisodes()));
+                    line.append(",");
+                    break;
+                }
+                case 4:
+                {
+                    line.append(animu.getDuration());
+                    line.append(",");
+                    break;
+                }
+                case 5:
+                {
+                    line.append(animu.getRating());
+                    line.append(",");
+                    break;
+                }
+                case 6:
+                {
+                    line.append(Integer.toString(animu.getYear()));
+                    line.append(",");
+                    break;
+                }
+                case 7:
+                {
+                    line.append(animu.getStudio());
+                    line.append(",");
+                    break;
+                }
+                case 8:
+                {
+                    line.append(animu.getGenre());
+                    line.append("\n");
+                    break;
+                }
+            }
+        }
+    }
     public void crearArchivoCSV() throws IOException
     {
         // Se crea el CSV con el nombre Moai_AnimeList_CSV
         FileWriter line = new FileWriter("Moai_AnimeList_CSV.csv");
-        
         // Ciclo que se mueve por las columnas
         for (int i = 0; i < catalogue.size(); i++)
         {
             // Se crea una variable anime con los datos correspondientes
             Anime animu = catalogue.get(i);
-            
-            for (int j = 0; j < 9; j++)
-            {
-                /*Se guarda los valores con comas mediante el uso de switch 
-                y el ciclo for que se mueve por las filas*/
-                switch(j)
-                {
-                    case 0:
-                    {
-                        line.append(Integer.toString(animu.getMal_id()));
-                        line.append(",");
-                        break;
-                    }
-                    case 1:
-                    {
-                        line.append(animu.getName());
-                        line.append(",");
-                        break;
-                    }
-                    case 2:
-                    {
-                        line.append(animu.getType());
-                        line.append(",");
-                        break;
-                    }
-                    case 3:
-                    {
-                        line.append(Integer.toString(animu.getEpisodes()));
-                        line.append(",");
-                        break;
-                    }
-                    case 4:
-                    {
-                        line.append(animu.getDuration());
-                        line.append(",");
-                        break;
-                    }
-                    case 5:
-                    {
-                        line.append(animu.getRating());
-                        line.append(",");
-                        break;
-                    }
-                    case 6:
-                    {
-                        line.append(Integer.toString(animu.getYear()));
-                        line.append(",");
-                        break;
-                    }
-                    case 7:
-                    {
-                        line.append(animu.getStudio());
-                        line.append(",");
-                        break;
-                    }
-                    case 8:
-                    {
-                        line.append(animu.getGenre());
-                        line.append("\n");
-                        break;
-                    }
-                }
-            }
+            writeAnime_intoCSV(animu,line);
         }
         line.flush();
         line.close();
+    }
+    
+    //modificacion datos usuario para persistencia
+    //exportar listas del usuario (para no perder los datos despues de ejecutar)
+    public void export_userData(String username) throws IOException
+    {
+        FileWriter output;
+        String ruta;
+        ruta =("./User/Fav/");
+        assertFolder_andCreate_ifFalse(ruta);
+        ruta =(ruta+username+".csv");
+        output =new FileWriter(ruta);
+        for (int i = 0; i < watched.size(); i++)
+        {
+            // Se crea una variable anime con los datos correspondientes
+            Anime aux =faved.get(i);
+            writeAnime_intoCSV(aux,output);
+        }
+        output.flush();
+        output.close();
+        ruta =("./User/Hate/");
+        assertFolder_andCreate_ifFalse(ruta);
+        ruta =(ruta+username+".csv");
+        output =new FileWriter(ruta);
+        for (int i = 0; i < watched.size(); i++)
+        {
+            // Se crea una variable anime con los datos correspondientes
+            Anime aux =hated.get(i);
+            writeAnime_intoCSV(aux,output);
+        }
+        output.flush();
+        output.close();
+        ruta =("./User/Watched/");
+        assertFolder_andCreate_ifFalse(ruta);
+        ruta =(ruta+username+".csv");
+        output =new FileWriter(ruta);
+        for (int i = 0; i < watched.size(); i++)
+        {
+            // Se crea una variable anime con los datos correspondientes
+            Anime aux =watched.get(i);
+            writeAnime_intoCSV(aux,output);
+        }
+        output.flush();
+        output.close();
+    }
+    
+    public void assertFolder_andCreate_ifFalse(String dir)
+    {
+        File directory=new File(dir);
+        if (directory.exists()!=true)
+        {
+            directory.mkdirs();
+        }
+    }
+    
+    //retorna un array de 2 object, donde la primera casilla es el numero de gente que lo tiene en su lista, y la casilla 2 es el anime,
+    //en caso de no estar en ninguna lista, retorna null
+    public Object[] searchFrom_globalList(int option, int id)//buscar dentro de tops
+    {
+        //declaraciones
+        TreeMap<Integer,HashMap<Integer,Anime>> lista;
+        //si opcion ingresada por user es 1, se busca en favoritos
+        if (option==1)
+        {
+            lista =most_faved;
+        }
+        else//sinó en odiados
+        {
+            lista =most_hated;
+        }
+        for(Map.Entry<Integer,HashMap<Integer,Anime>> forSearch : lista.entrySet()) 
+        {
+            Anime aux =forSearch.getValue().get(id);
+            if(aux!=null)
+            {
+                Object output[] =new Object[]{forSearch.getKey(),aux};
+                return output;
+            }
+        }
+        return(null);
+    }
+    
+    public void addTo_Top(int option, Anime toAdd)
+    {
+        switch (option)
+        {
+            case 0://top favoritos
+            {
+                Object positionNode[] =searchFrom_globalList(1,toAdd.getMal_id());
+                HashMap<Integer,Anime> topush;
+                if (positionNode==null)
+                {
+                    topush =most_faved.firstEntry().getValue();
+                    if (topush!=null)
+                    {
+                        topush.put(toAdd.getMal_id(),toAdd);
+                    }
+                    else
+                    {
+                        int key =1;
+                        topush =new HashMap<Integer,Anime>();
+                        topush.put(toAdd.getMal_id(),toAdd);
+                        most_faved.put(key, topush);
+                    }
+                }
+                else
+                {
+                    int key = (int)(positionNode[0]);
+                    key =(key+1);
+                    topush =most_faved.get(positionNode[0]);
+                    Anime aux = (Anime)positionNode[1];
+                    topush.remove(aux.getMal_id());
+                    topush =most_faved.get(key);
+                    if (topush!=null)
+                    {
+                        topush.put(toAdd.getMal_id(), toAdd);
+                    }
+                    else
+                    {
+                        topush =new HashMap<Integer,Anime>();
+                        topush.put(toAdd.getMal_id(),toAdd);
+                        most_faved.put(key, topush);
+                    }
+                }
+                break;
+            }
+            case 1://top odiados
+            {
+                Object positionNode[] =searchFrom_globalList(2,toAdd.getMal_id());
+                HashMap<Integer,Anime> topush;
+                if (positionNode==null)
+                {
+                    topush =most_hated.firstEntry().getValue();
+                    if (topush!=null)
+                    {
+                        topush.put(toAdd.getMal_id(),toAdd);
+                    }
+                    else
+                    {
+                        int key =1;
+                        topush =new HashMap<Integer,Anime>();
+                        topush.put(toAdd.getMal_id(),toAdd);
+                        most_hated.put(key, topush);
+                    }
+                }
+                else
+                {
+                    int key = (int)(positionNode[0]);
+                    key =(key+1);
+                    topush =most_hated.get(positionNode[0]);
+                    Anime aux = (Anime)positionNode[1];
+                    topush.remove(aux.getMal_id());
+                    topush =most_hated.get(key);
+                    if (topush!=null)
+                    {
+                        topush.put(toAdd.getMal_id(), toAdd);
+                    }
+                    else
+                    {
+                        topush =new HashMap<Integer,Anime>();
+                        topush.put(toAdd.getMal_id(),toAdd);
+                        most_hated.put(key, topush);
+                    }
+                }
+                break;
+            }
+        }
     }
 }

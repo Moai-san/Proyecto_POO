@@ -1,4 +1,5 @@
-package com.moai.animelist;
+package com.moai.animelist.modelo;
+
 /**
  * 
  * @author moai-san (Leonardo Gonzalez)
