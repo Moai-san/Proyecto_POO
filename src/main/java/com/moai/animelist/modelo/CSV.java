@@ -1,14 +1,15 @@
 package com.moai.animelist.modelo;
 
-/**
- * 
- * @author moai-san (Leonardo Gonzalez)
- * 
- */
-
 import java.io.*;
 import java.util.*;
 
+/**
+ *
+ * @author moai-san (Leonardo Gonzalez)
+ * @author nlago (Nicolás Lagos)
+ * @author maca (Macarena Troncoso)
+ * 
+ */
 public class CSV
 {
     //Variables de instancia
@@ -17,29 +18,55 @@ public class CSV
     private String currentLine;
 
     //Constructor
+
+    /**
+     *
+     * @param name
+     * @throws FileNotFoundException
+     */
     
     public CSV(String name) throws FileNotFoundException
     {
       this.file =new BufferedReader(new FileReader("./"+name+".csv"));
     }
     
+    /**
+     *
+     */
     public CSV()
     {
     }
 
     //Metodos/Funciones
+
+    /**
+     *
+     * @return
+     * @throws IOException
+     */
     
     public String firstLine() throws IOException
     {
         return nextLine();
     }
     
+    /**
+     *
+     * @return
+     * @throws IOException
+     */
     public String nextLine() throws IOException
     {
         this.currentLine =this.file.readLine();
         return(this.currentLine);
     }
     
+    /**
+     *
+     * @param line
+     * @param field
+     * @return
+     */
     public String get_csvField(String line,int field)
     {
         Scanner s = new Scanner(line);
@@ -75,6 +102,13 @@ public class CSV
     }
     
     //sobrecarga ep2
+
+    /**
+     *
+     * @param field
+     * @param line
+     * @return
+     */
     public String get_csvField(int field,String line)
     {
         Scanner s = new Scanner(line);
@@ -107,6 +141,10 @@ public class CSV
         return(null);
     }
     
+    /**
+     *
+     * @throws IOException
+     */
     public void close() throws IOException
     {
         file.close();

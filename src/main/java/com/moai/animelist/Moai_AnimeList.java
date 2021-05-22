@@ -1,19 +1,23 @@
 package com.moai.animelist;
 
-/**
- * 
- * @author moai-san (Leonardo Gonzalez)
- * 
- */
-
-import com.moai.animelist.modelo.*;
 import com.moai.animelist.vista.*;
-import com.moai.animelist.controlador.*;
 import java.io.*;
+
+/**
+ *
+ * @author moai-san (Leonardo Gonzalez)
+ * @author nlago (Nicolás Lagos)
+ * @author maca (Macarena Troncoso)
+ */
 
 public class Moai_AnimeList
 {
-    //public static String username;
+    /**
+     *
+     * @param args
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     
     public static void main(String args[])throws FileNotFoundException,IOException
     {

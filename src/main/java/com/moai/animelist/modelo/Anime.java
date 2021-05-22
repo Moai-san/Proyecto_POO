@@ -3,8 +3,11 @@ package com.moai.animelist.modelo;
 /**
  * 
  * @author moai-san (Leonardo Gonzalez)
+ * @author nlago (Nicolás Lagos)
+ * @author maca (Macarena Troncoso)
  * 
  */
+
 public class Anime
 {
     //Variables de instancia
@@ -21,46 +24,83 @@ public class Anime
 
     //Getters
 
+    /**
+     *
+     * @return
+     */
+
     public int getMal_id()
     {
         return mal_id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName()
     {
         return name;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getType()
     {
         return type;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getEpisodes()
     {
         return episodes;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDuration()
     {
         return duration;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getRating()
     {
         return rating;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getYear()
     {
         return year;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getStudio()
     {
         return studio;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getGenre()
     {
         return genre;
@@ -68,52 +108,95 @@ public class Anime
 
     //Setters
 
+    /**
+     *
+     * @param mal_id
+     */
+
     public void setMal_id(int mal_id)
     {
         this.mal_id = mal_id;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name)
     {
         this.name = name;
     }
 
+    /**
+     *
+     * @param type
+     */
     public void setType(String type)
     {
         this.type = type;
     }
 
+    /**
+     *
+     * @param episodes
+     */
     public void setEpisodes(int episodes)
     {
         this.episodes = episodes;
     }
 
+    /**
+     *
+     * @param duration
+     */
     public void setDuration(String duration)
     {
         this.duration = duration;
     }
 
+    /**
+     *
+     * @param rating
+     */
     public void setRating(String rating)
     {
         this.rating = rating;
     }
 
+    /**
+     *
+     * @param year
+     */
     public void setYear(int year)
     {
         this.year = year;
     }
 
+    /**
+     *
+     * @param studio
+     */
     public void setStudio(String studio)
     {
         this.studio = studio;
     }
 
+    /**
+     *
+     * @param genre
+     */
     public void setGenre(String genre)
     {
         this.genre = genre;
     }
     
     //Constructor
+
+    /**
+     *
+     * @param animeList
+     * @param linea
+     */
 
     public Anime(CSV animeList,String linea)
     {
@@ -129,6 +212,18 @@ public class Anime
         this.setGenre(animeList.get_csvField(linea,8));
     }
     
+    /**
+     *
+     * @param mal_id
+     * @param name
+     * @param type
+     * @param episodes
+     * @param duration
+     * @param rating
+     * @param year
+     * @param studio
+     * @param genre
+     */
     public Anime(int mal_id,String name,String type,int episodes,String duration,String rating,int year,String studio,String genre)
     {
         this.mal_id = mal_id;
@@ -142,6 +237,10 @@ public class Anime
         this.genre = genre;
     }
 
+    /**
+     *
+     * @param toCopy
+     */
     public Anime(Anime toCopy)
     {
         this.setMal_id(toCopy.getMal_id());

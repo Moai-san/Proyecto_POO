@@ -4,12 +4,15 @@ package com.moai.animelist.controlador;
  * 
  * @author moai-san (Leonardo Gonzalez)
  * 
+ * 
  */
 
 import java.io.*;
 import com.moai.animelist.modelo.*;
+import org.apache.poi.xssf.usermodel.*;
 
-public class User_Management
+
+public class User_Management implements Reportable
 {
     private Funciones llamar =new Funciones();
     //creacion de usuario
@@ -73,5 +76,49 @@ public class User_Management
         {
             return (null);
         }
+    }
+    
+    @Override
+    public void crearArchivoExcel() throws IOException
+    {
+        int x = 0;
+        File Usuarios = new File("./User/");
+        
+        XSSFWorkbook libro = new XSSFWorkbook();
+        XSSFSheet plantilla = libro.createSheet("Usuarios");
+        XSSFRow columna;
+        XSSFCell fila;
+        
+        for(String line: Usuarios.list())
+        {
+            if (line.endsWith(".txt"))
+            {
+                columna = plantilla.createRow(x);
+                fila = columna.createCell(0);
+                fila.setCellValue(line);
+                x++;
+            }
+        }
+        
+        FileOutputStream excel = new FileOutputStream("Usuarios.xlsx");
+        libro.write(excel);
+    }
+    
+    @Override
+    public void crearArchivoCSV() throws IOException
+    {
+        File Usuarios = new File("./User/");
+        FileWriter archive = new FileWriter("Usuarios.csv");
+        
+        for(String line: Usuarios.list())
+        {
+            if (line.endsWith(".txt"))
+            {
+                archive.write(line);
+            }
+        }
+        
+        archive.flush();
+        archive.close();
     }
 }

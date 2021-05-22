@@ -16,7 +16,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 
-public class Funciones
+public class Funciones implements Reportable
 {
     //Variables de instancia
     //Catalogo sin filtrar
@@ -381,7 +381,6 @@ public class Funciones
     public Object[][] mostrarPor_filtro(Object tabla[][],String filtro, int a)
     {
         int i;
-        
         switch(a)
         {
             case 0:
@@ -469,6 +468,7 @@ public class Funciones
         return tabla;
     }
     
+    @Override
     public void crearArchivoExcel() throws IOException
     {
         // Se crean las variables de libro (excel), plantilla (con nombre Animes), columna y fila de el excel (celdas).
@@ -612,6 +612,8 @@ public class Funciones
             }
         }
     }
+    
+    @Override
     public void crearArchivoCSV() throws IOException
     {
         // Se crea el CSV con el nombre Moai_AnimeList_CSV
@@ -795,7 +797,24 @@ public class Funciones
     }
     public void addTo_userList(int option, Anime toAdd)
     {
-        
+        switch (option) //si opcion es 0, se añade a vistos, si es 1 se añade a favoritos, si es 2 se añade a odiados.
+        {
+            case 0:
+            {
+                watched.add(toAdd);
+                break;
+            }
+            case 1:
+            {
+                faved.add(toAdd);
+                break;
+            }
+            case 2:
+            {
+                hated.add(toAdd);
+                break;
+            }
+        }
     }
     public void importUser_data(String username) throws FileNotFoundException, IOException
     {
@@ -910,7 +929,7 @@ public class Funciones
                         input.close();
                         return;
                     }
-                    Anime toAdd =new Anime(field0,field1,field2,field3,field4,field5,field6,field7,field8);;
+                    Anime toAdd =new Anime(field0,field1,field2,field3,field4,field5,field6,field7,field8);
                     addTo_userList(0,toAdd);
                 }
             }

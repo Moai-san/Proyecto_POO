@@ -1,13 +1,14 @@
 package com.moai.animelist.vista;
 
-/**
- * 
- * @author moai-san (Leonardo Gonzalez)
- * 
- */
 import com.moai.animelist.controlador.*;
 import java.io.*;
 
+/**
+ *
+ * @author moai-san (Leonardo Gonzalez)
+ * @author nlago (Nicolás Lagos)
+ * @author maca (Macarena Troncoso)
+ */
 public class Log_in extends javax.swing.JFrame
 {
     private static User_Management llamar =new User_Management();
