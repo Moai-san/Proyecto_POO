@@ -8,6 +8,7 @@ package com.moai.animelist.vista;
 
 //import block
 import java.io.*;
+import java.awt.Toolkit;
 import com.moai.animelist.controlador.*;
 import com.moai.animelist.modelo.*;
 
@@ -144,10 +145,26 @@ public class Menu extends javax.swing.JFrame
         favButton = new javax.swing.JButton();
         hateButton = new javax.swing.JButton();
         watchedDialog = new javax.swing.JDialog();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        watchedTitle = new javax.swing.JLabel();
+        watchedId_field = new javax.swing.JTextField();
+        idLabel = new javax.swing.JLabel();
+        addButton_watched = new javax.swing.JButton();
+        turnBack = new javax.swing.JButton();
+        searchAnime_button = new javax.swing.JButton();
         favDialog = new javax.swing.JDialog();
+        favedTitle = new javax.swing.JLabel();
+        favedId_field = new javax.swing.JTextField();
+        idLabel1 = new javax.swing.JLabel();
+        addButton_faved = new javax.swing.JButton();
+        turnBack1 = new javax.swing.JButton();
+        displayWatched_Button = new javax.swing.JButton();
         hateDialog = new javax.swing.JDialog();
+        idLabel2 = new javax.swing.JLabel();
+        addButton_hated = new javax.swing.JButton();
+        turnBack2 = new javax.swing.JButton();
+        displayWatched_Button1 = new javax.swing.JButton();
+        hatedTitle = new javax.swing.JLabel();
+        hatedId_field1 = new javax.swing.JTextField();
         botonAgregar_anime = new javax.swing.JButton();
         botonAgregar_ano = new javax.swing.JButton();
         botonMostrar_ano = new javax.swing.JButton();
@@ -1178,8 +1195,24 @@ public class Menu extends javax.swing.JFrame
                 .addContainerGap(74, Short.MAX_VALUE))
         );
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Ingrese el ID del Anime Visto");
+        watchedTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        watchedTitle.setText("Ingrese el ID del Anime Visto");
+
+        watchedId_field.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                watchedId_fieldActionPerformed(evt);
+            }
+        });
+
+        idLabel.setText("ID");
+
+        addButton_watched.setText("Ingresar");
+
+        turnBack.setText("Volver atras");
+
+        searchAnime_button.setText("Si no sabe el ID, presione aqui!");
 
         javax.swing.GroupLayout watchedDialogLayout = new javax.swing.GroupLayout(watchedDialog.getContentPane());
         watchedDialog.getContentPane().setLayout(watchedDialogLayout);
@@ -1187,48 +1220,165 @@ public class Menu extends javax.swing.JFrame
             watchedDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, watchedDialogLayout.createSequentialGroup()
                 .addContainerGap(86, Short.MAX_VALUE)
-                .addGroup(watchedDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(watchedDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(watchedTitle)
+                    .addGroup(watchedDialogLayout.createSequentialGroup()
+                        .addGroup(watchedDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(searchAnime_button, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(watchedDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(watchedDialogLayout.createSequentialGroup()
+                                    .addComponent(addButton_watched, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(turnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(watchedDialogLayout.createSequentialGroup()
+                                    .addComponent(idLabel)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(watchedId_field, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(9, 9, 9)))
                 .addGap(75, 75, 75))
         );
         watchedDialogLayout.setVerticalGroup(
             watchedDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(watchedDialogLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73))
+                .addComponent(watchedTitle)
+                .addGap(51, 51, 51)
+                .addComponent(searchAnime_button)
+                .addGap(43, 43, 43)
+                .addGroup(watchedDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(watchedId_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idLabel))
+                .addGap(48, 48, 48)
+                .addGroup(watchedDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(turnBack)
+                    .addComponent(addButton_watched))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
+
+        favedTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        favedTitle.setText("Ingrese el ID del Anime Favorito");
+
+        favedId_field.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                favedId_fieldActionPerformed(evt);
+            }
+        });
+
+        idLabel1.setText("ID");
+
+        addButton_faved.setText("Ingresar");
+
+        turnBack1.setText("Volver atras");
+
+        displayWatched_Button.setText("Si no sabe el ID, presione aqui!");
 
         javax.swing.GroupLayout favDialogLayout = new javax.swing.GroupLayout(favDialog.getContentPane());
         favDialog.getContentPane().setLayout(favDialogLayout);
         favDialogLayout.setHorizontalGroup(
             favDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, favDialogLayout.createSequentialGroup()
+                .addContainerGap(79, Short.MAX_VALUE)
+                .addGroup(favDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(displayWatched_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(favDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, favDialogLayout.createSequentialGroup()
+                            .addComponent(addButton_faved, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(turnBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, favDialogLayout.createSequentialGroup()
+                            .addComponent(idLabel1)
+                            .addGap(18, 18, 18)
+                            .addComponent(favedId_field, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(84, 84, 84))
+            .addGroup(favDialogLayout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(favedTitle)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         favDialogLayout.setVerticalGroup(
             favDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(favDialogLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(favedTitle)
+                .addGap(51, 51, 51)
+                .addComponent(displayWatched_Button)
+                .addGap(43, 43, 43)
+                .addGroup(favDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(favedId_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idLabel1))
+                .addGap(48, 48, 48)
+                .addGroup(favDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(turnBack1)
+                    .addComponent(addButton_faved))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
+
+        idLabel2.setText("ID");
+
+        addButton_hated.setText("Ingresar");
+
+        turnBack2.setText("Volver atras");
+
+        displayWatched_Button1.setText("Si no sabe el ID, presione aqui!");
+
+        hatedTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        hatedTitle.setText("Ingrese el ID del Anime Odiado");
+
+        hatedId_field1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                hatedId_field1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout hateDialogLayout = new javax.swing.GroupLayout(hateDialog.getContentPane());
         hateDialog.getContentPane().setLayout(hateDialogLayout);
         hateDialogLayout.setHorizontalGroup(
             hateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hateDialogLayout.createSequentialGroup()
+                .addContainerGap(79, Short.MAX_VALUE)
+                .addGroup(hateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(displayWatched_Button1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(hateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hateDialogLayout.createSequentialGroup()
+                            .addComponent(addButton_hated, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(turnBack2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hateDialogLayout.createSequentialGroup()
+                            .addComponent(idLabel2)
+                            .addGap(18, 18, 18)
+                            .addComponent(hatedId_field1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(84, 84, 84))
+            .addGroup(hateDialogLayout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(hatedTitle)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         hateDialogLayout.setVerticalGroup(
             hateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(hateDialogLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(hatedTitle)
+                .addGap(51, 51, 51)
+                .addComponent(displayWatched_Button1)
+                .addGap(43, 43, 43)
+                .addGroup(hateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hatedId_field1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idLabel2))
+                .addGap(48, 48, 48)
+                .addGroup(hateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(turnBack2)
+                    .addComponent(addButton_hated))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Moai AnimeList");
         setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(430, 700));
         setResizable(false);
         setSize(new java.awt.Dimension(430, 700));
 
@@ -1393,7 +1543,7 @@ public class Menu extends javax.swing.JFrame
                     .addComponent(botonAgregar_ano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonAgregar_anime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addTo_listButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1856,6 +2006,21 @@ public class Menu extends javax.swing.JFrame
         hateDialog.setVisible(true);
     }//GEN-LAST:event_hateButtonActionPerformed
 
+    private void watchedId_fieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_watchedId_fieldActionPerformed
+    {//GEN-HEADEREND:event_watchedId_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_watchedId_fieldActionPerformed
+
+    private void favedId_fieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_favedId_fieldActionPerformed
+    {//GEN-HEADEREND:event_favedId_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_favedId_fieldActionPerformed
+
+    private void hatedId_field1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_hatedId_field1ActionPerformed
+    {//GEN-HEADEREND:event_hatedId_field1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hatedId_field1ActionPerformed
+
     private int rellenarTabla_filtros(String filtro, int a)
     {
         Object tablaFiltros[][] =null;
@@ -1903,6 +2068,9 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JButton Modificar;
     private javax.swing.JDialog accionesDe_usuario;
     private javax.swing.JButton addAno;
+    private javax.swing.JButton addButton_faved;
+    private javax.swing.JButton addButton_hated;
+    private javax.swing.JButton addButton_watched;
     private javax.swing.JButton addTo_listButton;
     private javax.swing.JLabel addTo_userTitle;
     private javax.swing.JLabel ano4;
@@ -1936,6 +2104,8 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JDialog dialogoModificar_ano;
     private javax.swing.JLabel dialogoModificar_anoTitle;
     private javax.swing.JDialog dialogoMostrar_anos;
+    private javax.swing.JButton displayWatched_Button;
+    private javax.swing.JButton displayWatched_Button1;
     private javax.swing.JLabel durationDisplay;
     private javax.swing.JTextField duration_input;
     private javax.swing.JButton eliminarAnime;
@@ -1944,14 +2114,21 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JDialog errorDialog;
     private javax.swing.JButton favButton;
     private javax.swing.JDialog favDialog;
+    private javax.swing.JTextField favedId_field;
+    private javax.swing.JLabel favedTitle;
     private javax.swing.JLabel genero;
     private javax.swing.JLabel genreDisplay;
     private javax.swing.JTextField genre_input;
     private javax.swing.JButton hateButton;
     private javax.swing.JDialog hateDialog;
+    private javax.swing.JTextField hatedId_field1;
+    private javax.swing.JLabel hatedTitle;
     private javax.swing.JLabel iD_display;
     private javax.swing.JLabel idAnimeText1;
     private javax.swing.JLabel idAnimeText2;
+    private javax.swing.JLabel idLabel;
+    private javax.swing.JLabel idLabel1;
+    private javax.swing.JLabel idLabel2;
     private javax.swing.JTextField id_input;
     private javax.swing.JTextField inputAno;
     private javax.swing.JTextField inputGenero;
@@ -1960,10 +2137,8 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JLabel jDialog4_title;
     private javax.swing.JLabel jDialog4_title1;
     private javax.swing.JLabel jDialog4_title2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton modifAno;
     private javax.swing.JLabel nameDisplay;
     private javax.swing.JTextField name_input;
@@ -1985,6 +2160,7 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JButton returnTo_menu_3;
     private javax.swing.JButton returnTo_menu_4;
     private javax.swing.JButton returnTo_menu_5;
+    private javax.swing.JButton searchAnime_button;
     private javax.swing.JLabel studioDisplay;
     private javax.swing.JTextField studio_input;
     private javax.swing.JTable tablaDe_anos;
@@ -2003,6 +2179,9 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JLabel tituloModificar_anime1;
     private javax.swing.JLabel tituloOk;
     private javax.swing.JTextField toAdd_ano;
+    private javax.swing.JButton turnBack;
+    private javax.swing.JButton turnBack1;
+    private javax.swing.JButton turnBack2;
     private javax.swing.JLabel typeDisplay;
     private javax.swing.JTextField type_input;
     private javax.swing.JLabel viejo;
@@ -2010,6 +2189,8 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JButton volverA_menuFrom_error;
     private javax.swing.JButton watchedButton;
     private javax.swing.JDialog watchedDialog;
+    private javax.swing.JTextField watchedId_field;
+    private javax.swing.JLabel watchedTitle;
     private javax.swing.JLabel yearDisplay;
     private javax.swing.JTextField year_input;
     // End of variables declaration//GEN-END:variables
