@@ -793,4 +793,127 @@ public class Funciones
             }
         }
     }
+    public void addTo_userList(int option, Anime toAdd)
+    {
+        
+    }
+    public void importUser_data(String username) throws FileNotFoundException, IOException
+    {
+        //CSV auxCSV =new CSV();
+        File dir =new File("./User/Fav");
+        String fileNames [] =dir.list();
+        String line;
+        String ruta;
+        //campos del csv
+        int field0;
+        String field1;
+        String field2;
+        int field3;
+        String field4;
+        String field5;
+        int field6;
+        String field7;
+        String field8;
+        for (String open : fileNames)//se recorre el directorio favoritos
+        {
+            if(open.endsWith(".csv"))//si el nombre del archivo finaliza en .csv
+            {
+                ruta=dir.getPath()+open;
+                CSV input =new CSV(ruta);//se abre el archivo
+                while(true)
+                {
+                    line =(null);
+                    line =input.nextLine();
+                    field0 =Integer.parseInt(input.get_csvField(line,0));
+                    field1 =input.get_csvField(line,1);
+                    field2 =input.get_csvField(line,2);
+                    field3 =Integer.parseInt(input.get_csvField(line,3));
+                    field4 =input.get_csvField(line,4);
+                    field5 =input.get_csvField(line,5);
+                    field6 =Integer.parseInt(input.get_csvField(line,6));
+                    field7 =input.get_csvField(line,7);
+                    field8 =input.get_csvField(line,8);
+                    if(line.equals(""))
+                    {
+                        break;
+                    }
+                    Anime toAdd =new Anime(field0,field1,field2,field3,field4,field5,field6,field7,field8);
+                    addTo_Top(0,toAdd);
+                    if(open.equals(username))
+                    {
+                        addTo_userList(1,toAdd);
+                    }
+                }
+                input.close();
+            }
+        }
+        dir =new File("./User/Hate");
+        //lo mismo que recien, pero con los odiados
+        fileNames =dir.list();
+        for (String open : fileNames)//se recorre el directorio odiados
+        {
+            if(open.endsWith(".csv"))//si el nombre del archivo finaliza en .csv
+            {
+                ruta=dir.getPath()+open;
+                CSV input =new CSV(ruta);//se abre el archivo
+                while(true)
+                {
+                    line =(null);
+                    line =input.nextLine();
+                    field0 =Integer.parseInt(input.get_csvField(line,0));
+                    field1 =input.get_csvField(line,1);
+                    field2 =input.get_csvField(line,2);
+                    field3 =Integer.parseInt(input.get_csvField(line,3));
+                    field4 =input.get_csvField(line,4);
+                    field5 =input.get_csvField(line,5);
+                    field6 =Integer.parseInt(input.get_csvField(line,6));
+                    field7 =input.get_csvField(line,7);
+                    field8 =input.get_csvField(line,8);
+                    if(line.equals(""))
+                    {
+                        break;
+                    }
+                    Anime toAdd =new Anime(field0,field1,field2,field3,field4,field5,field6,field7,field8);
+                    addTo_Top(1,toAdd);
+                    if(open.equals(username))
+                    {
+                        addTo_userList(2,toAdd);
+                    }
+                }
+                input.close();
+            }
+        }
+        dir =new File("./User/");
+        //lo mismo que recien, pero con los odiados
+        fileNames =dir.list();
+        for (String open : fileNames)//se recorre el directorio odiados
+        {
+            if (open.startsWith(username))
+            {
+                ruta=dir.getPath()+open;
+                CSV input =new CSV(ruta);//se abre el archivo
+                while(true)
+                {
+                    line =(null);
+                    line =input.nextLine();
+                    field0 =Integer.parseInt(input.get_csvField(line,0));
+                    field1 =input.get_csvField(line,1);
+                    field2 =input.get_csvField(line,2);
+                    field3 =Integer.parseInt(input.get_csvField(line,3));
+                    field4 =input.get_csvField(line,4);
+                    field5 =input.get_csvField(line,5);
+                    field6 =Integer.parseInt(input.get_csvField(line,6));
+                    field7 =input.get_csvField(line,7);
+                    field8 =input.get_csvField(line,8);
+                    if(line.equals(""))
+                    {
+                        input.close();
+                        return;
+                    }
+                    Anime toAdd =new Anime(field0,field1,field2,field3,field4,field5,field6,field7,field8);;
+                    addTo_userList(0,toAdd);
+                }
+            }
+        }
+    }
 }

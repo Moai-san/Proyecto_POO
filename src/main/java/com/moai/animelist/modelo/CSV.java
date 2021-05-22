@@ -106,4 +106,9 @@ public class CSV
         //System.out.println("Campo "+field+" no Existe");
         return(null);
     }
+    
+    public void close() throws IOException
+    {
+        file.close();
+    }
 }
