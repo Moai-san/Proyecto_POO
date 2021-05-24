@@ -21,8 +21,7 @@ public class Moai_AnimeList
     
     public static void main(String args[])throws FileNotFoundException,IOException
     {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        //<editor-fold defaultstate="collapsed" desc=" Seteo del aspecto de las ventanas y botones ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
@@ -54,7 +53,6 @@ public class Moai_AnimeList
             java.util.logging.Logger.getLogger(Log_in.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        /* Create and display the form */
         Log_in login =new Log_in();
         login.setVisible(true);
     }

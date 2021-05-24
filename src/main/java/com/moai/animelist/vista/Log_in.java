@@ -1,6 +1,7 @@
 package com.moai.animelist.vista;
 
 import com.moai.animelist.controlador.*;
+import com.moai.animelist.modelo.*;
 import java.io.*;
 
 /**
@@ -300,10 +301,11 @@ public class Log_in extends javax.swing.JFrame
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loginButtonActionPerformed
     {//GEN-HEADEREND:event_loginButtonActionPerformed
         // TODO add your handling code here:
+        String pwd = new String(passwordField.getPassword());
+        String flag = "";
         try
         {
-            String pwd =new String(passwordField.getPassword());
-            String flag =llamar.log_me(usernameField.getText(), pwd);
+            flag =llamar.log_me(usernameField.getText(), pwd);
             if(flag==null)
             {
                 this.setVisible(false);
@@ -313,12 +315,20 @@ public class Log_in extends javax.swing.JFrame
         }
         catch(IOException e)
         {}
-        username =usernameField.getText();
+        username =flag;
         clearFields();
         this.setVisible(false);
         try
         {
-            Menu menu =new Menu(username);
+            Menu menu;
+            if (username.equals("admin"))
+            {
+                menu = new Menu(new UsuarioAdministrador("admin","admin"));
+            }
+            else
+            {
+                menu = new Menu(new UsuarioComun(flag,pwd));
+            }
             menu.setVisible(true);
             dispose();
         }

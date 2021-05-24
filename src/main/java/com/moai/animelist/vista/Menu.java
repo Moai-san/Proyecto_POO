@@ -8,7 +8,6 @@ package com.moai.animelist.vista;
 
 //import block
 import java.io.*;
-import java.awt.Toolkit;
 import com.moai.animelist.controlador.*;
 import com.moai.animelist.modelo.*;
 
@@ -19,9 +18,10 @@ public class Menu extends javax.swing.JFrame
     /**
      * Creates new form Menu
      */
-    public Menu(String user)throws IOException, FileNotFoundException
+    public Menu(UsuarioAdministrador user)throws IOException, FileNotFoundException
     {
         llamar.importCatalogue();
+        //llamar.importUser_data(user.getUsername());
         initComponents();
         setLocationRelativeTo(null);
         dialogoAdd_anime.setLocationRelativeTo(null);
@@ -37,7 +37,53 @@ public class Menu extends javax.swing.JFrame
         dialogoModificar_anime.setLocationRelativeTo(null);
         dialogoModificar_ano.setLocationRelativeTo(null);
         okDialog.setLocationRelativeTo(null);
-        username =user;
+        accionesDe_usuario.setLocationRelativeTo(null);
+        watchedDialog.setLocationRelativeTo(null);
+        dialogoBuscarId_anime.setLocationRelativeTo(null);
+        mostrarIdDialog.setLocationRelativeTo(null);
+        favDialog.setLocationRelativeTo(null);
+        hateDialog.setLocationRelativeTo(null);
+        displayWatched_dialog.setLocationRelativeTo(null);
+        username = user.getUsername();
+    }
+    
+    public Menu(UsuarioComun user)throws IOException, FileNotFoundException
+    {
+        llamar.importCatalogue();
+        //llamar.importUser_data(user.getUsername());
+        initComponents();
+        setLocationRelativeTo(null);
+        dialogoAdd_anime.setLocationRelativeTo(null);
+        dialogoAgregar_ano.setLocationRelativeTo(null);
+        dialogoMostrar_anos.setLocationRelativeTo(null);
+        dialogoBuscar_porAnos.setLocationRelativeTo(null);
+        dialogoBuscar_porTipo.setLocationRelativeTo(null);
+        dialogoBuscar_porGenero.setLocationRelativeTo(null);
+        outputFiltro.setLocationRelativeTo(null);
+        errorDialog.setLocationRelativeTo(null);
+        dialogoEliminar_anime.setLocationRelativeTo(null);
+        dialogoEliminar_ano.setLocationRelativeTo(null);
+        dialogoModificar_anime.setLocationRelativeTo(null);
+        dialogoModificar_ano.setLocationRelativeTo(null);
+        okDialog.setLocationRelativeTo(null);
+        accionesDe_usuario.setLocationRelativeTo(null);
+        watchedDialog.setLocationRelativeTo(null);
+        dialogoBuscarId_anime.setLocationRelativeTo(null);
+        mostrarIdDialog.setLocationRelativeTo(null);
+        favDialog.setLocationRelativeTo(null);
+        hateDialog.setLocationRelativeTo(null);
+        displayWatched_dialog.setLocationRelativeTo(null);
+        username = user.getUsername();
+        
+        //invisibilisamos los botones
+        botonAgregar_anime.setVisible(false);
+        botonAgregar_ano.setVisible(false);
+        botonEliminar_anime1.setVisible(false);
+        botonEliminar_ano.setVisible(false);
+        botonModificar_anime1.setVisible(false);
+        botonModificar_ano.setVisible(false);
+        botonCrear_CSV.setVisible(false);
+        botonCrear_Excel.setVisible(false);
     }
 
     /**
@@ -144,13 +190,14 @@ public class Menu extends javax.swing.JFrame
         watchedButton = new javax.swing.JButton();
         favButton = new javax.swing.JButton();
         hateButton = new javax.swing.JButton();
+        returnTo_menuFrom_userActions = new javax.swing.JButton();
         watchedDialog = new javax.swing.JDialog();
         watchedTitle = new javax.swing.JLabel();
         watchedId_field = new javax.swing.JTextField();
         idLabel = new javax.swing.JLabel();
-        addButton_watched = new javax.swing.JButton();
         turnBack = new javax.swing.JButton();
         searchAnime_button = new javax.swing.JButton();
+        addTo_watchedList_button = new javax.swing.JButton();
         favDialog = new javax.swing.JDialog();
         favedTitle = new javax.swing.JLabel();
         favedId_field = new javax.swing.JTextField();
@@ -165,6 +212,20 @@ public class Menu extends javax.swing.JFrame
         displayWatched_Button1 = new javax.swing.JButton();
         hatedTitle = new javax.swing.JLabel();
         hatedId_field1 = new javax.swing.JTextField();
+        dialogoBuscarId_anime = new javax.swing.JDialog();
+        tituloBuscarId_anime = new javax.swing.JLabel();
+        nombreAnimeText = new javax.swing.JLabel();
+        textfieldBuscarId_Anime = new javax.swing.JTextField();
+        Buscar = new javax.swing.JButton();
+        return_back2 = new javax.swing.JButton();
+        mostrarIdDialog = new javax.swing.JDialog();
+        tituloMostrarId = new javax.swing.JLabel();
+        return_back = new javax.swing.JButton();
+        displayWatched_dialog = new javax.swing.JDialog();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        watchedTable = new javax.swing.JTable();
+        goTo_favButton = new javax.swing.JButton();
+        goTo_hateButton = new javax.swing.JButton();
         botonAgregar_anime = new javax.swing.JButton();
         botonAgregar_ano = new javax.swing.JButton();
         botonMostrar_ano = new javax.swing.JButton();
@@ -904,6 +965,7 @@ public class Menu extends javax.swing.JFrame
         );
 
         dialogoModificar_ano.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        dialogoModificar_ano.setAlwaysOnTop(true);
         dialogoModificar_ano.setResizable(false);
         dialogoModificar_ano.setSize(new java.awt.Dimension(423, 300));
 
@@ -1058,6 +1120,7 @@ public class Menu extends javax.swing.JFrame
 
         errorDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         errorDialog.setAlwaysOnTop(true);
+        errorDialog.setResizable(false);
         errorDialog.setSize(new java.awt.Dimension(400, 210));
 
         volverA_menuFrom_error.setText("Volver al Menu");
@@ -1136,7 +1199,10 @@ public class Menu extends javax.swing.JFrame
                 .addGap(47, 47, 47))
         );
 
+        accionesDe_usuario.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        accionesDe_usuario.setAlwaysOnTop(true);
         accionesDe_usuario.setResizable(false);
+        accionesDe_usuario.setSize(new java.awt.Dimension(588, 312));
 
         addTo_userTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         addTo_userTitle.setText("Seleccione lista a la que añadir un anime");
@@ -1168,6 +1234,18 @@ public class Menu extends javax.swing.JFrame
             }
         });
 
+        returnTo_menuFrom_userActions.setText("Volver al menu");
+        returnTo_menuFrom_userActions.setMaximumSize(new java.awt.Dimension(345, 22));
+        returnTo_menuFrom_userActions.setMinimumSize(new java.awt.Dimension(345, 22));
+        returnTo_menuFrom_userActions.setPreferredSize(new java.awt.Dimension(345, 22));
+        returnTo_menuFrom_userActions.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                returnTo_menuFrom_userActionsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout accionesDe_usuarioLayout = new javax.swing.GroupLayout(accionesDe_usuario.getContentPane());
         accionesDe_usuario.getContentPane().setLayout(accionesDe_usuarioLayout);
         accionesDe_usuarioLayout.setHorizontalGroup(
@@ -1176,9 +1254,10 @@ public class Menu extends javax.swing.JFrame
                 .addGap(122, 122, 122)
                 .addGroup(accionesDe_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(addTo_userTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(hateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(favButton, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(watchedButton, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(hateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(favButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(watchedButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(returnTo_menuFrom_userActions, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(121, Short.MAX_VALUE))
         );
         accionesDe_usuarioLayout.setVerticalGroup(
@@ -1186,14 +1265,21 @@ public class Menu extends javax.swing.JFrame
             .addGroup(accionesDe_usuarioLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(addTo_userTitle)
-                .addGap(52, 52, 52)
+                .addGap(29, 29, 29)
                 .addComponent(watchedButton)
                 .addGap(18, 18, 18)
                 .addComponent(favButton)
                 .addGap(18, 18, 18)
                 .addComponent(hateButton)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(returnTo_menuFrom_userActions, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(83, Short.MAX_VALUE))
         );
+
+        watchedDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        watchedDialog.setAlwaysOnTop(true);
+        watchedDialog.setResizable(false);
+        watchedDialog.setSize(new java.awt.Dimension(407, 309));
 
         watchedTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         watchedTitle.setText("Ingrese el ID del Anime Visto");
@@ -1208,11 +1294,33 @@ public class Menu extends javax.swing.JFrame
 
         idLabel.setText("ID");
 
-        addButton_watched.setText("Ingresar");
-
-        turnBack.setText("Volver atras");
+        turnBack.setText("Volver al Menu");
+        turnBack.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                turnBackActionPerformed(evt);
+            }
+        });
 
         searchAnime_button.setText("Si no sabe el ID, presione aqui!");
+        searchAnime_button.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                searchAnime_buttonActionPerformed(evt);
+            }
+        });
+
+        addTo_watchedList_button.setText("Ingresar");
+        addTo_watchedList_button.setPreferredSize(new java.awt.Dimension(110, 22));
+        addTo_watchedList_button.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                addTo_watchedList_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout watchedDialogLayout = new javax.swing.GroupLayout(watchedDialog.getContentPane());
         watchedDialog.getContentPane().setLayout(watchedDialogLayout);
@@ -1225,15 +1333,15 @@ public class Menu extends javax.swing.JFrame
                     .addGroup(watchedDialogLayout.createSequentialGroup()
                         .addGroup(watchedDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(searchAnime_button, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(watchedDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(watchedDialogLayout.createSequentialGroup()
-                                    .addComponent(addButton_watched, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(turnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(watchedDialogLayout.createSequentialGroup()
-                                    .addComponent(idLabel)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(watchedId_field, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(watchedDialogLayout.createSequentialGroup()
+                                .addComponent(idLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(watchedDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(watchedDialogLayout.createSequentialGroup()
+                                        .addComponent(addTo_watchedList_button, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(21, 21, 21)
+                                        .addComponent(turnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(watchedId_field))))
                         .addGap(9, 9, 9)))
                 .addGap(75, 75, 75))
         );
@@ -1251,9 +1359,14 @@ public class Menu extends javax.swing.JFrame
                 .addGap(48, 48, 48)
                 .addGroup(watchedDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(turnBack)
-                    .addComponent(addButton_watched))
+                    .addComponent(addTo_watchedList_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
+
+        favDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        favDialog.setAlwaysOnTop(true);
+        favDialog.setResizable(false);
+        favDialog.setSize(new java.awt.Dimension(407, 309));
 
         favedTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         favedTitle.setText("Ingrese el ID del Anime Favorito");
@@ -1270,9 +1383,23 @@ public class Menu extends javax.swing.JFrame
 
         addButton_faved.setText("Ingresar");
 
-        turnBack1.setText("Volver atras");
+        turnBack1.setText("Volver al Menu");
+        turnBack1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                turnBack1ActionPerformed(evt);
+            }
+        });
 
         displayWatched_Button.setText("Si no sabe el ID, presione aqui!");
+        displayWatched_Button.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                displayWatched_ButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout favDialogLayout = new javax.swing.GroupLayout(favDialog.getContentPane());
         favDialog.getContentPane().setLayout(favDialogLayout);
@@ -1284,9 +1411,9 @@ public class Menu extends javax.swing.JFrame
                     .addComponent(displayWatched_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(favDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, favDialogLayout.createSequentialGroup()
-                            .addComponent(addButton_faved, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addButton_faved, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(turnBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(turnBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, favDialogLayout.createSequentialGroup()
                             .addComponent(idLabel1)
                             .addGap(18, 18, 18)
@@ -1315,13 +1442,32 @@ public class Menu extends javax.swing.JFrame
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
+        hateDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        hateDialog.setAlwaysOnTop(true);
+        hateDialog.setResizable(false);
+        hateDialog.setSize(new java.awt.Dimension(407, 309));
+
         idLabel2.setText("ID");
 
         addButton_hated.setText("Ingresar");
 
-        turnBack2.setText("Volver atras");
+        turnBack2.setText("Volver al Menu");
+        turnBack2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                turnBack2ActionPerformed(evt);
+            }
+        });
 
         displayWatched_Button1.setText("Si no sabe el ID, presione aqui!");
+        displayWatched_Button1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                displayWatched_Button1ActionPerformed(evt);
+            }
+        });
 
         hatedTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         hatedTitle.setText("Ingrese el ID del Anime Odiado");
@@ -1344,9 +1490,9 @@ public class Menu extends javax.swing.JFrame
                     .addComponent(displayWatched_Button1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(hateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hateDialogLayout.createSequentialGroup()
-                            .addComponent(addButton_hated, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addButton_hated, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(turnBack2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(turnBack2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hateDialogLayout.createSequentialGroup()
                             .addComponent(idLabel2)
                             .addGap(18, 18, 18)
@@ -1375,6 +1521,208 @@ public class Menu extends javax.swing.JFrame
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
+        dialogoBuscarId_anime.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        dialogoBuscarId_anime.setAlwaysOnTop(true);
+        dialogoBuscarId_anime.setResizable(false);
+        dialogoBuscarId_anime.setSize(new java.awt.Dimension(550, 550));
+
+        tituloBuscarId_anime.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tituloBuscarId_anime.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tituloBuscarId_anime.setText("Ingrese el nombre del Anime");
+
+        nombreAnimeText.setText("Nombre Anime");
+
+        textfieldBuscarId_Anime.setOpaque(false);
+
+        Buscar.setText("Buscar");
+        Buscar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                BuscarActionPerformed(evt);
+            }
+        });
+
+        return_back2.setText("Volver atras");
+        return_back2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                return_back2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dialogoBuscarId_animeLayout = new javax.swing.GroupLayout(dialogoBuscarId_anime.getContentPane());
+        dialogoBuscarId_anime.getContentPane().setLayout(dialogoBuscarId_animeLayout);
+        dialogoBuscarId_animeLayout.setHorizontalGroup(
+            dialogoBuscarId_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tituloBuscarId_anime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(dialogoBuscarId_animeLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(nombreAnimeText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(dialogoBuscarId_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(textfieldBuscarId_Anime, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(dialogoBuscarId_animeLayout.createSequentialGroup()
+                        .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(return_back2)))
+                .addContainerGap(85, Short.MAX_VALUE))
+        );
+        dialogoBuscarId_animeLayout.setVerticalGroup(
+            dialogoBuscarId_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogoBuscarId_animeLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(tituloBuscarId_anime)
+                .addGap(46, 46, 46)
+                .addGroup(dialogoBuscarId_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreAnimeText)
+                    .addComponent(textfieldBuscarId_Anime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addGroup(dialogoBuscarId_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Buscar)
+                    .addComponent(return_back2))
+                .addGap(64, 64, 64))
+        );
+
+        mostrarIdDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        mostrarIdDialog.setAlwaysOnTop(true);
+        mostrarIdDialog.setResizable(false);
+        mostrarIdDialog.setSize(new java.awt.Dimension(400, 210));
+
+        tituloMostrarId.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tituloMostrarId.setText("El id es");
+
+        return_back.setText("Volver atrás");
+        return_back.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                return_backActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout mostrarIdDialogLayout = new javax.swing.GroupLayout(mostrarIdDialog.getContentPane());
+        mostrarIdDialog.getContentPane().setLayout(mostrarIdDialogLayout);
+        mostrarIdDialogLayout.setHorizontalGroup(
+            mostrarIdDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mostrarIdDialogLayout.createSequentialGroup()
+                .addGap(121, 121, 121)
+                .addComponent(return_back, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mostrarIdDialogLayout.createSequentialGroup()
+                .addContainerGap(101, Short.MAX_VALUE)
+                .addComponent(tituloMostrarId, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81))
+        );
+        mostrarIdDialogLayout.setVerticalGroup(
+            mostrarIdDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mostrarIdDialogLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(tituloMostrarId, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addComponent(return_back)
+                .addGap(47, 47, 47))
+        );
+
+        displayWatched_dialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        displayWatched_dialog.setAlwaysOnTop(true);
+        displayWatched_dialog.setPreferredSize(new java.awt.Dimension(1115, 551));
+        displayWatched_dialog.setResizable(false);
+        displayWatched_dialog.setSize(new java.awt.Dimension(1115, 551));
+
+        jScrollPane3.setPreferredSize(new java.awt.Dimension(1115, 400));
+
+        watchedTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String []
+            {
+                "Id", "Nombre", "Tipo", "Capitulos", "Duracion", "Clasificacion de Contenidos", "Año", "Estudio(s)", "Genero(s)"
+            }
+        )
+        {
+            Class[] types = new Class []
+            {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean []
+            {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex)
+            {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(watchedTable);
+        if (watchedTable.getColumnModel().getColumnCount() > 0)
+        {
+            watchedTable.getColumnModel().getColumn(0).setResizable(false);
+            watchedTable.getColumnModel().getColumn(1).setResizable(false);
+            watchedTable.getColumnModel().getColumn(2).setResizable(false);
+            watchedTable.getColumnModel().getColumn(3).setResizable(false);
+            watchedTable.getColumnModel().getColumn(4).setResizable(false);
+            watchedTable.getColumnModel().getColumn(5).setResizable(false);
+            watchedTable.getColumnModel().getColumn(6).setResizable(false);
+            watchedTable.getColumnModel().getColumn(7).setResizable(false);
+            watchedTable.getColumnModel().getColumn(8).setResizable(false);
+        }
+
+        goTo_favButton.setText("Ir a Añadir a Favoritos");
+        goTo_favButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                goTo_favButtonActionPerformed(evt);
+            }
+        });
+
+        goTo_hateButton.setText("Ir a Añadir a Odiados");
+        goTo_hateButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                goTo_hateButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout displayWatched_dialogLayout = new javax.swing.GroupLayout(displayWatched_dialog.getContentPane());
+        displayWatched_dialog.getContentPane().setLayout(displayWatched_dialogLayout);
+        displayWatched_dialogLayout.setHorizontalGroup(
+            displayWatched_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(displayWatched_dialogLayout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayWatched_dialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(goTo_favButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(145, 145, 145)
+                .addComponent(goTo_hateButton)
+                .addGap(356, 356, 356))
+        );
+        displayWatched_dialogLayout.setVerticalGroup(
+            displayWatched_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(displayWatched_dialogLayout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addGroup(displayWatched_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(goTo_favButton)
+                    .addComponent(goTo_hateButton))
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Moai AnimeList");
         setAlwaysOnTop(true);
@@ -1383,6 +1731,8 @@ public class Menu extends javax.swing.JFrame
         setSize(new java.awt.Dimension(430, 700));
 
         botonAgregar_anime.setText("Agregar Anime");
+        botonAgregar_anime.setMaximumSize(new java.awt.Dimension(200, 22));
+        botonAgregar_anime.setMinimumSize(new java.awt.Dimension(200, 22));
         botonAgregar_anime.setPreferredSize(new java.awt.Dimension(200, 22));
         botonAgregar_anime.addActionListener(new java.awt.event.ActionListener()
         {
@@ -1393,6 +1743,8 @@ public class Menu extends javax.swing.JFrame
         });
 
         botonAgregar_ano.setText("Agregar Año de Publicacion");
+        botonAgregar_ano.setMaximumSize(new java.awt.Dimension(200, 22));
+        botonAgregar_ano.setMinimumSize(new java.awt.Dimension(200, 22));
         botonAgregar_ano.setPreferredSize(new java.awt.Dimension(200, 22));
         botonAgregar_ano.addActionListener(new java.awt.event.ActionListener()
         {
@@ -1403,6 +1755,8 @@ public class Menu extends javax.swing.JFrame
         });
 
         botonMostrar_ano.setText("Mostrar Años");
+        botonMostrar_ano.setMaximumSize(new java.awt.Dimension(200, 22));
+        botonMostrar_ano.setMinimumSize(new java.awt.Dimension(200, 22));
         botonMostrar_ano.setPreferredSize(new java.awt.Dimension(200, 22));
         botonMostrar_ano.addActionListener(new java.awt.event.ActionListener()
         {
@@ -1413,6 +1767,8 @@ public class Menu extends javax.swing.JFrame
         });
 
         botonBuscar_porAno.setText("Mostrar Animes de \"x\" año");
+        botonBuscar_porAno.setMaximumSize(new java.awt.Dimension(200, 22));
+        botonBuscar_porAno.setMinimumSize(new java.awt.Dimension(200, 22));
         botonBuscar_porAno.setPreferredSize(new java.awt.Dimension(200, 22));
         botonBuscar_porAno.addActionListener(new java.awt.event.ActionListener()
         {
@@ -1423,6 +1779,8 @@ public class Menu extends javax.swing.JFrame
         });
 
         botonBuscar_porTipo.setText("Mostrar Animes de \"x\" tipo");
+        botonBuscar_porTipo.setMaximumSize(new java.awt.Dimension(200, 22));
+        botonBuscar_porTipo.setMinimumSize(new java.awt.Dimension(200, 22));
         botonBuscar_porTipo.setPreferredSize(new java.awt.Dimension(200, 22));
         botonBuscar_porTipo.addActionListener(new java.awt.event.ActionListener()
         {
@@ -1433,6 +1791,8 @@ public class Menu extends javax.swing.JFrame
         });
 
         botonBuscar_porGenero.setText("Mostrar Animes de \"x\" genero");
+        botonBuscar_porGenero.setMaximumSize(new java.awt.Dimension(200, 22));
+        botonBuscar_porGenero.setMinimumSize(new java.awt.Dimension(200, 22));
         botonBuscar_porGenero.setPreferredSize(new java.awt.Dimension(200, 22));
         botonBuscar_porGenero.addActionListener(new java.awt.event.ActionListener()
         {
@@ -1443,6 +1803,8 @@ public class Menu extends javax.swing.JFrame
         });
 
         botonEliminar_anime1.setText("Eliminar anime");
+        botonEliminar_anime1.setMaximumSize(new java.awt.Dimension(200, 22));
+        botonEliminar_anime1.setMinimumSize(new java.awt.Dimension(200, 22));
         botonEliminar_anime1.setPreferredSize(new java.awt.Dimension(200, 22));
         botonEliminar_anime1.addActionListener(new java.awt.event.ActionListener()
         {
@@ -1453,6 +1815,8 @@ public class Menu extends javax.swing.JFrame
         });
 
         botonEliminar_ano.setText("Eliminar Año");
+        botonEliminar_ano.setMaximumSize(new java.awt.Dimension(200, 22));
+        botonEliminar_ano.setMinimumSize(new java.awt.Dimension(200, 22));
         botonEliminar_ano.setPreferredSize(new java.awt.Dimension(200, 22));
         botonEliminar_ano.addActionListener(new java.awt.event.ActionListener()
         {
@@ -1463,6 +1827,8 @@ public class Menu extends javax.swing.JFrame
         });
 
         botonModificar_anime1.setText("Modificar anime");
+        botonModificar_anime1.setMaximumSize(new java.awt.Dimension(200, 22));
+        botonModificar_anime1.setMinimumSize(new java.awt.Dimension(200, 22));
         botonModificar_anime1.setPreferredSize(new java.awt.Dimension(200, 22));
         botonModificar_anime1.addActionListener(new java.awt.event.ActionListener()
         {
@@ -1473,6 +1839,8 @@ public class Menu extends javax.swing.JFrame
         });
 
         botonModificar_ano.setText("Modificar Año");
+        botonModificar_ano.setMaximumSize(new java.awt.Dimension(200, 22));
+        botonModificar_ano.setMinimumSize(new java.awt.Dimension(200, 22));
         botonModificar_ano.setPreferredSize(new java.awt.Dimension(200, 22));
         botonModificar_ano.addActionListener(new java.awt.event.ActionListener()
         {
@@ -1483,6 +1851,8 @@ public class Menu extends javax.swing.JFrame
         });
 
         botonCrear_CSV.setText("Crear archivo CSV");
+        botonCrear_CSV.setMaximumSize(new java.awt.Dimension(200, 22));
+        botonCrear_CSV.setMinimumSize(new java.awt.Dimension(200, 22));
         botonCrear_CSV.setPreferredSize(new java.awt.Dimension(200, 22));
         botonCrear_CSV.addActionListener(new java.awt.event.ActionListener()
         {
@@ -1493,6 +1863,8 @@ public class Menu extends javax.swing.JFrame
         });
 
         botonCrear_Excel.setText("Crear archivo Excel");
+        botonCrear_Excel.setMaximumSize(new java.awt.Dimension(200, 22));
+        botonCrear_Excel.setMinimumSize(new java.awt.Dimension(200, 22));
         botonCrear_Excel.setPreferredSize(new java.awt.Dimension(200, 22));
         botonCrear_Excel.addActionListener(new java.awt.event.ActionListener()
         {
@@ -1503,6 +1875,9 @@ public class Menu extends javax.swing.JFrame
         });
 
         closeBoton.setText("Cerrar Aplicacion :c");
+        closeBoton.setMaximumSize(new java.awt.Dimension(200, 22));
+        closeBoton.setMinimumSize(new java.awt.Dimension(200, 22));
+        closeBoton.setPreferredSize(new java.awt.Dimension(200, 22));
         closeBoton.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -1512,8 +1887,6 @@ public class Menu extends javax.swing.JFrame
         });
 
         addTo_listButton.setText("Añadir anime a una de mis listas");
-        addTo_listButton.setMaximumSize(new java.awt.Dimension(189, 22));
-        addTo_listButton.setMinimumSize(new java.awt.Dimension(189, 22));
         addTo_listButton.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -1542,7 +1915,7 @@ public class Menu extends javax.swing.JFrame
                     .addComponent(botonMostrar_ano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonAgregar_ano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonAgregar_anime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addTo_listButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addTo_listButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(121, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -1557,7 +1930,7 @@ public class Menu extends javax.swing.JFrame
                 .addGap(18, 18, 18)
                 .addComponent(botonBuscar_porGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(addTo_listButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addTo_listButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botonAgregar_anime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -1575,7 +1948,7 @@ public class Menu extends javax.swing.JFrame
                 .addGap(18, 18, 18)
                 .addComponent(botonCrear_Excel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
-                .addComponent(closeBoton)
+                .addComponent(closeBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
 
@@ -1669,7 +2042,9 @@ public class Menu extends javax.swing.JFrame
     {//GEN-HEADEREND:event_botonBusca_anoActionPerformed
         // TODO add your handling code here:
         String ano1=inputAno.getText();
-        int exist =rellenarTabla_filtros(ano1, 0);
+        Object tablaFiltros[][] =null;
+        tablaFiltros =llamar.mostrarPor_filtro(tablaFiltros, ano1, 0);
+        int exist =rellenarTabla_filtros(tablaFiltros,tablaFiltrados);
         clearFields();
         dialogoBuscar_porAnos.dispose();
         if(exist!=0)
@@ -1915,7 +2290,9 @@ public class Menu extends javax.swing.JFrame
     private void botonBusca_TipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusca_TipoActionPerformed
         // TODO add your handling code here:
         String tipo1 =inputTipo.getText();
-        int exist = rellenarTabla_filtros(tipo1, 1);
+        Object tablaFiltros[][] =null;
+        tablaFiltros =llamar.mostrarPor_filtro(tablaFiltros, tipo1, 1);
+        int exist =rellenarTabla_filtros(tablaFiltros,tablaFiltrados);
         clearFields();
         dialogoBuscar_porTipo.dispose();
         if(exist!=0)
@@ -1954,7 +2331,9 @@ public class Menu extends javax.swing.JFrame
     private void botonBusca_GeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusca_GeneroActionPerformed
         // TODO add your handling code here:
         String genero1 =inputGenero.getText();
-        int exist = rellenarTabla_filtros(genero1, 2);
+        Object tablaFiltros[][] =null;
+        tablaFiltros =llamar.mostrarPor_filtro(tablaFiltros, genero1, 2);
+        int exist =rellenarTabla_filtros(tablaFiltros,tablaFiltrados);
         clearFields();
         dialogoBuscar_porGenero.dispose();
         if(exist!=0)
@@ -2021,17 +2400,124 @@ public class Menu extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_hatedId_field1ActionPerformed
 
-    private int rellenarTabla_filtros(String filtro, int a)
-    {
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
+        String nombreAnime = textfieldBuscarId_Anime.getText();
+        Anime animu = llamar.buscarAnimePorNombre("\""+nombreAnime+"\"");
+        dialogoBuscarId_anime.dispose();
+        if(animu == null)
+        {
+            errorDialog.setVisible(true);
+            return;
+        }
+        int id = animu.getMal_id();
+        tituloMostrarId.setText("El id es: " + id);
+        mostrarIdDialog.setVisible(true);
+    }//GEN-LAST:event_BuscarActionPerformed
+
+    private void return_back2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_return_back2ActionPerformed
+        dialogoBuscarId_anime.dispose();
+        watchedDialog.setVisible(true);
+    }//GEN-LAST:event_return_back2ActionPerformed
+
+    private void return_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_return_backActionPerformed
+        mostrarIdDialog.dispose();
+        dialogoBuscarId_anime.setVisible(true);
+    }//GEN-LAST:event_return_backActionPerformed
+
+    private void searchAnime_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAnime_buttonActionPerformed
+        watchedDialog.dispose();
+        dialogoBuscarId_anime.setVisible(true);
+    }//GEN-LAST:event_searchAnime_buttonActionPerformed
+
+    private void returnTo_menuFrom_userActionsActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_returnTo_menuFrom_userActionsActionPerformed
+    {//GEN-HEADEREND:event_returnTo_menuFrom_userActionsActionPerformed
+        // TODO add your handling code here:
+        accionesDe_usuario.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_returnTo_menuFrom_userActionsActionPerformed
+
+    private void turnBackActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_turnBackActionPerformed
+    {//GEN-HEADEREND:event_turnBackActionPerformed
+        // TODO add your handling code here:
+        watchedDialog.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_turnBackActionPerformed
+
+    private void addTo_watchedList_buttonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addTo_watchedList_buttonActionPerformed
+    {//GEN-HEADEREND:event_addTo_watchedList_buttonActionPerformed
+        // TODO add your handling code here:
+        String id =watchedId_field.getText();
+        clearFields();
+        watchedDialog.dispose();
+        if (id.equals(""))
+        {
+            errorDialog.setVisible(true);
+            return;
+        }
+        Anime toAdd =llamar.buscarAnimePorId(Integer.parseInt(id));
+        if (toAdd==null)
+        {
+            errorDialog.setVisible(true);
+            return;
+        }
+        llamar.addTo_userList(0,toAdd);
+        this.setVisible(true);
+    }//GEN-LAST:event_addTo_watchedList_buttonActionPerformed
+
+    private void turnBack1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_turnBack1ActionPerformed
+    {//GEN-HEADEREND:event_turnBack1ActionPerformed
+        // TODO add your handling code here:
+        favDialog.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_turnBack1ActionPerformed
+
+    private void turnBack2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_turnBack2ActionPerformed
+    {//GEN-HEADEREND:event_turnBack2ActionPerformed
+        // TODO add your handling code here:
+        hateDialog.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_turnBack2ActionPerformed
+
+    private void displayWatched_ButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_displayWatched_ButtonActionPerformed
+    {//GEN-HEADEREND:event_displayWatched_ButtonActionPerformed
+        // TODO add your handling code here:
         Object tablaFiltros[][] =null;
-        tablaFiltros =llamar.mostrarPor_filtro(tablaFiltros, filtro, a);
+        tablaFiltros =llamar.llenarTabla_datosUser(tablaFiltros,0);
+        rellenarTabla_filtros(tablaFiltros,watchedTable);
+        favDialog.dispose();
+        displayWatched_dialog.setVisible(true);
+    }//GEN-LAST:event_displayWatched_ButtonActionPerformed
+
+    private void goTo_favButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_goTo_favButtonActionPerformed
+    {//GEN-HEADEREND:event_goTo_favButtonActionPerformed
+        // TODO add your handling code here:
+        displayWatched_dialog.dispose();
+        favDialog.setVisible(true);
+    }//GEN-LAST:event_goTo_favButtonActionPerformed
+
+    private void goTo_hateButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_goTo_hateButtonActionPerformed
+    {//GEN-HEADEREND:event_goTo_hateButtonActionPerformed
+        // TODO add your handling code here:
+        displayWatched_dialog.dispose();
+        hateDialog.setVisible(true);
+    }//GEN-LAST:event_goTo_hateButtonActionPerformed
+
+    private void displayWatched_Button1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_displayWatched_Button1ActionPerformed
+    {//GEN-HEADEREND:event_displayWatched_Button1ActionPerformed
+        // TODO add your handling code here:
+        hateDialog.dispose();
+        displayWatched_dialog.setVisible(true);
+    }//GEN-LAST:event_displayWatched_Button1ActionPerformed
+   
+    private int rellenarTabla_filtros(Object tablaFiltros[][], javax.swing.JTable a)
+    {
         if (tablaFiltros==null)
         {
             return(-1);
         }
         else
         {
-            tablaFiltrados.setModel(new javax.swing.table.DefaultTableModel
+            a.setModel(new javax.swing.table.DefaultTableModel
             (
                 tablaFiltros,
                 new String []
@@ -2064,15 +2550,16 @@ public class Menu extends javax.swing.JFrame
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Buscar;
     private javax.swing.JButton Ingresar;
     private javax.swing.JButton Modificar;
     private javax.swing.JDialog accionesDe_usuario;
     private javax.swing.JButton addAno;
     private javax.swing.JButton addButton_faved;
     private javax.swing.JButton addButton_hated;
-    private javax.swing.JButton addButton_watched;
     private javax.swing.JButton addTo_listButton;
     private javax.swing.JLabel addTo_userTitle;
+    private javax.swing.JButton addTo_watchedList_button;
     private javax.swing.JLabel ano4;
     private javax.swing.JLabel anoText;
     private javax.swing.JLabel anoText1;
@@ -2095,6 +2582,7 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JButton closeBoton;
     private javax.swing.JDialog dialogoAdd_anime;
     private javax.swing.JDialog dialogoAgregar_ano;
+    private javax.swing.JDialog dialogoBuscarId_anime;
     private javax.swing.JDialog dialogoBuscar_porAnos;
     private javax.swing.JDialog dialogoBuscar_porGenero;
     private javax.swing.JDialog dialogoBuscar_porTipo;
@@ -2106,6 +2594,7 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JDialog dialogoMostrar_anos;
     private javax.swing.JButton displayWatched_Button;
     private javax.swing.JButton displayWatched_Button1;
+    private javax.swing.JDialog displayWatched_dialog;
     private javax.swing.JLabel durationDisplay;
     private javax.swing.JTextField duration_input;
     private javax.swing.JButton eliminarAnime;
@@ -2119,6 +2608,8 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JLabel genero;
     private javax.swing.JLabel genreDisplay;
     private javax.swing.JTextField genre_input;
+    private javax.swing.JButton goTo_favButton;
+    private javax.swing.JButton goTo_hateButton;
     private javax.swing.JButton hateButton;
     private javax.swing.JDialog hateDialog;
     private javax.swing.JTextField hatedId_field1;
@@ -2139,9 +2630,12 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JLabel jDialog4_title2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton modifAno;
+    private javax.swing.JDialog mostrarIdDialog;
     private javax.swing.JLabel nameDisplay;
     private javax.swing.JTextField name_input;
+    private javax.swing.JLabel nombreAnimeText;
     private javax.swing.JLabel nuevo;
     private javax.swing.JLabel nuevoIDText3;
     private javax.swing.JTextField nuevoInput;
@@ -2155,16 +2649,20 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JButton returnTo_menu7;
     private javax.swing.JButton returnTo_menu8;
     private javax.swing.JButton returnTo_menu9;
+    private javax.swing.JButton returnTo_menuFrom_userActions;
     private javax.swing.JButton returnTo_menu_1;
     private javax.swing.JButton returnTo_menu_2;
     private javax.swing.JButton returnTo_menu_3;
     private javax.swing.JButton returnTo_menu_4;
     private javax.swing.JButton returnTo_menu_5;
+    private javax.swing.JButton return_back;
+    private javax.swing.JButton return_back2;
     private javax.swing.JButton searchAnime_button;
     private javax.swing.JLabel studioDisplay;
     private javax.swing.JTextField studio_input;
     private javax.swing.JTable tablaDe_anos;
     private javax.swing.JTable tablaFiltrados;
+    private javax.swing.JTextField textfieldBuscarId_Anime;
     private javax.swing.JTextField textfieldEliminar_Anime1;
     private javax.swing.JTextField textfieldEliminar_Ano;
     private javax.swing.JTextField textfieldModificar_Anime1;
@@ -2173,10 +2671,12 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JLabel title;
     private javax.swing.JLabel title2;
     private javax.swing.JLabel tituloAdd_ano;
+    private javax.swing.JLabel tituloBuscarId_anime;
     private javax.swing.JLabel tituloEliminar_anime1;
     private javax.swing.JLabel tituloEliminar_ano;
     private javax.swing.JLabel tituloError;
     private javax.swing.JLabel tituloModificar_anime1;
+    private javax.swing.JLabel tituloMostrarId;
     private javax.swing.JLabel tituloOk;
     private javax.swing.JTextField toAdd_ano;
     private javax.swing.JButton turnBack;
@@ -2190,6 +2690,7 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JButton watchedButton;
     private javax.swing.JDialog watchedDialog;
     private javax.swing.JTextField watchedId_field;
+    private javax.swing.JTable watchedTable;
     private javax.swing.JLabel watchedTitle;
     private javax.swing.JLabel yearDisplay;
     private javax.swing.JTextField year_input;

@@ -58,6 +58,17 @@ public class User_Management implements Reportable
     //inicio de sesion
     public String log_me(String username, String password) throws IOException
     {
+        if(username.equals("admin"))
+        {
+            if(password.equals("admin"))
+            {
+                return "admin";
+            }
+            else
+            {
+                return (null);
+            }
+        }
         String correctPassword;
         String ruta ="./User/"+username+".txt";
         CSV usar =new CSV();
