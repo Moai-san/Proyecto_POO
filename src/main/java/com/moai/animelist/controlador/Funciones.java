@@ -180,13 +180,13 @@ public class Funciones implements Reportable
         }
     }
 
-    public boolean animeExiste(int id)
+    public boolean animeExiste(int id, LinkedList<Anime> lista)
     {
         Anime animu;
         
-        for (int i = 0; i < catalogue.size(); i++)
+        for (int i = 0; i < lista.size(); i++)
         {
-            animu = catalogue.get(i);
+            animu = lista.get(i);
             if (animu.getMal_id() == id)
             {
                 return true;
@@ -298,26 +298,45 @@ public class Funciones implements Reportable
         }
     }
     
-    public void addTo_userList(int option, Anime toAdd)
+    public int addTo_userList(int option, Anime toAdd)
     {
         switch (option) //si opcion es 0, se añade a vistos, si es 1 se añade a favoritos, si es 2 se añade a odiados.
         {
             case 0:
             {
-                watched.add(toAdd);
+                if(animeExiste(toAdd.getMal_id(),watched)==false)
+                {
+                    watched.add(toAdd);
+                    return(0);
+                }
                 break;
             }
             case 1:
             {
-                faved.add(toAdd);
+                if(animeExiste(toAdd.getMal_id(),watched)==true)
+                {
+                    if(animeExiste(toAdd.getMal_id(),faved)==false)
+                    {
+                        faved.add(toAdd);
+                        return(0);
+                    }
+                }
                 break;
             }
             case 2:
             {
-                hated.add(toAdd);
+                if(animeExiste(toAdd.getMal_id(),watched)==false)
+                {
+                    if(animeExiste(toAdd.getMal_id(),hated)==false)
+                    {
+                        hated.add(toAdd);
+                        return(0);
+                    }
+                }
                 break;
             }
         }
+        return(-1);
     }
     
     public void importUser_data(String username) throws FileNotFoundException, IOException
@@ -633,7 +652,6 @@ public class Funciones implements Reportable
                     tabla [i][6]=anime.getYear();
                     tabla [i][7]=anime.getStudio();
                     tabla [i][8]=anime.getGenre();
-                    i = (i+1);
                 }
                 return tabla;
             }
@@ -657,7 +675,6 @@ public class Funciones implements Reportable
                     tabla [i][6]=anime.getYear();
                     tabla [i][7]=anime.getStudio();
                     tabla [i][8]=anime.getGenre();
-                    i = (i+1);
                 }
                 return tabla;
             }
@@ -681,7 +698,6 @@ public class Funciones implements Reportable
                     tabla [i][6]=anime.getYear();
                     tabla [i][7]=anime.getStudio();
                     tabla [i][8]=anime.getGenre();
-                    i = (i+1);
                 }
                 return tabla;
             }

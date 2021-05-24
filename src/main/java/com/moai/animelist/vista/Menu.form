@@ -1609,6 +1609,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingresar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addButton_favedActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="turnBack1">
           <Properties>
@@ -1699,6 +1702,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingresar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addButton_hatedActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="turnBack2">
           <Properties>

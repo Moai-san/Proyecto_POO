@@ -1382,6 +1382,13 @@ public class Menu extends javax.swing.JFrame
         idLabel1.setText("ID");
 
         addButton_faved.setText("Ingresar");
+        addButton_faved.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                addButton_favedActionPerformed(evt);
+            }
+        });
 
         turnBack1.setText("Volver al Menu");
         turnBack1.addActionListener(new java.awt.event.ActionListener()
@@ -1450,6 +1457,13 @@ public class Menu extends javax.swing.JFrame
         idLabel2.setText("ID");
 
         addButton_hated.setText("Ingresar");
+        addButton_hated.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                addButton_hatedActionPerformed(evt);
+            }
+        });
 
         turnBack2.setText("Volver al Menu");
         turnBack2.addActionListener(new java.awt.event.ActionListener()
@@ -1627,7 +1641,6 @@ public class Menu extends javax.swing.JFrame
 
         displayWatched_dialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         displayWatched_dialog.setAlwaysOnTop(true);
-        displayWatched_dialog.setPreferredSize(new java.awt.Dimension(1115, 551));
         displayWatched_dialog.setResizable(false);
         displayWatched_dialog.setSize(new java.awt.Dimension(1115, 551));
 
@@ -2508,6 +2521,48 @@ public class Menu extends javax.swing.JFrame
         hateDialog.dispose();
         displayWatched_dialog.setVisible(true);
     }//GEN-LAST:event_displayWatched_Button1ActionPerformed
+
+    private void addButton_favedActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addButton_favedActionPerformed
+    {//GEN-HEADEREND:event_addButton_favedActionPerformed
+        // TODO add your handling code here:
+        String id =favedId_field.getText();
+        int flag;
+        favDialog.dispose();
+        if(id.equals(""))
+        {
+            errorDialog.setVisible(true);
+            return;
+        }
+        Anime toAdd =llamar.buscarAnimePorId(Integer.parseInt(id));
+        flag =llamar.addTo_userList(1, toAdd);
+        if (flag!=0)
+        {
+            errorDialog.setVisible(true);
+            return;
+        }
+        this.setVisible(true);
+    }//GEN-LAST:event_addButton_favedActionPerformed
+
+    private void addButton_hatedActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addButton_hatedActionPerformed
+    {//GEN-HEADEREND:event_addButton_hatedActionPerformed
+        // TODO add your handling code here:
+        String id =hatedId_field1.getText();
+        int flag;
+        hateDialog.dispose();
+        if(id.equals(""))
+        {
+            errorDialog.setVisible(true);
+            return;
+        }
+        Anime toAdd =llamar.buscarAnimePorId(Integer.parseInt(id));
+        flag =llamar.addTo_userList(2, toAdd);
+        if (flag!=0)
+        {
+            errorDialog.setVisible(true);
+            return;
+        }
+        this.setVisible(true);
+    }//GEN-LAST:event_addButton_hatedActionPerformed
    
     private int rellenarTabla_filtros(Object tablaFiltros[][], javax.swing.JTable a)
     {
