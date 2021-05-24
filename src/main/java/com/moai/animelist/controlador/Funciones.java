@@ -26,8 +26,8 @@ public class Funciones implements Reportable
     private LinkedList<Anime> faved =new LinkedList<Anime>();
     private LinkedList<Anime> hated =new LinkedList<Anime>();
     //Tops a nivel aplicacion
-    private TreeMap<Integer,HashMap<Integer,Anime>> most_faved;
-    private TreeMap<Integer,HashMap<Integer,Anime>> most_hated;
+    private TreeMap<Integer,HashMap<Integer,Anime>> most_faved =new TreeMap<Integer,HashMap<Integer,Anime>>();
+    private TreeMap<Integer,HashMap<Integer,Anime>> most_hated =new TreeMap<Integer,HashMap<Integer,Anime>>();
     //Tablas Hash con Arboles anidados, que contendran animes filtrados por genero, tipo y año
     private HashMap<Object, TreeMap<Integer, Anime>> genreMap =new HashMap<Object, TreeMap<Integer, Anime>>();
     private HashMap<Object, TreeMap<Integer, Anime>> yearMap =new HashMap<Object, TreeMap<Integer, Anime>>();
@@ -322,11 +322,10 @@ public class Funciones implements Reportable
     
     public void importUser_data(String username) throws FileNotFoundException, IOException
     {
-        //CSV auxCSV =new CSV();
-        File dir =new File("./User/Fav");
+        File dir =new File("./User/Fav/");
         String fileNames [] =dir.list();
         String line;
-        String ruta;
+        CSV input;
         //campos del csv
         int field0;
         String field1;
@@ -341,12 +340,14 @@ public class Funciones implements Reportable
         {
             if(open.endsWith(".csv")==true)//si el nombre del archivo finaliza en .csv
             {
-                ruta="./User/Fav"+open;
-                CSV input =new CSV(ruta);//se abre el archivo
+                input =new CSV("./User/Fav/",open);//se abre el archivo
                 while(true)
                 {
-                    line =(null);
                     line =input.nextLine();
+                    if(line==null)
+                    {
+                        break;
+                    }
                     field0 =Integer.parseInt(input.get_csvField(line,0));
                     field1 =input.get_csvField(line,1);
                     field2 =input.get_csvField(line,2);
@@ -356,10 +357,6 @@ public class Funciones implements Reportable
                     field6 =Integer.parseInt(input.get_csvField(line,6));
                     field7 =input.get_csvField(line,7);
                     field8 =input.get_csvField(line,8);
-                    if(line.equals(""))
-                    {
-                        break;
-                    }
                     Anime toAdd =new Anime(field0,field1,field2,field3,field4,field5,field6,field7,field8);
                     addTo_Top(0,toAdd);
                     if(open.equals(username))
@@ -370,20 +367,22 @@ public class Funciones implements Reportable
                 input.close();
             }
         }
-        System.out.println("awa");
-        dir =new File("./User/Hate");
+        dir =new File("./User/Hate/");
         //lo mismo que recien, pero con los odiados
         fileNames =dir.list();
         for (String open : fileNames)//se recorre el directorio odiados
         {
             if(open.endsWith(".csv"))//si el nombre del archivo finaliza en .csv
             {
-                ruta="./User/Hate"+open;
-                CSV input =new CSV(ruta);//se abre el archivo
+                input =new CSV("./User/Hate/",open);//se abre el archivo
                 while(true)
                 {
                     line =(null);
                     line =input.nextLine();
+                    if(line==null)
+                    {
+                        break;
+                    }
                     field0 =Integer.parseInt(input.get_csvField(line,0));
                     field1 =input.get_csvField(line,1);
                     field2 =input.get_csvField(line,2);
@@ -393,10 +392,6 @@ public class Funciones implements Reportable
                     field6 =Integer.parseInt(input.get_csvField(line,6));
                     field7 =input.get_csvField(line,7);
                     field8 =input.get_csvField(line,8);
-                    if(line.equals(""))
-                    {
-                        break;
-                    }
                     Anime toAdd =new Anime(field0,field1,field2,field3,field4,field5,field6,field7,field8);
                     addTo_Top(1,toAdd);
                     if(open.equals(username))
@@ -407,19 +402,22 @@ public class Funciones implements Reportable
                 input.close();
             }
         }
-        dir =new File("./User/");
+        dir =new File("./User/Watched/");
         //lo mismo que recien, pero con los odiados
         fileNames =dir.list();
         for (String open : fileNames)//se recorre el directorio odiados
         {
             if (open.startsWith(username))
             {
-                ruta="./User/"+open;
-                CSV input =new CSV(ruta);//se abre el archivo
+                input =new CSV("./User/Watched/",open);//se abre el archivo
                 while(true)
                 {
                     line =(null);
                     line =input.nextLine();
+                    if(line==null)
+                    {
+                        break;
+                    }
                     field0 =Integer.parseInt(input.get_csvField(line,0));
                     field1 =input.get_csvField(line,1);
                     field2 =input.get_csvField(line,2);
@@ -429,11 +427,6 @@ public class Funciones implements Reportable
                     field6 =Integer.parseInt(input.get_csvField(line,6));
                     field7 =input.get_csvField(line,7);
                     field8 =input.get_csvField(line,8);
-                    if(line.equals(""))
-                    {
-                        input.close();
-                        return;
-                    }
                     Anime toAdd =new Anime(field0,field1,field2,field3,field4,field5,field6,field7,field8);
                     addTo_userList(0,toAdd);
                 }

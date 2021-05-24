@@ -21,7 +21,7 @@ public class Menu extends javax.swing.JFrame
     public Menu(UsuarioAdministrador user)throws IOException, FileNotFoundException
     {
         llamar.importCatalogue();
-        //llamar.importUser_data(user.getUsername());
+        llamar.importUser_data(user.getUsername());
         initComponents();
         setLocationRelativeTo(null);
         dialogoAdd_anime.setLocationRelativeTo(null);
@@ -50,7 +50,7 @@ public class Menu extends javax.swing.JFrame
     public Menu(UsuarioComun user)throws IOException, FileNotFoundException
     {
         llamar.importCatalogue();
-        //llamar.importUser_data(user.getUsername());
+        llamar.importUser_data(user.getUsername());
         initComponents();
         setLocationRelativeTo(null);
         dialogoAdd_anime.setLocationRelativeTo(null);

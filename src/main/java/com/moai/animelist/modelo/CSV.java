@@ -30,6 +30,11 @@ public class CSV
       this.file =new BufferedReader(new FileReader("./"+name+".csv"));
     }
     
+    public CSV(String ruta,String archivo) throws FileNotFoundException
+    {
+        this.file =new BufferedReader(new FileReader(ruta+archivo));
+    }
+    
     /**
      *
      */
