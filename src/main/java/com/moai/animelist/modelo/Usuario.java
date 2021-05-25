@@ -11,4 +11,9 @@ public abstract class Usuario
 {
     protected String username;
     protected String password;
+    
+    public String getUsername() 
+    {
+        return username;
+    }
 }

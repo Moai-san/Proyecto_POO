@@ -14,6 +14,7 @@ import com.moai.animelist.modelo.*;
 public class Menu extends javax.swing.JFrame
 {
     private static Funciones llamar = new Funciones();
+    private static User_Management userMan= new User_Management();
     private final String username;
     /**
      * Creates new form Menu
@@ -251,6 +252,8 @@ public class Menu extends javax.swing.JFrame
         closeBoton = new javax.swing.JButton();
         addTo_listButton = new javax.swing.JButton();
         botonFiltrado_2Generos = new javax.swing.JButton();
+        usersExcel_button = new javax.swing.JButton();
+        usersCSV_button = new javax.swing.JButton();
 
         dialogoAdd_anime.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         dialogoAdd_anime.setTitle("Ingrese Datos Del Anime A Agregar");
@@ -1749,7 +1752,6 @@ public class Menu extends javax.swing.JFrame
 
         filtradoDoble_dialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         filtradoDoble_dialog.setAlwaysOnTop(true);
-        filtradoDoble_dialog.setMaximumSize(new java.awt.Dimension(439, 300));
         filtradoDoble_dialog.setMinimumSize(new java.awt.Dimension(439, 300));
         filtradoDoble_dialog.setResizable(false);
         filtradoDoble_dialog.setSize(new java.awt.Dimension(439, 300));
@@ -1829,7 +1831,7 @@ public class Menu extends javax.swing.JFrame
         setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
-        setSize(new java.awt.Dimension(430, 700));
+        setSize(new java.awt.Dimension(430, 800));
 
         botonAgregar_anime.setText("Agregar Anime");
         botonAgregar_anime.setMaximumSize(new java.awt.Dimension(200, 22));
@@ -1951,7 +1953,7 @@ public class Menu extends javax.swing.JFrame
             }
         });
 
-        botonCrear_CSV.setText("Crear archivo CSV");
+        botonCrear_CSV.setText("Exportar Catalogo a Archivo CSV");
         botonCrear_CSV.setMaximumSize(new java.awt.Dimension(200, 22));
         botonCrear_CSV.setMinimumSize(new java.awt.Dimension(200, 22));
         botonCrear_CSV.setPreferredSize(new java.awt.Dimension(200, 22));
@@ -1963,7 +1965,7 @@ public class Menu extends javax.swing.JFrame
             }
         });
 
-        botonCrear_Excel.setText("Crear archivo Excel");
+        botonCrear_Excel.setText("Exportar Catalogo a Archivo Excel");
         botonCrear_Excel.setMaximumSize(new java.awt.Dimension(200, 22));
         botonCrear_Excel.setMinimumSize(new java.awt.Dimension(200, 22));
         botonCrear_Excel.setPreferredSize(new java.awt.Dimension(200, 22));
@@ -2005,36 +2007,58 @@ public class Menu extends javax.swing.JFrame
             }
         });
 
+        usersExcel_button.setText("Exportar Listado Usuarios a Archivo Excel");
+        usersExcel_button.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                usersExcel_buttonActionPerformed(evt);
+            }
+        });
+
+        usersCSV_button.setText("Exportar Listado Usuarios a Archivo CSV");
+        usersCSV_button.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                usersCSV_buttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(109, 109, 109)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(108, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(addTo_listButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usersExcel_button, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(botonFiltrado_2Generos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(botonBuscar_porGenero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonEliminar_anime1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonEliminar_ano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonModificar_anime1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonModificar_ano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonCrear_CSV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonCrear_Excel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(closeBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botonBuscar_porTipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonBuscar_porAno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonMostrar_ano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonAgregar_ano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonAgregar_anime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(121, Short.MAX_VALUE))
+                        .addComponent(usersCSV_button, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(addTo_listButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(botonFiltrado_2Generos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(botonBuscar_porGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonEliminar_anime1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonEliminar_ano, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonModificar_anime1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonModificar_ano, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonCrear_CSV, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonCrear_Excel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(closeBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonBuscar_porTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonBuscar_porAno, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonMostrar_ano, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonAgregar_ano, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonAgregar_anime, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(96, 96, 96))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(32, 32, 32)
                 .addComponent(botonMostrar_ano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botonBuscar_porAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2044,7 +2068,7 @@ public class Menu extends javax.swing.JFrame
                 .addComponent(botonBuscar_porGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botonFiltrado_2Generos, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(addTo_listButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botonAgregar_anime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2062,9 +2086,13 @@ public class Menu extends javax.swing.JFrame
                 .addComponent(botonCrear_CSV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botonCrear_Excel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
+                .addGap(18, 18, 18)
+                .addComponent(usersCSV_button)
+                .addGap(18, 18, 18)
+                .addComponent(usersExcel_button)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(closeBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addGap(50, 50, 50))
         );
 
         pack();
@@ -2751,6 +2779,40 @@ public class Menu extends javax.swing.JFrame
         outputFiltro.setVisible(true);
         clearFields();
     }//GEN-LAST:event_doubleFilter_filterButtonActionPerformed
+
+    private void usersCSV_buttonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_usersCSV_buttonActionPerformed
+    {//GEN-HEADEREND:event_usersCSV_buttonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        try
+        {
+            userMan.crearArchivoCSV();
+            okDialog.setVisible(true);
+            return;
+        }
+        catch(IOException e)
+        {
+            errorDialog.setVisible(true);
+            return;
+        }
+    }//GEN-LAST:event_usersCSV_buttonActionPerformed
+
+    private void usersExcel_buttonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_usersExcel_buttonActionPerformed
+    {//GEN-HEADEREND:event_usersExcel_buttonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        try
+        {
+            userMan.crearArchivoExcel();
+            okDialog.setVisible(true);
+            return;
+        }
+        catch(IOException e)
+        {
+            errorDialog.setVisible(true);
+            return;
+        }
+    }//GEN-LAST:event_usersExcel_buttonActionPerformed
    
     private int rellenarTabla_filtros(Object tablaFiltros[][], javax.swing.JTable a)
     {
@@ -2936,6 +2998,8 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JButton turnBack2;
     private javax.swing.JLabel typeDisplay;
     private javax.swing.JTextField type_input;
+    private javax.swing.JButton usersCSV_button;
+    private javax.swing.JButton usersExcel_button;
     private javax.swing.JLabel viejo;
     private javax.swing.JTextField viejoInput;
     private javax.swing.JButton volverA_menuFrom_error;

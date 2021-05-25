@@ -10,10 +10,12 @@ package com.moai.animelist.controlador;
 import java.io.*;
 import com.moai.animelist.modelo.*;
 import org.apache.poi.xssf.usermodel.*;
+import java.util.*;
 
 
 public class User_Management implements GeneraArchivos
 {
+    private LinkedList<Usuario> usuarios =new LinkedList<Usuario>();
     private Funciones llamar =new Funciones();
     //creacion de usuario
     public String sign_up(String username, String password)
@@ -95,42 +97,52 @@ public class User_Management implements GeneraArchivos
     
     @Override
     public void crearArchivoExcel() throws IOException
-    {
-        int x = 0;
-        File Usuarios = new File("./User/");
+    {   
+        if(usuarios.isEmpty())
+        {
+            llenarLista_usuarios();
+        }
         
         XSSFWorkbook libro = new XSSFWorkbook();
         XSSFSheet plantilla = libro.createSheet("Usuarios");
         XSSFRow columna;
         XSSFCell fila;
         
-        for(String line: Usuarios.list())
+        for(int i=0;i<usuarios.size();i++)
         {
-            if (line.endsWith(".txt"))
-            {
-                columna = plantilla.createRow(x);
-                fila = columna.createCell(0);
-                fila.setCellValue(line);
-                x++;
-            }
+            columna = plantilla.createRow(i);
+            fila = columna.createCell(0);
+            fila.setCellValue(usuarios.get(i).getUsername());
         }
         
         FileOutputStream excel = new FileOutputStream("Usuarios.xlsx");
         libro.write(excel);
     }
     
-    @Override
-    public void crearArchivoCSV() throws IOException
+    public void llenarLista_usuarios()
     {
         File Usuarios = new File("./User/");
-        FileWriter archive = new FileWriter("Usuarios.csv");
-        
         for(String line: Usuarios.list())
         {
             if (line.endsWith(".txt"))
             {
-                archive.write(line);
+                usuarios.add(new UsuarioComun(line.substring(0, line.length()-4),null));
             }
+        }
+    }
+    
+    @Override
+    public void crearArchivoCSV() throws IOException
+    {
+        if(usuarios.isEmpty())
+        {
+            llenarLista_usuarios();
+        }
+        
+        FileWriter archive = new FileWriter("./Usuarios.csv");
+        for(int i=0;i<usuarios.size();i++)
+        {
+            archive.write(usuarios.get(i).getUsername()+"\n");
         }
         
         archive.flush();

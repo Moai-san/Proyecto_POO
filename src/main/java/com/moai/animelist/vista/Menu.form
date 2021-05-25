@@ -2024,9 +2024,6 @@
       <Properties>
         <Property name="defaultCloseOperation" type="int" value="0"/>
         <Property name="alwaysOnTop" type="boolean" value="true"/>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[439, 300]"/>
-        </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[439, 300]"/>
         </Property>
@@ -2144,7 +2141,7 @@
     </Property>
     <Property name="resizable" type="boolean" value="false"/>
     <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[430, 700]"/>
+      <Dimension value="[430, 800]"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -2166,37 +2163,43 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="108" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="addTo_listButton" min="-2" pref="200" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="botonFiltrado_2Generos" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="botonBuscar_porGenero" max="-2" attributes="0"/>
-                          <Component id="botonEliminar_anime1" alignment="1" max="-2" attributes="0"/>
-                          <Component id="botonEliminar_ano" alignment="1" max="-2" attributes="0"/>
-                          <Component id="botonModificar_anime1" alignment="1" max="-2" attributes="0"/>
-                          <Component id="botonModificar_ano" alignment="1" max="-2" attributes="0"/>
-                          <Component id="botonCrear_CSV" alignment="1" max="-2" attributes="0"/>
-                          <Component id="botonCrear_Excel" alignment="1" max="-2" attributes="0"/>
-                          <Component id="closeBoton" alignment="1" max="32767" attributes="0"/>
-                          <Component id="botonBuscar_porTipo" alignment="1" max="-2" attributes="0"/>
-                          <Component id="botonBuscar_porAno" alignment="1" max="-2" attributes="0"/>
-                          <Component id="botonMostrar_ano" alignment="1" max="-2" attributes="0"/>
-                          <Component id="botonAgregar_ano" alignment="1" max="-2" attributes="0"/>
-                          <Component id="botonAgregar_anime" alignment="1" max="-2" attributes="0"/>
+                  <Component id="usersExcel_button" min="-2" pref="250" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="usersCSV_button" min="-2" pref="250" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                          <Component id="addTo_listButton" min="-2" pref="250" max="-2" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Component id="botonFiltrado_2Generos" alignment="1" min="-2" pref="250" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="botonBuscar_porGenero" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Component id="botonEliminar_anime1" alignment="1" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Component id="botonEliminar_ano" alignment="1" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Component id="botonModificar_anime1" alignment="1" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Component id="botonModificar_ano" alignment="1" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Component id="botonCrear_CSV" alignment="1" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Component id="botonCrear_Excel" alignment="1" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Component id="closeBoton" alignment="1" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Component id="botonBuscar_porTipo" alignment="1" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Component id="botonBuscar_porAno" alignment="1" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Component id="botonMostrar_ano" alignment="1" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Component id="botonAgregar_ano" alignment="1" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Component id="botonAgregar_anime" alignment="1" min="-2" pref="250" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="121" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Component id="botonMostrar_ano" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="botonBuscar_porAno" min="-2" max="-2" attributes="0"/>
@@ -2206,7 +2209,7 @@
               <Component id="botonBuscar_porGenero" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="botonFiltrado_2Generos" min="-2" pref="22" max="-2" attributes="0"/>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="addTo_listButton" min="-2" pref="22" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="botonAgregar_anime" min="-2" max="-2" attributes="0"/>
@@ -2224,9 +2227,13 @@
               <Component id="botonCrear_CSV" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="botonCrear_Excel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="usersCSV_button" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="usersExcel_button" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="62" max="32767" attributes="0"/>
               <Component id="closeBoton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -2404,7 +2411,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="botonCrear_CSV">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Crear archivo CSV"/>
+        <Property name="text" type="java.lang.String" value="Exportar Catalogo a Archivo CSV"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[200, 22]"/>
         </Property>
@@ -2421,7 +2428,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="botonCrear_Excel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Crear archivo Excel"/>
+        <Property name="text" type="java.lang.String" value="Exportar Catalogo a Archivo Excel"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[200, 22]"/>
         </Property>
@@ -2467,6 +2474,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonFiltrado_2GenerosActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="usersExcel_button">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Exportar Listado Usuarios a Archivo Excel"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usersExcel_buttonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="usersCSV_button">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Exportar Listado Usuarios a Archivo CSV"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usersCSV_buttonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

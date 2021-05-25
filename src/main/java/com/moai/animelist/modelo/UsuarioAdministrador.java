@@ -16,11 +16,6 @@ public class UsuarioAdministrador extends Usuario
         this.password = password;
     }
 
-    public String getUsername() 
-    {
-        return username;
-    }
-
     //sin usar aun, esta se usará en una proxima entrega.
     public int changePassword(String actualPassword, String newPassword) 
     {
