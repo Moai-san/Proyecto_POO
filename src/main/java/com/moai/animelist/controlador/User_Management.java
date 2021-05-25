@@ -12,12 +12,16 @@ import com.moai.animelist.modelo.*;
 import org.apache.poi.xssf.usermodel.*;
 
 
-public class User_Management implements Reportable
+public class User_Management implements GeneraArchivos
 {
     private Funciones llamar =new Funciones();
     //creacion de usuario
     public String sign_up(String username, String password)
     {
+        if((username==null)||(username.equals("")))
+        {
+            return (null);
+        }
         String ruta;//ruta
         ruta= ("User/"+username+".txt");
         //se intenta abrir archivo con el username ingresado

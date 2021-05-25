@@ -9,7 +9,7 @@ import java.io.*;
  * @author maca (Macarena Troncoso)
  */
 
-public interface Reportable
+public interface GeneraArchivos
 {
 
     /**

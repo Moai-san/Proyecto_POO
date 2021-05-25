@@ -7,7 +7,8 @@ package com.moai.animelist.modelo;
  * @author maca (Macarena Troncoso)
  * 
  */
-public class UsuarioAdministrador extends Usuario{
+public class UsuarioAdministrador extends Usuario
+{
 
     public UsuarioAdministrador(String username, String password) 
     {
@@ -20,6 +21,7 @@ public class UsuarioAdministrador extends Usuario{
         return username;
     }
 
+    //sin usar aun, esta se usará en una proxima entrega.
     public int changePassword(String actualPassword, String newPassword) 
     {
         if(actualPassword.equals(this.password))

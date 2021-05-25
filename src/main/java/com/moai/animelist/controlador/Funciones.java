@@ -16,7 +16,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 
-public class Funciones implements Reportable
+public class Funciones implements GeneraArchivos
 {
     //Variables de instancia
     //Catalogo sin filtrar
@@ -218,10 +218,13 @@ public class Funciones implements Reportable
             case 0://top favoritos
             {
                 Object positionNode[] =searchFrom_globalList(1,toAdd.getMal_id());
-                HashMap<Integer,Anime> topush;
+                HashMap<Integer,Anime> topush =null;
                 if (positionNode==null)
                 {
-                    topush =most_faved.firstEntry().getValue();
+                    if(most_faved.firstEntry()!=null)
+                    {
+                        topush =most_faved.firstEntry().getValue();
+                    }
                     if (topush!=null)
                     {
                         topush.put(toAdd.getMal_id(),toAdd);
@@ -258,10 +261,13 @@ public class Funciones implements Reportable
             case 1://top odiados
             {
                 Object positionNode[] =searchFrom_globalList(2,toAdd.getMal_id());
-                HashMap<Integer,Anime> topush;
+                HashMap<Integer,Anime> topush=null;
                 if (positionNode==null)
                 {
-                    topush =most_hated.firstEntry().getValue();
+                    if(most_hated.firstEntry()!=null)
+                    {
+                        topush =most_hated.firstEntry().getValue();
+                    }
                     if (topush!=null)
                     {
                         topush.put(toAdd.getMal_id(),toAdd);
@@ -378,7 +384,7 @@ public class Funciones implements Reportable
                     field8 =input.get_csvField(line,8);
                     Anime toAdd =new Anime(field0,field1,field2,field3,field4,field5,field6,field7,field8);
                     addTo_Top(0,toAdd);
-                    if(open.equals(username))
+                    if(open.equals(username+".csv"))
                     {
                         addTo_userList(1,toAdd);
                     }
@@ -413,7 +419,7 @@ public class Funciones implements Reportable
                     field8 =input.get_csvField(line,8);
                     Anime toAdd =new Anime(field0,field1,field2,field3,field4,field5,field6,field7,field8);
                     addTo_Top(1,toAdd);
-                    if(open.equals(username))
+                    if(open.equals(username+".csv"))
                     {
                         addTo_userList(2,toAdd);
                     }
@@ -627,6 +633,7 @@ public class Funciones implements Reportable
         
         return tabla;
     }
+    
     public Object[][] llenarTabla_datosUser(Object tabla[][],int option)
     {
         int i;
@@ -701,6 +708,53 @@ public class Funciones implements Reportable
                 }
                 return tabla;
             }
+        }
+        return tabla;
+    }
+    
+    public Object[][] filtradoCon_2Generos(Object tabla[][],String filtro1, String filtro2)
+    {
+        int i;
+        TreeMap<Integer, Anime> pivoteGenre1 = genreMap.get(filtro1);
+        TreeMap<Integer, Anime> pivoteGenre = new TreeMap<Integer, Anime>();
+        if (pivoteGenre1 == null)
+        {
+            return tabla;
+        }
+        for(Map.Entry<Integer, Anime> entry : pivoteGenre1.entrySet()) 
+        {
+           Anime anime= entry.getValue();
+           String line= anime.getGenre();
+           line=line.substring(1, (line.length()-1));
+           String[] generos = line.split(",");
+           for(String currentGenre : generos)
+           {
+               if(currentGenre.equals(filtro2))
+               {
+                   pivoteGenre.put(anime.getMal_id(), anime);
+                   break;
+               }
+           }
+        }
+        if(pivoteGenre.isEmpty())
+        {
+            return tabla;
+        }
+        tabla =new Object[pivoteGenre.size()][9];
+        i = 0;
+        for(Map.Entry<Integer, Anime> entry : pivoteGenre.entrySet()) 
+        {
+            Anime anime= entry.getValue();
+            tabla [i][0]=anime.getMal_id();
+            tabla [i][1]=anime.getName();
+            tabla [i][2]=anime.getType();
+            tabla [i][3]=anime.getEpisodes();
+            tabla [i][4]=anime.getDuration();
+            tabla [i][5]=anime.getRating();
+            tabla [i][6]=anime.getYear();
+            tabla [i][7]=anime.getStudio();
+            tabla [i][8]=anime.getGenre();
+            i = (i+1);
         }
         return tabla;
     }

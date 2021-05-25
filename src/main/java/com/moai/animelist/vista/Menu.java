@@ -44,6 +44,7 @@ public class Menu extends javax.swing.JFrame
         favDialog.setLocationRelativeTo(null);
         hateDialog.setLocationRelativeTo(null);
         displayWatched_dialog.setLocationRelativeTo(null);
+        filtradoDoble_dialog.setLocationRelativeTo(null);
         username = user.getUsername();
     }
     
@@ -73,6 +74,7 @@ public class Menu extends javax.swing.JFrame
         favDialog.setLocationRelativeTo(null);
         hateDialog.setLocationRelativeTo(null);
         displayWatched_dialog.setLocationRelativeTo(null);
+        filtradoDoble_dialog.setLocationRelativeTo(null);
         username = user.getUsername();
         
         //invisibilisamos los botones
@@ -226,6 +228,14 @@ public class Menu extends javax.swing.JFrame
         watchedTable = new javax.swing.JTable();
         goTo_favButton = new javax.swing.JButton();
         goTo_hateButton = new javax.swing.JButton();
+        filtradoDoble_dialog = new javax.swing.JDialog();
+        title2ble = new javax.swing.JLabel();
+        genre1_field = new javax.swing.JTextField();
+        genre2_field = new javax.swing.JTextField();
+        genre2_label = new javax.swing.JLabel();
+        genre1_label = new javax.swing.JLabel();
+        doubleFilter_filterButton = new javax.swing.JButton();
+        backTo_menuButton = new javax.swing.JButton();
         botonAgregar_anime = new javax.swing.JButton();
         botonAgregar_ano = new javax.swing.JButton();
         botonMostrar_ano = new javax.swing.JButton();
@@ -240,6 +250,7 @@ public class Menu extends javax.swing.JFrame
         botonCrear_Excel = new javax.swing.JButton();
         closeBoton = new javax.swing.JButton();
         addTo_listButton = new javax.swing.JButton();
+        botonFiltrado_2Generos = new javax.swing.JButton();
 
         dialogoAdd_anime.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         dialogoAdd_anime.setTitle("Ingrese Datos Del Anime A Agregar");
@@ -1736,6 +1747,83 @@ public class Menu extends javax.swing.JFrame
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
+        filtradoDoble_dialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        filtradoDoble_dialog.setAlwaysOnTop(true);
+        filtradoDoble_dialog.setMaximumSize(new java.awt.Dimension(439, 300));
+        filtradoDoble_dialog.setMinimumSize(new java.awt.Dimension(439, 300));
+        filtradoDoble_dialog.setResizable(false);
+        filtradoDoble_dialog.setSize(new java.awt.Dimension(439, 300));
+
+        title2ble.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        title2ble.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title2ble.setText("Escriba los 2 Generos");
+        title2ble.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        genre2_label.setText("Genero 2");
+
+        genre1_label.setText("Genero 1");
+
+        doubleFilter_filterButton.setText("Filtrar");
+        doubleFilter_filterButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                doubleFilter_filterButtonActionPerformed(evt);
+            }
+        });
+
+        backTo_menuButton.setText("Volver al Menu");
+        backTo_menuButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                backTo_menuButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout filtradoDoble_dialogLayout = new javax.swing.GroupLayout(filtradoDoble_dialog.getContentPane());
+        filtradoDoble_dialog.getContentPane().setLayout(filtradoDoble_dialogLayout);
+        filtradoDoble_dialogLayout.setHorizontalGroup(
+            filtradoDoble_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, filtradoDoble_dialogLayout.createSequentialGroup()
+                .addContainerGap(104, Short.MAX_VALUE)
+                .addGroup(filtradoDoble_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(title2ble, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(filtradoDoble_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(filtradoDoble_dialogLayout.createSequentialGroup()
+                            .addComponent(doubleFilter_filterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(backTo_menuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(filtradoDoble_dialogLayout.createSequentialGroup()
+                            .addGroup(filtradoDoble_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(genre1_label)
+                                .addComponent(genre2_label))
+                            .addGap(29, 29, 29)
+                            .addGroup(filtradoDoble_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(genre2_field, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addComponent(genre1_field)))))
+                .addGap(109, 109, 109))
+        );
+        filtradoDoble_dialogLayout.setVerticalGroup(
+            filtradoDoble_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(filtradoDoble_dialogLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(title2ble)
+                .addGap(53, 53, 53)
+                .addGroup(filtradoDoble_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(genre1_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(genre1_label))
+                .addGap(44, 44, 44)
+                .addGroup(filtradoDoble_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(genre2_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(genre2_label))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addGroup(filtradoDoble_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(doubleFilter_filterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backTo_menuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Moai AnimeList");
         setAlwaysOnTop(true);
@@ -1908,27 +1996,39 @@ public class Menu extends javax.swing.JFrame
             }
         });
 
+        botonFiltrado_2Generos.setText("Filtrar Animes de 2 generos");
+        botonFiltrado_2Generos.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                botonFiltrado_2GenerosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(109, 109, 109)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(botonBuscar_porGenero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonEliminar_anime1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonEliminar_ano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonModificar_anime1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonModificar_ano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonCrear_CSV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonCrear_Excel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(closeBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonBuscar_porTipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonBuscar_porAno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonMostrar_ano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonAgregar_ano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonAgregar_anime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addTo_listButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addTo_listButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(botonFiltrado_2Generos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(botonBuscar_porGenero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonEliminar_anime1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonEliminar_ano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonModificar_anime1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonModificar_ano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonCrear_CSV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonCrear_Excel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(closeBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonBuscar_porTipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonBuscar_porAno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonMostrar_ano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonAgregar_ano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonAgregar_anime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(121, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -1943,6 +2043,8 @@ public class Menu extends javax.swing.JFrame
                 .addGap(18, 18, 18)
                 .addComponent(botonBuscar_porGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(botonFiltrado_2Generos, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(addTo_listButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botonAgregar_anime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1960,7 +2062,7 @@ public class Menu extends javax.swing.JFrame
                 .addComponent(botonCrear_CSV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botonCrear_Excel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addGap(54, 54, 54)
                 .addComponent(closeBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
@@ -1984,6 +2086,7 @@ public class Menu extends javax.swing.JFrame
         }
         catch (IOException e){}
         dispose();
+        System.exit(0);
     }//GEN-LAST:event_closeBotonActionPerformed
 
     private void clearFields()
@@ -2007,6 +2110,12 @@ public class Menu extends javax.swing.JFrame
         textfieldEliminar_Ano.setText("");
         viejoInput.setText("");
         nuevoInput.setText("");
+        genre1_field.setText("");
+        genre2_field.setText("");
+        watchedId_field.setText("");
+        favedId_field.setText("");
+        hatedId_field1.setText("");
+        textfieldBuscarId_Anime.setText("");
     }
     
     private void IngresarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_IngresarActionPerformed
@@ -2149,16 +2258,19 @@ public class Menu extends javax.swing.JFrame
         this.setVisible(true);
     }//GEN-LAST:event_returnTo_menu_2ActionPerformed
 
-    private void botonEliminar_anime1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminar_anime1ActionPerformed
+    private void botonEliminar_anime1ActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_botonEliminar_anime1ActionPerformed
         this.setVisible(false);
         this.dialogoEliminar_anime.setVisible(true);
     }//GEN-LAST:event_botonEliminar_anime1ActionPerformed
 
-    private void eliminarAnimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarAnimeActionPerformed
+    private void eliminarAnimeActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_eliminarAnimeActionPerformed
         String animeID = this.textfieldEliminar_Anime1.getText();
         int eliminarID = llamar.eliminarAnime(animeID);
         this.dialogoEliminar_anime.dispose();
-        if(eliminarID != 0){
+        if(eliminarID != 0)
+        {
             errorDialog.setVisible(true);
             return;
         }
@@ -2166,18 +2278,21 @@ public class Menu extends javax.swing.JFrame
         clearFields();
     }//GEN-LAST:event_eliminarAnimeActionPerformed
 
-    private void returnTo_menu_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnTo_menu_3ActionPerformed
+    private void returnTo_menu_3ActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_returnTo_menu_3ActionPerformed
         dialogoEliminar_anime.dispose();
         clearFields();
         this.setVisible(true);
     }//GEN-LAST:event_returnTo_menu_3ActionPerformed
 
-    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
+    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_ModificarActionPerformed
         String animeID = textfieldModificar_Anime1.getText();
         String nuevoID = textfieldNuevo_id1.getText();
         int modificarID = llamar.modificarID(animeID, nuevoID);
         this.dialogoModificar_anime.dispose();
-        if(modificarID != 0){
+        if(modificarID != 0)
+        {
             errorDialog.setVisible(true);
             return;
         }
@@ -2185,18 +2300,21 @@ public class Menu extends javax.swing.JFrame
         clearFields();
     }//GEN-LAST:event_ModificarActionPerformed
 
-    private void returnTo_menu_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnTo_menu_4ActionPerformed
+    private void returnTo_menu_4ActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_returnTo_menu_4ActionPerformed
         dialogoModificar_anime.dispose();
         clearFields();
         this.setVisible(true);
     }//GEN-LAST:event_returnTo_menu_4ActionPerformed
 
-    private void botonModificar_anime1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificar_anime1ActionPerformed
+    private void botonModificar_anime1ActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_botonModificar_anime1ActionPerformed
         this.setVisible(false);
         dialogoModificar_anime.setVisible(true);
     }//GEN-LAST:event_botonModificar_anime1ActionPerformed
 
-    private void botonCrear_CSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrear_CSVActionPerformed
+    private void botonCrear_CSVActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_botonCrear_CSVActionPerformed
         // TODO add your handling code here:
         try
         {
@@ -2211,7 +2329,8 @@ public class Menu extends javax.swing.JFrame
         }
     }//GEN-LAST:event_botonCrear_CSVActionPerformed
 
-    private void botonCrear_ExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrear_ExcelActionPerformed
+    private void botonCrear_ExcelActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_botonCrear_ExcelActionPerformed
         // TODO add your handling code here:
         try
         {
@@ -2226,7 +2345,8 @@ public class Menu extends javax.swing.JFrame
         }
     }//GEN-LAST:event_botonCrear_ExcelActionPerformed
 
-    private void returnTo_menu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnTo_menu5ActionPerformed
+    private void returnTo_menu5ActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_returnTo_menu5ActionPerformed
         // TODO add your handling code here:
         okDialog.dispose();
         this.setVisible(true);
@@ -2240,11 +2360,13 @@ public class Menu extends javax.swing.JFrame
         this.setVisible(true);
     }//GEN-LAST:event_returnTo_menu7ActionPerformed
 
-    private void eliminarAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarAnoActionPerformed
+    private void eliminarAnoActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_eliminarAnoActionPerformed
         String ano = this.textfieldEliminar_Ano.getText();
         int eliminar = llamar.eliminarAno(ano);
         this.dialogoEliminar_ano.dispose(); 
-        if(eliminar != 0){
+        if(eliminar != 0)
+        {
             errorDialog.setVisible(true);
             return;
         }
@@ -2252,21 +2374,25 @@ public class Menu extends javax.swing.JFrame
         clearFields();
     }//GEN-LAST:event_eliminarAnoActionPerformed
 
-    private void returnTo_menu_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnTo_menu_5ActionPerformed
+    private void returnTo_menu_5ActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_returnTo_menu_5ActionPerformed
         dialogoEliminar_ano.dispose();
         clearFields();
         this.setVisible(true);
     }//GEN-LAST:event_returnTo_menu_5ActionPerformed
 
-    private void textfieldEliminar_AnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textfieldEliminar_AnoActionPerformed
+    private void textfieldEliminar_AnoActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_textfieldEliminar_AnoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textfieldEliminar_AnoActionPerformed
 
-    private void textfieldEliminar_Anime1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textfieldEliminar_Anime1ActionPerformed
+    private void textfieldEliminar_Anime1ActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_textfieldEliminar_Anime1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textfieldEliminar_Anime1ActionPerformed
 
-    private void botonEliminar_anoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminar_anoActionPerformed
+    private void botonEliminar_anoActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_botonEliminar_anoActionPerformed
         this.setVisible(false);
         this.dialogoEliminar_ano.setVisible(true);
     }//GEN-LAST:event_botonEliminar_anoActionPerformed
@@ -2300,7 +2426,8 @@ public class Menu extends javax.swing.JFrame
         this.setVisible(true);
     }//GEN-LAST:event_returnTo_menu8ActionPerformed
 
-    private void botonBusca_TipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusca_TipoActionPerformed
+    private void botonBusca_TipoActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_botonBusca_TipoActionPerformed
         // TODO add your handling code here:
         String tipo1 =inputTipo.getText();
         Object tablaFiltros[][] =null;
@@ -2316,32 +2443,38 @@ public class Menu extends javax.swing.JFrame
         outputFiltro.setVisible(true);
     }//GEN-LAST:event_botonBusca_TipoActionPerformed
 
-    private void returnTo_menu9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnTo_menu9ActionPerformed
+    private void returnTo_menu9ActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_returnTo_menu9ActionPerformed
         // TODO add your handling code here:
         dialogoBuscar_porTipo.dispose();
         clearFields();
         this.setVisible(true);
     }//GEN-LAST:event_returnTo_menu9ActionPerformed
 
-    private void botonBuscar_porTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscar_porTipoActionPerformed
+    private void botonBuscar_porTipoActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_botonBuscar_porTipoActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
         dialogoBuscar_porTipo.setVisible(true);
     }//GEN-LAST:event_botonBuscar_porTipoActionPerformed
 
-    private void inputTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTipoActionPerformed
+    private void inputTipoActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_inputTipoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputTipoActionPerformed
 
-    private void inputAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputAnoActionPerformed
+    private void inputAnoActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_inputAnoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputAnoActionPerformed
 
-    private void inputGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputGeneroActionPerformed
+    private void inputGeneroActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_inputGeneroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputGeneroActionPerformed
 
-    private void botonBusca_GeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusca_GeneroActionPerformed
+    private void botonBusca_GeneroActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_botonBusca_GeneroActionPerformed
         // TODO add your handling code here:
         String genero1 =inputGenero.getText();
         Object tablaFiltros[][] =null;
@@ -2357,14 +2490,16 @@ public class Menu extends javax.swing.JFrame
         outputFiltro.setVisible(true);
     }//GEN-LAST:event_botonBusca_GeneroActionPerformed
 
-    private void returnTo_menu10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnTo_menu10ActionPerformed
+    private void returnTo_menu10ActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_returnTo_menu10ActionPerformed
         // TODO add your handling code here:
         dialogoBuscar_porGenero.dispose();
         clearFields();
         this.setVisible(true);
     }//GEN-LAST:event_returnTo_menu10ActionPerformed
 
-    private void botonBuscar_porGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscar_porGeneroActionPerformed
+    private void botonBuscar_porGeneroActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_botonBuscar_porGeneroActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
         dialogoBuscar_porGenero.setVisible(true);
@@ -2413,31 +2548,38 @@ public class Menu extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_hatedId_field1ActionPerformed
 
-    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_BuscarActionPerformed
         String nombreAnime = textfieldBuscarId_Anime.getText();
         Anime animu = llamar.buscarAnimePorNombre("\""+nombreAnime+"\"");
         dialogoBuscarId_anime.dispose();
         if(animu == null)
         {
+            clearFields();
             errorDialog.setVisible(true);
             return;
         }
         int id = animu.getMal_id();
         tituloMostrarId.setText("El id es: " + id);
+        clearFields();
         mostrarIdDialog.setVisible(true);
     }//GEN-LAST:event_BuscarActionPerformed
 
-    private void return_back2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_return_back2ActionPerformed
+    private void return_back2ActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_return_back2ActionPerformed
+        clearFields();
         dialogoBuscarId_anime.dispose();
         watchedDialog.setVisible(true);
     }//GEN-LAST:event_return_back2ActionPerformed
 
-    private void return_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_return_backActionPerformed
+    private void return_backActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_return_backActionPerformed
         mostrarIdDialog.dispose();
         dialogoBuscarId_anime.setVisible(true);
     }//GEN-LAST:event_return_backActionPerformed
 
-    private void searchAnime_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAnime_buttonActionPerformed
+    private void searchAnime_buttonActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_searchAnime_buttonActionPerformed
         watchedDialog.dispose();
         dialogoBuscarId_anime.setVisible(true);
     }//GEN-LAST:event_searchAnime_buttonActionPerformed
@@ -2452,6 +2594,7 @@ public class Menu extends javax.swing.JFrame
     private void turnBackActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_turnBackActionPerformed
     {//GEN-HEADEREND:event_turnBackActionPerformed
         // TODO add your handling code here:
+        clearFields();
         watchedDialog.dispose();
         this.setVisible(true);
     }//GEN-LAST:event_turnBackActionPerformed
@@ -2480,6 +2623,7 @@ public class Menu extends javax.swing.JFrame
     private void turnBack1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_turnBack1ActionPerformed
     {//GEN-HEADEREND:event_turnBack1ActionPerformed
         // TODO add your handling code here:
+        clearFields();
         favDialog.dispose();
         this.setVisible(true);
     }//GEN-LAST:event_turnBack1ActionPerformed
@@ -2487,6 +2631,7 @@ public class Menu extends javax.swing.JFrame
     private void turnBack2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_turnBack2ActionPerformed
     {//GEN-HEADEREND:event_turnBack2ActionPerformed
         // TODO add your handling code here:
+        clearFields();
         hateDialog.dispose();
         this.setVisible(true);
     }//GEN-LAST:event_turnBack2ActionPerformed
@@ -2494,6 +2639,7 @@ public class Menu extends javax.swing.JFrame
     private void displayWatched_ButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_displayWatched_ButtonActionPerformed
     {//GEN-HEADEREND:event_displayWatched_ButtonActionPerformed
         // TODO add your handling code here:
+        clearFields();
         Object tablaFiltros[][] =null;
         tablaFiltros =llamar.llenarTabla_datosUser(tablaFiltros,0);
         rellenarTabla_filtros(tablaFiltros,watchedTable);
@@ -2518,6 +2664,10 @@ public class Menu extends javax.swing.JFrame
     private void displayWatched_Button1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_displayWatched_Button1ActionPerformed
     {//GEN-HEADEREND:event_displayWatched_Button1ActionPerformed
         // TODO add your handling code here:
+        clearFields();
+        Object tablaFiltros[][] =null;
+        tablaFiltros =llamar.llenarTabla_datosUser(tablaFiltros,0);
+        rellenarTabla_filtros(tablaFiltros,watchedTable);
         hateDialog.dispose();
         displayWatched_dialog.setVisible(true);
     }//GEN-LAST:event_displayWatched_Button1ActionPerformed
@@ -2530,6 +2680,7 @@ public class Menu extends javax.swing.JFrame
         favDialog.dispose();
         if(id.equals(""))
         {
+            clearFields();
             errorDialog.setVisible(true);
             return;
         }
@@ -2540,6 +2691,7 @@ public class Menu extends javax.swing.JFrame
             errorDialog.setVisible(true);
             return;
         }
+        clearFields();
         this.setVisible(true);
     }//GEN-LAST:event_addButton_favedActionPerformed
 
@@ -2551,6 +2703,7 @@ public class Menu extends javax.swing.JFrame
         hateDialog.dispose();
         if(id.equals(""))
         {
+            clearFields();
             errorDialog.setVisible(true);
             return;
         }
@@ -2561,8 +2714,43 @@ public class Menu extends javax.swing.JFrame
             errorDialog.setVisible(true);
             return;
         }
+        clearFields();
         this.setVisible(true);
     }//GEN-LAST:event_addButton_hatedActionPerformed
+
+    private void botonFiltrado_2GenerosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botonFiltrado_2GenerosActionPerformed
+    {//GEN-HEADEREND:event_botonFiltrado_2GenerosActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        filtradoDoble_dialog.setVisible(true);
+    }//GEN-LAST:event_botonFiltrado_2GenerosActionPerformed
+
+    private void backTo_menuButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_backTo_menuButtonActionPerformed
+    {//GEN-HEADEREND:event_backTo_menuButtonActionPerformed
+        // TODO add your handling code here:
+        clearFields();
+        filtradoDoble_dialog.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_backTo_menuButtonActionPerformed
+
+    private void doubleFilter_filterButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_doubleFilter_filterButtonActionPerformed
+    {//GEN-HEADEREND:event_doubleFilter_filterButtonActionPerformed
+        // TODO add your handling code here:
+        String genre1 =genre1_field.getText();
+        String genre2 =genre2_field.getText();
+        filtradoDoble_dialog.dispose();
+        if((genre1.equals(""))||(genre2.equals("")))
+        {
+            clearFields();
+            errorDialog.setVisible(true);
+            return;
+        }
+        Object[][] tablita =null;
+        tablita =llamar.filtradoCon_2Generos(tablita,genre1,genre2);
+        rellenarTabla_filtros(tablita,tablaFiltrados);
+        outputFiltro.setVisible(true);
+        clearFields();
+    }//GEN-LAST:event_doubleFilter_filterButtonActionPerformed
    
     private int rellenarTabla_filtros(Object tablaFiltros[][], javax.swing.JTable a)
     {
@@ -2618,6 +2806,7 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JLabel ano4;
     private javax.swing.JLabel anoText;
     private javax.swing.JLabel anoText1;
+    private javax.swing.JButton backTo_menuButton;
     private javax.swing.JButton botonAgregar_anime;
     private javax.swing.JButton botonAgregar_ano;
     private javax.swing.JButton botonBusca_Genero;
@@ -2630,6 +2819,7 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JButton botonCrear_Excel;
     private javax.swing.JButton botonEliminar_anime1;
     private javax.swing.JButton botonEliminar_ano;
+    private javax.swing.JButton botonFiltrado_2Generos;
     private javax.swing.JButton botonModificar_anime1;
     private javax.swing.JButton botonModificar_ano;
     private javax.swing.JButton botonMostrar_ano;
@@ -2650,6 +2840,7 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JButton displayWatched_Button;
     private javax.swing.JButton displayWatched_Button1;
     private javax.swing.JDialog displayWatched_dialog;
+    private javax.swing.JButton doubleFilter_filterButton;
     private javax.swing.JLabel durationDisplay;
     private javax.swing.JTextField duration_input;
     private javax.swing.JButton eliminarAnime;
@@ -2660,7 +2851,12 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JDialog favDialog;
     private javax.swing.JTextField favedId_field;
     private javax.swing.JLabel favedTitle;
+    private javax.swing.JDialog filtradoDoble_dialog;
     private javax.swing.JLabel genero;
+    private javax.swing.JTextField genre1_field;
+    private javax.swing.JLabel genre1_label;
+    private javax.swing.JTextField genre2_field;
+    private javax.swing.JLabel genre2_label;
     private javax.swing.JLabel genreDisplay;
     private javax.swing.JTextField genre_input;
     private javax.swing.JButton goTo_favButton;
@@ -2725,6 +2921,7 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JLabel tipo;
     private javax.swing.JLabel title;
     private javax.swing.JLabel title2;
+    private javax.swing.JLabel title2ble;
     private javax.swing.JLabel tituloAdd_ano;
     private javax.swing.JLabel tituloBuscarId_anime;
     private javax.swing.JLabel tituloEliminar_anime1;

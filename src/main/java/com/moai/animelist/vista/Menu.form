@@ -2020,6 +2020,120 @@
         </Component>
       </SubComponents>
     </Container>
+    <Container class="javax.swing.JDialog" name="filtradoDoble_dialog">
+      <Properties>
+        <Property name="defaultCloseOperation" type="int" value="0"/>
+        <Property name="alwaysOnTop" type="boolean" value="true"/>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[439, 300]"/>
+        </Property>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[439, 300]"/>
+        </Property>
+        <Property name="resizable" type="boolean" value="false"/>
+        <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[439, 300]"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace pref="104" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="title2ble" min="-2" pref="220" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="doubleFilter_filterButton" min="-2" pref="110" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="backTo_menuButton" min="-2" pref="110" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="genre1_label" min="-2" max="-2" attributes="0"/>
+                                  <Component id="genre2_label" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="genre2_field" pref="150" max="32767" attributes="0"/>
+                                  <Component id="genre1_field" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="title2ble" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="genre1_field" min="-2" max="-2" attributes="0"/>
+                      <Component id="genre1_label" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="genre2_field" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="genre2_label" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="57" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="doubleFilter_filterButton" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="backTo_menuButton" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="title2ble">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="1"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="Escriba los 2 Generos"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="genre1_field">
+        </Component>
+        <Component class="javax.swing.JTextField" name="genre2_field">
+        </Component>
+        <Component class="javax.swing.JLabel" name="genre2_label">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Genero 2"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="genre1_label">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Genero 1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="doubleFilter_filterButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Filtrar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="doubleFilter_filterButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="backTo_menuButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Volver al Menu"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backTo_menuButtonActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -2054,21 +2168,26 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="botonBuscar_porGenero" max="-2" attributes="0"/>
-                  <Component id="botonEliminar_anime1" alignment="1" max="-2" attributes="0"/>
-                  <Component id="botonEliminar_ano" alignment="1" max="-2" attributes="0"/>
-                  <Component id="botonModificar_anime1" alignment="1" max="-2" attributes="0"/>
-                  <Component id="botonModificar_ano" alignment="1" max="-2" attributes="0"/>
-                  <Component id="botonCrear_CSV" alignment="1" max="-2" attributes="0"/>
-                  <Component id="botonCrear_Excel" alignment="1" max="-2" attributes="0"/>
-                  <Component id="closeBoton" alignment="1" max="32767" attributes="0"/>
-                  <Component id="botonBuscar_porTipo" alignment="1" max="-2" attributes="0"/>
-                  <Component id="botonBuscar_porAno" alignment="1" max="-2" attributes="0"/>
-                  <Component id="botonMostrar_ano" alignment="1" max="-2" attributes="0"/>
-                  <Component id="botonAgregar_ano" alignment="1" max="-2" attributes="0"/>
-                  <Component id="botonAgregar_anime" alignment="1" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="addTo_listButton" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="botonFiltrado_2Generos" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="botonBuscar_porGenero" max="-2" attributes="0"/>
+                          <Component id="botonEliminar_anime1" alignment="1" max="-2" attributes="0"/>
+                          <Component id="botonEliminar_ano" alignment="1" max="-2" attributes="0"/>
+                          <Component id="botonModificar_anime1" alignment="1" max="-2" attributes="0"/>
+                          <Component id="botonModificar_ano" alignment="1" max="-2" attributes="0"/>
+                          <Component id="botonCrear_CSV" alignment="1" max="-2" attributes="0"/>
+                          <Component id="botonCrear_Excel" alignment="1" max="-2" attributes="0"/>
+                          <Component id="closeBoton" alignment="1" max="32767" attributes="0"/>
+                          <Component id="botonBuscar_porTipo" alignment="1" max="-2" attributes="0"/>
+                          <Component id="botonBuscar_porAno" alignment="1" max="-2" attributes="0"/>
+                          <Component id="botonMostrar_ano" alignment="1" max="-2" attributes="0"/>
+                          <Component id="botonAgregar_ano" alignment="1" max="-2" attributes="0"/>
+                          <Component id="botonAgregar_anime" alignment="1" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace pref="121" max="32767" attributes="0"/>
           </Group>
@@ -2086,6 +2205,8 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="botonBuscar_porGenero" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="botonFiltrado_2Generos" min="-2" pref="22" max="-2" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
               <Component id="addTo_listButton" min="-2" pref="22" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="botonAgregar_anime" min="-2" max="-2" attributes="0"/>
@@ -2103,7 +2224,7 @@
               <Component id="botonCrear_CSV" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="botonCrear_Excel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="94" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
               <Component id="closeBoton" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
           </Group>
@@ -2338,6 +2459,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addTo_listButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonFiltrado_2Generos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Filtrar Animes de 2 generos"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonFiltrado_2GenerosActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
