@@ -98,6 +98,8 @@ public class Menu extends javax.swing.JFrame
         botonModificar_ano.setVisible(false);
         botonCrear_CSV.setVisible(false);
         botonCrear_Excel.setVisible(false);
+        usersCSV_button.setVisible(false);
+        usersExcel_button.setVisible(false);
     }
 
     /**
