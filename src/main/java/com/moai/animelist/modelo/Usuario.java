@@ -7,11 +7,24 @@ package com.moai.animelist.modelo;
  * @author maca (Macarena Troncoso)
  * 
  */
+
 public abstract class Usuario
 {
+
+    /**
+     *
+     */
     protected String username;
+
+    /**
+     *
+     */
     protected String password;
     
+    /**
+     *
+     * @return Nombre de Usuario
+     */
     public String getUsername() 
     {
         return username;

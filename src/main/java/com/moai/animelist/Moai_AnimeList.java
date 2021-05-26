@@ -14,11 +14,10 @@ public class Moai_AnimeList
 {
     /**
      *
-     * @param args
-     * @throws FileNotFoundException
-     * @throws IOException
-     */
-    
+     * @param args[] Argumentos de entrada del main
+     * @throws FileNotFoundException Error de archivo no encontrado
+     * @throws IOException Error de I/O
+     */  
     public static void main(String args[])throws FileNotFoundException,IOException
     {
         //<editor-fold defaultstate="collapsed" desc=" Seteo del aspecto de las ventanas y botones ">

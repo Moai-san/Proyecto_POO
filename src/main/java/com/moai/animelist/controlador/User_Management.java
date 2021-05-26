@@ -1,23 +1,29 @@
 package com.moai.animelist.controlador;
 
-/**
- * 
- * @author moai-san (Leonardo Gonzalez)
- * 
- * 
- */
-
-import java.io.*;
 import com.moai.animelist.modelo.*;
 import org.apache.poi.xssf.usermodel.*;
 import java.util.*;
+import java.io.*;
 
+/**
+ *
+ * @author moai-san (Leonardo Gonzalez)
+ * @author nlago (Nicolás Lagos)
+ * @author maca (Macarena Troncoso)
+ */
 
 public class User_Management implements GeneraArchivos
 {
     private LinkedList<Usuario> usuarios =new LinkedList<Usuario>();
     private Funciones llamar =new Funciones();
-    //creacion de usuario
+
+    /**
+     *
+     * @param username Nombre de Usuario
+     * @param password Contraseña de Usuario
+     * @return Nombre de Usuario creado
+     */
+    // Creacion de usuario
     public String sign_up(String username, String password)
     {
         if((username==null)||(username.equals("")))
@@ -60,8 +66,15 @@ public class User_Management implements GeneraArchivos
         }
         return (null);
     }
-    
-    //inicio de sesion
+
+    /**
+     *
+     * @param username Nombre de Usuario
+     * @param password Contraseña de Usuario
+     * @return Nombre de Usuario logueado
+     * @throws IOException Error de I/O
+     */
+    // Inicio de sesion
     public String log_me(String username, String password) throws IOException
     {
         if(username.equals("admin"))
@@ -95,6 +108,10 @@ public class User_Management implements GeneraArchivos
         }
     }
     
+    /**
+     *
+     * @throws IOException Error de I/O
+     */
     @Override
     public void crearArchivoExcel() throws IOException
     {   
@@ -119,6 +136,9 @@ public class User_Management implements GeneraArchivos
         libro.write(excel);
     }
     
+    /**
+     *
+     */
     public void llenarLista_usuarios()
     {
         File Usuarios = new File("./User/");
@@ -131,6 +151,10 @@ public class User_Management implements GeneraArchivos
         }
     }
     
+    /**
+     *
+     * @throws IOException Error de I/O
+     */
     @Override
     public void crearArchivoCSV() throws IOException
     {

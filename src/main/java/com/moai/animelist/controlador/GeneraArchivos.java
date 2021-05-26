@@ -11,16 +11,15 @@ import java.io.*;
 
 public interface GeneraArchivos
 {
-
     /**
      *
-     * @throws IOException
+     * @throws IOException Error de I/O
      */
     public void crearArchivoExcel() throws IOException;
 
     /**
      *
-     * @throws IOException
+     * @throws IOException Error de I/O
      */
     public void crearArchivoCSV() throws IOException;
 }

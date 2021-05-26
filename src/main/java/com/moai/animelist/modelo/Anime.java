@@ -26,9 +26,8 @@ public class Anime
 
     /**
      *
-     * @return
+     * @return Id del anime
      */
-
     public int getMal_id()
     {
         return mal_id;
@@ -36,7 +35,7 @@ public class Anime
 
     /**
      *
-     * @return
+     * @return Nombre del anime
      */
     public String getName()
     {
@@ -45,7 +44,7 @@ public class Anime
 
     /**
      *
-     * @return
+     * @return Tipo de anime
      */
     public String getType()
     {
@@ -54,7 +53,7 @@ public class Anime
 
     /**
      *
-     * @return
+     * @return Episodios del anime
      */
     public int getEpisodes()
     {
@@ -63,7 +62,7 @@ public class Anime
 
     /**
      *
-     * @return
+     * @return Duracion de capitulos
      */
     public String getDuration()
     {
@@ -72,7 +71,7 @@ public class Anime
 
     /**
      *
-     * @return
+     * @return Rating del anime
      */
     public String getRating()
     {
@@ -81,7 +80,7 @@ public class Anime
 
     /**
      *
-     * @return
+     * @return Año de emision
      */
     public int getYear()
     {
@@ -90,7 +89,7 @@ public class Anime
 
     /**
      *
-     * @return
+     * @return Estudio(s) de animacion
      */
     public String getStudio()
     {
@@ -99,7 +98,7 @@ public class Anime
 
     /**
      *
-     * @return
+     * @return Genero(s) del anime
      */
     public String getGenre()
     {
@@ -110,9 +109,8 @@ public class Anime
 
     /**
      *
-     * @param mal_id
+     * @param mal_id Id del anime
      */
-
     public void setMal_id(int mal_id)
     {
         this.mal_id = mal_id;
@@ -120,7 +118,7 @@ public class Anime
 
     /**
      *
-     * @param name
+     * @param name Nombre del anime
      */
     public void setName(String name)
     {
@@ -129,7 +127,7 @@ public class Anime
 
     /**
      *
-     * @param type
+     * @param type Tipo de anime
      */
     public void setType(String type)
     {
@@ -138,7 +136,7 @@ public class Anime
 
     /**
      *
-     * @param episodes
+     * @param episodes Episodios del anime
      */
     public void setEpisodes(int episodes)
     {
@@ -147,7 +145,7 @@ public class Anime
 
     /**
      *
-     * @param duration
+     * @param duration Duracion de capitulos
      */
     public void setDuration(String duration)
     {
@@ -156,7 +154,7 @@ public class Anime
 
     /**
      *
-     * @param rating
+     * @param rating Rating del anime
      */
     public void setRating(String rating)
     {
@@ -165,7 +163,7 @@ public class Anime
 
     /**
      *
-     * @param year
+     * @param year Año de emision
      */
     public void setYear(int year)
     {
@@ -174,7 +172,7 @@ public class Anime
 
     /**
      *
-     * @param studio
+     * @param studio Estudio(s) de animacion
      */
     public void setStudio(String studio)
     {
@@ -183,7 +181,7 @@ public class Anime
 
     /**
      *
-     * @param genre
+     * @param genre Genero(s) del anime
      */
     public void setGenre(String genre)
     {
@@ -194,10 +192,9 @@ public class Anime
 
     /**
      *
-     * @param animeList
-     * @param linea
+     * @param animeList Archivo de base de datos CSV 
+     * @param linea Linea del CSV
      */
-
     public Anime(CSV animeList,String linea)
     {
         
@@ -214,15 +211,15 @@ public class Anime
     
     /**
      *
-     * @param mal_id
-     * @param name
-     * @param type
-     * @param episodes
-     * @param duration
-     * @param rating
-     * @param year
-     * @param studio
-     * @param genre
+     * @param mal_id Id del anime
+     * @param name Nombre del anime
+     * @param type Tipo de anime
+     * @param episodes Episodios del anime
+     * @param duration Duracion de capitulos
+     * @param rating Rating del anime
+     * @param year Año de emision
+     * @param studio Estudio(s) de animacion
+     * @param genre Genero(s) del anime
      */
     public Anime(int mal_id,String name,String type,int episodes,String duration,String rating,int year,String studio,String genre)
     {
@@ -239,7 +236,7 @@ public class Anime
 
     /**
      *
-     * @param toCopy
+     * @param toCopy Estructura Anime
      */
     public Anime(Anime toCopy)
     {

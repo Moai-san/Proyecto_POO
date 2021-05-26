@@ -10,10 +10,12 @@ import java.io.*;
  * @author nlago (Nicolás Lagos)
  * @author maca (Macarena Troncoso)
  */
+
 public class Log_in extends javax.swing.JFrame
 {
     private static User_Management llamar =new User_Management();
     private String username;
+    
     /**
      * Creates new form Log_in
      */
@@ -281,6 +283,7 @@ public class Log_in extends javax.swing.JFrame
         usernameField.setText("");
         passwordField.setText("");
     }
+    
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_registerButtonActionPerformed
     {//GEN-HEADEREND:event_registerButtonActionPerformed
         // TODO add your handling code here:

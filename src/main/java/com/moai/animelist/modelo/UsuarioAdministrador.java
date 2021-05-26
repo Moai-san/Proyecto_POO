@@ -7,16 +7,28 @@ package com.moai.animelist.modelo;
  * @author maca (Macarena Troncoso)
  * 
  */
+
 public class UsuarioAdministrador extends Usuario
 {
 
+    /**
+     *
+     * @param username Nombre de Usuario
+     * @param password Contraseña de Usuario
+     */
     public UsuarioAdministrador(String username, String password) 
     {
         this.username = username;
         this.password = password;
     }
 
-    //sin usar aun, esta se usará en una proxima entrega.
+    /**
+     *
+     * @param actualPassword Contraseña de Usuario actual
+     * @param newPassword Contraseña de Usuario nueva
+     * @return Estado de la accion (Exito o Fracaso)
+     */
+    // Sin usar aun, esta se usará en una proxima entrega.
     public int changePassword(String actualPassword, String newPassword) 
     {
         if(actualPassword.equals(this.password))
@@ -26,5 +38,4 @@ public class UsuarioAdministrador extends Usuario
         }
         return (-1);
     }
-    
 }

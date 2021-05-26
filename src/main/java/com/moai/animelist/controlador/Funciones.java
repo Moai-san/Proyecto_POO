@@ -1,20 +1,21 @@
 package com.moai.animelist.controlador;
 
-/**
- * 
- * @author moai-san (Leonardo Gonzalez)
- * 
- */
-
-import com.moai.animelist.modelo.CSV;
 import com.moai.animelist.modelo.Anime;
-import java.io.*;
+import com.moai.animelist.modelo.CSV;
 import java.util.*;
+import java.io.*;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFCell;
+
+/**
+ *
+ * @author moai-san (Leonardo Gonzalez)
+ * @author nlago (Nicolás Lagos)
+ * @author maca (Macarena Troncoso)
+ */
 
 public class Funciones implements GeneraArchivos
 {
@@ -35,6 +36,9 @@ public class Funciones implements GeneraArchivos
     
     //Constructor
 
+    /**
+     *
+     */
     public Funciones()
     {
     }
@@ -42,6 +46,11 @@ public class Funciones implements GeneraArchivos
     //Metodos
     
 //<editor-fold defaultstate="collapsed" desc=" funciones para llenado de colecciones ">
+
+    /**
+     *
+     * @param toAdd Estructura Anime
+     */
     //Añade anime (se ira modificando segun se creen estructuras de datos nuevas, por ahora solo ingresa al catalogo
     public void addAnime(Anime toAdd)
     {
@@ -137,6 +146,11 @@ public class Funciones implements GeneraArchivos
         catalogue.add(toAdd);
     }
 
+    /**
+     *
+     * @throws FileNotFoundException Error de archivo no encontrado
+     * @throws IOException Error de I/O
+     */
     //importa catalogo
     public void importCatalogue() throws FileNotFoundException,IOException
     {
@@ -160,8 +174,14 @@ public class Funciones implements GeneraArchivos
         }
     }
 
-    //Sobrecarga Requisito ep.2
-    public void importCatalogue(CSV animeCSV,String linea) throws FileNotFoundException,IOException
+    /**
+     *
+     * @param animeCSV Base de datos CSV
+     * @param linea Linea del CSV
+     * @throws FileNotFoundException Error de archivo no encontrado
+     * @throws IOException Error de I/O
+     */
+    public void importCatalogue(CSV animeCSV,String linea) throws FileNotFoundException,IOException //Sobrecarga Requisito ep.2
     {
         Anime toAdd =new Anime(animeCSV, linea); //anime a añadir en estructuras de datos e inicializar valores del anime a añadir
         this.addAnime(toAdd);
@@ -180,6 +200,12 @@ public class Funciones implements GeneraArchivos
         }
     }
 
+    /**
+     *
+     * @param id Id del Anime
+     * @param lista Lista en la que se busca
+     * @return Si existe el anime en la lista o no
+     */
     public boolean animeExiste(int id, LinkedList<Anime> lista)
     {
         Anime animu;
@@ -195,6 +221,11 @@ public class Funciones implements GeneraArchivos
         return false;
     }
     
+    /**
+     *
+     * @param ano Año a agregar
+     * @return Estado de la accion (Exito o Fracaso)
+     */
     public int addYear(String ano)
     {
         TreeMap<Integer, Anime> year = yearMap.get(ano);
@@ -211,6 +242,11 @@ public class Funciones implements GeneraArchivos
         }
     }
     
+    /**
+     *
+     * @param option Lista a la que se debe agregar
+     * @param toAdd Estructura Anime
+     */
     public void addTo_Top(int option, Anime toAdd)
     {
         switch (option)
@@ -304,6 +340,12 @@ public class Funciones implements GeneraArchivos
         }
     }
     
+    /**
+     *
+     * @param option Lista a la que se debe agregar (Visto, Favorito, Odiado) del Usuario
+     * @param toAdd Estructura Anime
+     * @return Estado de la accion (Exito o Fracaso)
+     */
     public int addTo_userList(int option, Anime toAdd)
     {
         switch (option) //si opcion es 0, se añade a vistos, si es 1 se añade a favoritos, si es 2 se añade a odiados.
@@ -345,6 +387,12 @@ public class Funciones implements GeneraArchivos
         return(-1);
     }
     
+    /**
+     *
+     * @param username Nombre del Usuario
+     * @throws FileNotFoundException Error de archivo no encontrado
+     * @throws IOException Error de I/O
+     */
     public void importUser_data(String username) throws FileNotFoundException, IOException
     {
         File dir =new File("./User/Fav/");
@@ -461,6 +509,12 @@ public class Funciones implements GeneraArchivos
 //</editor-fold>
     
 //<editor-fold defaultstate="collapsed" desc=" Funciones de Busqueda ">
+
+    /**
+     *
+     * @param id Id del Anime
+     * @return Estructura Anime
+     */
     public Anime buscarAnimePorId(int id)
     {
         Anime animu;
@@ -477,7 +531,13 @@ public class Funciones implements GeneraArchivos
         return null;
     }
     
-    public Anime buscarAnimePorNombre(String nombre){
+    /**
+     *
+     * @param nombre Nombre del Anime
+     * @return Estructura Anime
+     */
+    public Anime buscarAnimePorNombre(String nombre)
+    {
         Anime animu;
         String name;
         for (int i = 0; i < catalogue.size(); i++)
@@ -493,7 +553,13 @@ public class Funciones implements GeneraArchivos
         return null;
         
     }
-    
+
+    /**
+     *
+     * @param option Opcion de lista
+     * @param id Id del Anime
+     * @return Array de 2 Objects de lista global (Cantidad de gente, Anime)
+     */
     //retorna un array de 2 object, donde la primera casilla es el numero de gente que lo tiene en su lista, y la casilla 2 es el anime,
     //en caso de no estar en ninguna lista, retorna null
     public Object[] searchFrom_globalList(int option, int id)//buscar dentro de tops
@@ -521,7 +587,10 @@ public class Funciones implements GeneraArchivos
         return(null);
     }
     
-        
+    /**
+     *
+     * @return Array de 2 Objects de todos los años de emision 
+     */
     public Object[][] getYears()
     {
         int i =0;
@@ -541,6 +610,13 @@ public class Funciones implements GeneraArchivos
         return(tabla);
     }
 
+    /**
+     *
+     * @param tabla Array de 2 Objects vacio
+     * @param filtro Filtro de busqueda especifico (Tipo especifico, Año especifico, Genero especifico)
+     * @param a Filtro de busqueda (Tipo, Año, Genero)
+     * @return Array de 2 Objects de todos los animes que cumplen con el criterio
+     */
     public Object[][] mostrarPor_filtro(Object tabla[][],String filtro, int a)
     {
         int i;
@@ -634,6 +710,12 @@ public class Funciones implements GeneraArchivos
         return tabla;
     }
     
+    /**
+     *
+     * @param tabla Array de 2 Objects vacio
+     * @param option Filtro de busqueda (Visto, Favorito, Odiado)
+     * @return Array de 2 Objects de todos los animes que estan en la lista
+     */
     public Object[][] llenarTabla_datosUser(Object tabla[][],int option)
     {
         int i;
@@ -712,6 +794,13 @@ public class Funciones implements GeneraArchivos
         return tabla;
     }
     
+    /**
+     *
+     * @param tabla Array de 2 Objects vacio
+     * @param filtro1 Filtro de busqueda de Genero 1
+     * @param filtro2 Filtro de busqueda de Genero 2
+     * @return Array de 2 Objects de todos los animes que cumplen con el criterio
+     */
     public Object[][] filtradoCon_2Generos(Object tabla[][],String filtro1, String filtro2)
     {
         int i;
@@ -762,12 +851,23 @@ public class Funciones implements GeneraArchivos
 //</editor-fold>
     
 //<editor-fold defaultstate="collapsed" desc=" Funciones de eliminacion ">
+
+    /**
+     *
+     * @param stringID Id del Anime en tipo String
+     * @return Estado de la accion (Exito o Fracaso)
+     */
     public int eliminarAnime(String stringID)
     {
         int id = Integer.parseInt(stringID);
         return eliminarAnimeColecciones(id);
     }
     
+    /**
+     *
+     * @param id Id del Anime
+     * @return Estado de la accion (Exito o Fracaso)
+     */
     public int eliminarAnimeColecciones(int id)
     {
         boolean encontrado = false;
@@ -802,6 +902,11 @@ public class Funciones implements GeneraArchivos
         return 0;
     }
     
+    /**
+     *
+     * @param ano Año de emision
+     * @return Estado de la accion (Exito o Fracaso)
+     */
     public int eliminarAno(String ano)
     {
         /* Se crea una variable treeMap que contenga los animes del año a eliminar
@@ -833,6 +938,13 @@ public class Funciones implements GeneraArchivos
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" Funciones de modificacion ">
+
+    /**
+     *
+     * @param viejo Año actual (modificar)
+     * @param nuevo Nuevo Año
+     * @return Estado de la accion (Exito o Fracaso)
+     */
     public int modificarAno(String viejo, String nuevo)
     {
         //se crea treemap para obtener los animes de ese año y tambien para tener el largo del array que se usa
@@ -860,6 +972,12 @@ public class Funciones implements GeneraArchivos
         return (0);
     }
     
+    /**
+     *
+     * @param stringAnimeID Id del Anime (modificar)
+     * @param stringNuevoID Nuevo Id del Anime
+     * @return Estado de la accion (Exito o Fracaso)
+     */
     public int modificarID(String stringAnimeID, String stringNuevoID)
     { 
         int animeID = Integer.parseInt(stringAnimeID);
@@ -887,6 +1005,11 @@ public class Funciones implements GeneraArchivos
 //</editor-fold>
     
 //<editor-fold defaultstate="collapsed" desc=" Funciones de escritura de archivos ">
+
+    /**
+     *
+     * @throws IOException Error de I/O
+     */
     @Override
     public void crearArchivoExcel() throws IOException
     {
@@ -966,6 +1089,12 @@ public class Funciones implements GeneraArchivos
         libro.write(excel);
     }
     
+    /**
+     *
+     * @param animu Estructura Anime
+     * @param line Linea de escritura de Archivo
+     * @throws IOException Error de I/O
+     */
     public void writeAnime_intoCSV(Anime animu, FileWriter line)throws IOException
     {
         for (int j = 0; j < 9; j++)
@@ -1032,6 +1161,10 @@ public class Funciones implements GeneraArchivos
         }
     }
     
+    /**
+     *
+     * @throws IOException Error de I/O
+     */
     @Override
     public void crearArchivoCSV() throws IOException
     {
@@ -1047,7 +1180,12 @@ public class Funciones implements GeneraArchivos
         line.flush();
         line.close();
     }
-    
+
+    /**
+     *
+     * @param username Nombre de Usuario
+     * @throws IOException Error de I/O
+     */
     //modificacion datos usuario para persistencia
     //exportar listas del usuario (para no perder los datos despues de ejecutar)
     public void export_userData(String username) throws IOException
@@ -1092,6 +1230,10 @@ public class Funciones implements GeneraArchivos
         output.close();
     }
     
+    /**
+     *
+     * @param dir Nombre de carpeta
+     */
     public void assertFolder_andCreate_ifFalse(String dir)
     {
         File directory=new File(dir);
@@ -1101,5 +1243,4 @@ public class Funciones implements GeneraArchivos
         }
     }
 //</editor-fold>
-
 }

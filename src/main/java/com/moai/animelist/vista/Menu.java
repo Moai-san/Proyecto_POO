@@ -1,23 +1,28 @@
 package com.moai.animelist.vista;
 
-/**
- * 
- * @author moai-san (Leonardo Gonzalez)
- * 
- */
-
 //import block
-import java.io.*;
 import com.moai.animelist.controlador.*;
 import com.moai.animelist.modelo.*;
+import java.io.*;
+
+/**
+ *
+ * @author moai-san (Leonardo Gonzalez)
+ * @author nlago (Nicolás Lagos)
+ * @author maca (Macarena Troncoso)
+ */
 
 public class Menu extends javax.swing.JFrame
 {
     private static Funciones llamar = new Funciones();
     private static User_Management userMan= new User_Management();
     private final String username;
+    
     /**
-     * Creates new form Menu
+     *
+     * @param user Administrador
+     * @throws IOException Error de I/O
+     * @throws FileNotFoundException Error de archivo no encontrado
      */
     public Menu(UsuarioAdministrador user)throws IOException, FileNotFoundException
     {
@@ -49,6 +54,12 @@ public class Menu extends javax.swing.JFrame
         username = user.getUsername();
     }
     
+    /**
+     *
+     * @param user Usuario comun
+     * @throws IOException Error de I/O
+     * @throws FileNotFoundException Error de archivo no encontrado
+     */
     public Menu(UsuarioComun user)throws IOException, FileNotFoundException
     {
         llamar.importCatalogue();
@@ -78,7 +89,7 @@ public class Menu extends javax.swing.JFrame
         filtradoDoble_dialog.setLocationRelativeTo(null);
         username = user.getUsername();
         
-        //invisibilisamos los botones
+        //Invisibilisamos los botones
         botonAgregar_anime.setVisible(false);
         botonAgregar_ano.setVisible(false);
         botonEliminar_anime1.setVisible(false);

@@ -1,7 +1,7 @@
 package com.moai.animelist.modelo;
 
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
 /**
  *
@@ -10,6 +10,7 @@ import java.util.*;
  * @author maca (Macarena Troncoso)
  * 
  */
+
 public class CSV
 {
     //Variables de instancia
@@ -21,15 +22,20 @@ public class CSV
 
     /**
      *
-     * @param name
-     * @throws FileNotFoundException
+     * @param name Nombre del archivo
+     * @throws FileNotFoundException Error de archivo no encontrado
      */
-    
     public CSV(String name) throws FileNotFoundException
     {
       this.file =new BufferedReader(new FileReader("./"+name+".csv"));
     }
     
+    /**
+     *
+     * @param ruta Direccion del archivo en carpeta
+     * @param archivo Nombre del archivo
+     * @throws FileNotFoundException Error de archivo no encontrado
+     */
     public CSV(String ruta,String archivo) throws FileNotFoundException
     {
         this.file =new BufferedReader(new FileReader(ruta+archivo));
@@ -46,10 +52,9 @@ public class CSV
 
     /**
      *
-     * @return
-     * @throws IOException
+     * @return Primera linea del CSV
+     * @throws IOException Error de I/O
      */
-    
     public String firstLine() throws IOException
     {
         return nextLine();
@@ -57,8 +62,8 @@ public class CSV
     
     /**
      *
-     * @return
-     * @throws IOException
+     * @return Linea siguiente del CSV
+     * @throws IOException Error de I/O
      */
     public String nextLine() throws IOException
     {
@@ -68,9 +73,9 @@ public class CSV
     
     /**
      *
-     * @param line
-     * @param field
-     * @return
+     * @param line Linea del CSV
+     * @param field Campo de la linea del CSV
+     * @return Dato del campo del CSV
      */
     public String get_csvField(String line,int field)
     {
@@ -105,15 +110,14 @@ public class CSV
         s.close();
         return(null);
     }
-    
-    //sobrecarga ep2
 
     /**
      *
-     * @param field
-     * @param line
-     * @return
+     * @param field Campo de la linea del CSV
+     * @param line Linea del CSV
+     * @return Dato del campo del CSV
      */
+    // Sobrecarga ep2
     public String get_csvField(int field,String line)
     {
         Scanner s = new Scanner(line);
@@ -148,7 +152,7 @@ public class CSV
     
     /**
      *
-     * @throws IOException
+     * @throws IOException Error de I/O
      */
     public void close() throws IOException
     {
