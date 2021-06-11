@@ -22,8 +22,8 @@ public class Funciones implements GeneraArchivos
     private LinkedList<Anime> faved =new LinkedList<Anime>();
     private LinkedList<Anime> hated =new LinkedList<Anime>();
     //Tops a nivel aplicacion
-    private TreeMap<Integer,HashMap<Integer,Anime>> most_faved =new TreeMap<Integer,HashMap<Integer,Anime>>();
-    private TreeMap<Integer,HashMap<Integer,Anime>> most_hated =new TreeMap<Integer,HashMap<Integer,Anime>>();
+    TopMap most_faved = new TopMap();
+    TopMap most_hated = new TopMap();
     
     AniMap genreMap = new AniMap();
     AniMap typeMap = new AniMap();
@@ -272,7 +272,7 @@ public class Funciones implements GeneraArchivos
                 {
                     int key = (int)(positionNode[0]);
                     key =(key+1);
-                    topush =most_faved.get(positionNode[0]);
+                    topush =most_faved.get((int) positionNode[0]);
                     Anime aux = (Anime)positionNode[1];
                     topush.remove(aux.getMal_id());
                     topush =most_faved.get(key);
@@ -315,7 +315,7 @@ public class Funciones implements GeneraArchivos
                 {
                     int key = (int)(positionNode[0]);
                     key =(key+1);
-                    topush =most_hated.get(positionNode[0]);
+                    topush =most_hated.get((int) positionNode[0]);
                     Anime aux = (Anime)positionNode[1];
                     topush.remove(aux.getMal_id());
                     topush =most_hated.get(key);
@@ -560,15 +560,15 @@ public class Funciones implements GeneraArchivos
     public Object[] searchFrom_globalList(int option, int id)//buscar dentro de tops
     {
         //declaraciones
-        TreeMap<Integer,HashMap<Integer,Anime>> lista;
+        TopMap lista;
         //si opcion ingresada por user es 1, se busca en favoritos
         if (option==1)
         {
-            lista =most_faved;
+            lista = most_faved;
         }
         else//sinó en odiados
         {
-            lista =most_hated;
+            lista = most_hated;
         }
         for(Map.Entry<Integer,HashMap<Integer,Anime>> forSearch : lista.entrySet()) 
         {
@@ -886,7 +886,9 @@ public class Funciones implements GeneraArchivos
         type.remove(id);
         
         //Obtenemos el treemap de generos, y lo eliminamos
-        TreeMap<Integer, Anime> genre = genreMap.get(animu.getGenre());
+        String aux = animu.getGenre();
+        aux = aux.substring(1,(aux.length() - 1));
+        TreeMap<Integer, Anime> genre = genreMap.get(aux);
         genre.remove(id);
         
         //Obtenemos el treemap de años, y lo eliminamos

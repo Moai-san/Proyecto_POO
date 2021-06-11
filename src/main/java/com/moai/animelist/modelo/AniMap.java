@@ -24,10 +24,11 @@ public class AniMap
      *
      * @param datoAnime Llave de los datos a ingresar
      * @param arbol Treemap con los datos a ingresar
+     * @return Resultado de la accion (Exito o Fracaso)
      */
-    public void put(String datoAnime, TreeMap arbol)
+    public TreeMap<Integer, Anime> put(String datoAnime, TreeMap arbol)
     {
-        Map.put(datoAnime, arbol);
+        return Map.put(datoAnime, arbol);
     }
     
     /**
