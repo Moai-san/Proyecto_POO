@@ -14,8 +14,9 @@ import java.io.*;
 
 public class Menu extends javax.swing.JFrame
 {
-    private static Funciones llamar = new Funciones();
-    private static User_Management userMan= new User_Management();
+    private static CollectionManagement llamar = new CollectionManagement();
+    private static ReportUsers userMan= new ReportUsers();
+    private static ReportAnime aniMan;
     private final String username;
     
     /**
@@ -2123,7 +2124,8 @@ public class Menu extends javax.swing.JFrame
         // TODO add your handling code here:
         try
         {
-            llamar.export_userData(username);
+            ExportData export =new ExportData(llamar.getWatched(),llamar.getFaved(),llamar.getHated());
+            export.export_userData(username);
         }
         catch (IOException e){}
         dispose();
@@ -2381,7 +2383,8 @@ public class Menu extends javax.swing.JFrame
         try
         {
             this.setVisible(false);
-            llamar.crearArchivoCSV();
+            aniMan = new ReportAnime(llamar.getCatalogue());
+            aniMan.crearArchivoCSV();
             okDialog.setVisible(true);
         }
         catch(IOException e)
@@ -2397,7 +2400,8 @@ public class Menu extends javax.swing.JFrame
         try
         {
             this.setVisible(false);
-            llamar.crearArchivoExcel();
+            aniMan = new ReportAnime(llamar.getCatalogue());
+            aniMan.crearArchivoExcel();
             okDialog.setVisible(true);
         }
         catch(IOException e)

@@ -1,8 +1,6 @@
 package com.moai.animelist.controlador;
 
 import com.moai.animelist.modelo.*;
-import org.apache.poi.xssf.usermodel.*;
-import java.util.*;
 import java.io.*;
 
 /**
@@ -12,11 +10,8 @@ import java.io.*;
  * @author maca (Macarena Troncoso)
  */
 
-public class User_Management implements GeneraArchivos
+public class User_Management
 {
-    private LinkedList<Usuario> usuarios =new LinkedList<Usuario>();
-    private Funciones llamar =new Funciones();
-
     /**
      *
      * @param username Nombre de Usuario
@@ -106,70 +101,5 @@ public class User_Management implements GeneraArchivos
         {
             return (null);
         }
-    }
-    
-    /**
-     *
-     * @throws IOException Error de I/O
-     */
-    @Override
-    public void crearArchivoExcel() throws IOException
-    {   
-        if(usuarios.isEmpty())
-        {
-            llenarLista_usuarios();
-        }
-        
-        XSSFWorkbook libro = new XSSFWorkbook();
-        XSSFSheet plantilla = libro.createSheet("Usuarios");
-        XSSFRow columna;
-        XSSFCell fila;
-        
-        for(int i=0;i<usuarios.size();i++)
-        {
-            columna = plantilla.createRow(i);
-            fila = columna.createCell(0);
-            fila.setCellValue(usuarios.get(i).getUsername());
-        }
-        
-        FileOutputStream excel = new FileOutputStream("Usuarios.xlsx");
-        libro.write(excel);
-    }
-    
-    /**
-     *
-     */
-    public void llenarLista_usuarios()
-    {
-        File Usuarios = new File("./User/");
-        for(String line: Usuarios.list())
-        {
-            if (line.endsWith(".txt"))
-            {
-                usuarios.add(new UsuarioComun(line.substring(0, line.length()-4),null));
-            }
-        }
-    }
-    
-    /**
-     *
-     * @throws IOException Error de I/O
-     */
-    @Override
-    public void crearArchivoCSV() throws IOException
-    {
-        if(usuarios.isEmpty())
-        {
-            llenarLista_usuarios();
-        }
-        
-        FileWriter archive = new FileWriter("./Usuarios.csv");
-        for(int i=0;i<usuarios.size();i++)
-        {
-            archive.write(usuarios.get(i).getUsername()+"\n");
-        }
-        
-        archive.flush();
-        archive.close();
     }
 }

@@ -17,6 +17,12 @@ public class TopMap
         this.Top = new TreeMap<Integer,HashMap<Integer,Anime>>();
     }
     
+    //constructor copia
+    public TopMap(TopMap toCopy)
+    {
+        this.Top = toCopy.Top;
+    }
+    
     public Map.Entry<Integer, HashMap<Integer, Anime>> firstEntry()
     {
         return Top.firstEntry();

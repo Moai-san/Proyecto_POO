@@ -8,6 +8,7 @@ import java.util.*;
  * @author nlago (Nicolás Lagos)
  * @author maca (Macarena Troncoso)
  */
+@SuppressWarnings("unchecked")
 public class AniMap
 {
     private HashMap<Object, TreeMap<Integer, Anime>> Map;
