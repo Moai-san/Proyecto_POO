@@ -7,6 +7,8 @@ therefore it is assumed to be part of version control checkout.
 Without this configuration present, some functionality in the IDE may be limited or fail altogether.
 -->
     <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+        <word>llave</word>
+        <word>llaves</word>
         <word>tipo</word>
         <word>todos</word>
     </spellchecker-wordlist>

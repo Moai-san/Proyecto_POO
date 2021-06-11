@@ -1,14 +1,9 @@
 package com.moai.animelist.controlador;
 
-import com.moai.animelist.modelo.Anime;
-import com.moai.animelist.modelo.CSV;
+import com.moai.animelist.modelo.*;
+import org.apache.poi.xssf.usermodel.*;
 import java.util.*;
 import java.io.*;
-
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFCell;
 
 /**
  *
@@ -29,10 +24,10 @@ public class Funciones implements GeneraArchivos
     //Tops a nivel aplicacion
     private TreeMap<Integer,HashMap<Integer,Anime>> most_faved =new TreeMap<Integer,HashMap<Integer,Anime>>();
     private TreeMap<Integer,HashMap<Integer,Anime>> most_hated =new TreeMap<Integer,HashMap<Integer,Anime>>();
-    //Tablas Hash con Arboles anidados, que contendran animes filtrados por genero, tipo y año
-    private HashMap<Object, TreeMap<Integer, Anime>> genreMap =new HashMap<Object, TreeMap<Integer, Anime>>();
-    private HashMap<Object, TreeMap<Integer, Anime>> yearMap =new HashMap<Object, TreeMap<Integer, Anime>>();
-    private HashMap<Object, TreeMap<Integer, Anime>> typeMap =new HashMap<Object, TreeMap<Integer, Anime>>();
+    
+    AniMap genreMap = new AniMap();
+    AniMap typeMap = new AniMap();
+    AniMap yearMap = new AniMap();
     
     //Constructor
 
@@ -82,15 +77,16 @@ public class Funciones implements GeneraArchivos
         {
             year.put((toAdd.getMal_id()), toAdd);
         }
-
+        
         //Añadir a HashMap de generos
+        String generos = (toAdd.getGenre());
+        generos = (generos.substring(1,((generos.length())-1)));
+            
         if ((genreMap.get(toAdd.getGenre()))==null) //si no se encontró un arbol para la clave dentro de la tabla hash, se crea uno, se inicializa, y una vez con el anime dentro, se introduce a la tabla
         {
             CSV pivoteGetCSV = new CSV();
             genre = new TreeMap<Integer, Anime>();
             genre.put((toAdd.getMal_id()), toAdd);
-            String generos =(toAdd.getGenre());
-            generos =(generos.substring(1,((generos.length())-1)));
             
             for (int i = 0; i < 10; i++)//se subdivide el string en cada genero y luego se ingresa el anime a todas las listas filtradas que corresponda
             {
@@ -100,7 +96,7 @@ public class Funciones implements GeneraArchivos
                 }
                 else//sinó
                 {
-                    if ((genreMap.get (pivoteGetCSV.get_csvField(generos,i)))!=null)//se busca el filtro con el genero respectivo, de estar, solo se inserta el dato
+                    if ((genreMap.get(pivoteGetCSV.get_csvField(generos,i)))!=null)//se busca el filtro con el genero respectivo, de estar, solo se inserta el dato
                     {
                         TreeMap<Integer, Anime> genreAux =genreMap.get(pivoteGetCSV.get_csvField(generos,i));
                         genreAux.put((toAdd.getMal_id()), toAdd);
@@ -118,8 +114,6 @@ public class Funciones implements GeneraArchivos
         {
             genre.put((toAdd.getMal_id()), toAdd);
             CSV pivoteGetCSV = new CSV();
-            String generos =(toAdd.getGenre());
-            generos =(generos.substring(1,((generos.length())-1)));
             
             for (int i = 0; i < 10; i++)//se subdivide el string en cada genero y luego se ingresa el anime a todas las listas filtradas que corresponda
             {
@@ -129,7 +123,7 @@ public class Funciones implements GeneraArchivos
                 }
                 else//sinó
                 {
-                    if ((genreMap.get (pivoteGetCSV.get_csvField(generos,i)))!=null)//se busca el filtro con el genero respectivo, de estar, solo se inserta el dato
+                    if ((genreMap.get(pivoteGetCSV.get_csvField(generos,i)))!=null)//se busca el filtro con el genero respectivo, de estar, solo se inserta el dato
                     {
                         TreeMap<Integer, Anime> genreAux =genreMap.get(pivoteGetCSV.get_csvField(generos,i));
                         genreAux.put((toAdd.getMal_id()), toAdd);
@@ -373,7 +367,7 @@ public class Funciones implements GeneraArchivos
             }
             case 2:
             {
-                if(animeExiste(toAdd.getMal_id(),watched)==false)
+                if(animeExiste(toAdd.getMal_id(),watched)==true)
                 {
                     if(animeExiste(toAdd.getMal_id(),hated)==false)
                     {
@@ -847,7 +841,6 @@ public class Funciones implements GeneraArchivos
         }
         return tabla;
     }
-
 //</editor-fold>
     
 //<editor-fold defaultstate="collapsed" desc=" Funciones de eliminacion ">
@@ -1095,7 +1088,7 @@ public class Funciones implements GeneraArchivos
      * @param line Linea de escritura de Archivo
      * @throws IOException Error de I/O
      */
-    public void writeAnime_intoCSV(Anime animu, FileWriter line)throws IOException
+    public void writeAnime_intoCSV(Anime animu, FileWriter line) throws IOException
     {
         for (int j = 0; j < 9; j++)
         {

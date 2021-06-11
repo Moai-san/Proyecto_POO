@@ -2164,13 +2164,34 @@ public class Menu extends javax.swing.JFrame
         // TODO add your handling code here:
         int id = Integer.parseInt(id_input.getText());
         String name = name_input.getText();
+        if(name.startsWith("\"")==false)
+        {
+            if(name.endsWith("\"\n")==false)
+            {
+                name =("\""+name+"\"");
+            }
+        }
         String type = type_input.getText();
         int episodes = Integer.parseInt(episodes_input.getText());
         String duration = duration_input.getText();
         String rating = rating_input.getText();
         int year = Integer.parseInt(year_input.getText());
         String studio = studio_input.getText();
+        if(studio.startsWith("\"")==false)
+        {
+            if(studio.endsWith("\"\n")==false)
+            {
+                studio =("\""+studio+"\"");
+            }
+        }
         String genre = genre_input.getText();
+        if(genre.startsWith("\"")==false)
+        {
+            if(genre.endsWith("\"\n")==false)
+            {
+                genre =("\""+genre+"\"");
+            }
+        }
         Anime newanime = new Anime(id,name,type,episodes,duration,rating,year,studio,genre);
         llamar.addAnime(newanime);
         this.dialogoAdd_anime.dispose();
@@ -2780,7 +2801,7 @@ public class Menu extends javax.swing.JFrame
         String genre1 =genre1_field.getText();
         String genre2 =genre2_field.getText();
         filtradoDoble_dialog.dispose();
-        if((genre1.equals(""))||(genre2.equals("")))
+        if((genre1.equals("")) || (genre2.equals("")) || (genre1.equals(genre2)))
         {
             clearFields();
             errorDialog.setVisible(true);
