@@ -2809,6 +2809,12 @@ public class Menu extends javax.swing.JFrame
         }
         Object[][] tablita =null;
         tablita =llamar.filtradoCon_2Generos(tablita,genre1,genre2);
+        if(tablita==null)
+        {
+            clearFields();
+            errorDialog.setVisible(true);
+            return;
+        }
         rellenarTabla_filtros(tablita,tablaFiltrados);
         outputFiltro.setVisible(true);
         clearFields();

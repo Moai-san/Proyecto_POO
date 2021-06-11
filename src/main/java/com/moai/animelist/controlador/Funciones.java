@@ -49,9 +49,11 @@ public class Funciones implements GeneraArchivos
     //Añade anime (se ira modificando segun se creen estructuras de datos nuevas, por ahora solo ingresa al catalogo
     public void addAnime(Anime toAdd)
     {
+        String generos = (toAdd.getGenre());
+        generos = (generos.substring(1,((generos.length())-1)));
         //se inicializan los 3 arboles como el resultado de la busqueda con clave respectiva (cada nodo del hashmap debe contener un arbol con sus respectivos anime segun filtro)
         TreeMap<Integer, Anime> type = typeMap.get(toAdd.getType());
-        TreeMap<Integer, Anime> genre = genreMap.get(toAdd.getGenre());
+        TreeMap<Integer, Anime> genre = genreMap.get(generos);
         TreeMap<Integer, Anime> year = yearMap.get(String.valueOf(toAdd.getYear()));
 
         //Añadir a HashMap de tipos
@@ -79,10 +81,7 @@ public class Funciones implements GeneraArchivos
         }
         
         //Añadir a HashMap de generos
-        String generos = (toAdd.getGenre());
-        generos = (generos.substring(1,((generos.length())-1)));
-            
-        if ((genreMap.get(toAdd.getGenre()))==null) //si no se encontró un arbol para la clave dentro de la tabla hash, se crea uno, se inicializa, y una vez con el anime dentro, se introduce a la tabla
+        if ((genreMap.get(generos))==null) //si no se encontró un arbol para la clave dentro de la tabla hash, se crea uno, se inicializa, y una vez con el anime dentro, se introduce a la tabla
         {
             CSV pivoteGetCSV = new CSV();
             genre = new TreeMap<Integer, Anime>();
@@ -108,7 +107,9 @@ public class Funciones implements GeneraArchivos
                     }
                 }
             }
-            genreMap.put((toAdd.getGenre()), genre);
+            generos = (toAdd.getGenre());
+            generos = (generos.substring(1,((generos.length())-1)));
+            genreMap.put(generos, genre);
         }
         else//del contrario, solo se inserta
         {
