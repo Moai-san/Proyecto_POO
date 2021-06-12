@@ -11,7 +11,7 @@ import java.io.*;
  * @author maca (Macarena Troncoso)
  */
 
-public class Log_in_Window extends javax.swing.JFrame
+public class Log_in_Window extends javax.swing.JFrame implements Interface_LimpiezaVentanas
 {
     private static User_Management llamar =new User_Management();
     private String username;
@@ -278,7 +278,8 @@ public class Log_in_Window extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void clearFields()
+    @Override
+    public void clearFields()
     {
         usernameField.setText("");
         passwordField.setText("");

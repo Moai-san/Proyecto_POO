@@ -12,7 +12,7 @@ import java.io.*;
  * @author maca (Macarena Troncoso)
  */
 
-public class Menu_Window extends javax.swing.JFrame
+public class Menu_Window extends javax.swing.JFrame implements Interface_LimpiezaVentanas
 {
     private static CollectionManagement llamar = new CollectionManagement();
     private static ReportUsers userMan= new ReportUsers();
@@ -22,6 +22,10 @@ public class Menu_Window extends javax.swing.JFrame
     private AddAnime_Window ventanaAdd_Anime;
     private ListarAnos_Ventana ventanaMostrarAnos;
     private UserLists_Window accionesDe_usuario;
+    private AddYear_Window dialogoAgregar_ano;
+    private Ventana_FiltradoDoble filtradoDoble_dialog;
+    private Ventana_EliminarAnime dialogoEliminar_anime;
+    private Ventana_EliminarAno dialogoEliminar_ano;
     
     /**
      *
@@ -35,16 +39,13 @@ public class Menu_Window extends javax.swing.JFrame
         llamar.importUser_data(user.getUsername());
         initComponents();
         setLocationRelativeTo(null);
-        dialogoAgregar_ano.setLocationRelativeTo(null);
-        outputFiltro.setLocationRelativeTo(null);
         errorDialog.setLocationRelativeTo(null);
-        dialogoEliminar_anime.setLocationRelativeTo(null);
-        dialogoEliminar_ano.setLocationRelativeTo(null);
         dialogoModificar_anime.setLocationRelativeTo(null);
         dialogoModificar_ano.setLocationRelativeTo(null);
         okDialog.setLocationRelativeTo(null);
-        filtradoDoble_dialog.setLocationRelativeTo(null);
         username = user.getUsername();
+        //si bien no es necesario, se llama al Garbage collector para limpiar la memoria usada por el login y la apertura de archivos al llenar las colecciones.
+        System.gc();
     }
     
     /**
@@ -59,15 +60,10 @@ public class Menu_Window extends javax.swing.JFrame
         llamar.importUser_data(user.getUsername());
         initComponents();
         setLocationRelativeTo(null);
-        dialogoAgregar_ano.setLocationRelativeTo(null);
-        outputFiltro.setLocationRelativeTo(null);
         errorDialog.setLocationRelativeTo(null);
-        dialogoEliminar_anime.setLocationRelativeTo(null);
-        dialogoEliminar_ano.setLocationRelativeTo(null);
         dialogoModificar_anime.setLocationRelativeTo(null);
         dialogoModificar_ano.setLocationRelativeTo(null);
         okDialog.setLocationRelativeTo(null);
-        filtradoDoble_dialog.setLocationRelativeTo(null);
         username = user.getUsername();
         
         //Invisibilisamos los botones
@@ -93,24 +89,6 @@ public class Menu_Window extends javax.swing.JFrame
     private void initComponents()
     {
 
-        dialogoAgregar_ano = new javax.swing.JDialog();
-        tituloAdd_ano = new javax.swing.JLabel();
-        anoText = new javax.swing.JLabel();
-        toAdd_ano = new javax.swing.JTextField();
-        addAno = new javax.swing.JButton();
-        returnTo_menu_2 = new javax.swing.JButton();
-        dialogoEliminar_anime = new javax.swing.JDialog();
-        tituloEliminar_anime1 = new javax.swing.JLabel();
-        idAnimeText1 = new javax.swing.JLabel();
-        textfieldEliminar_Anime1 = new javax.swing.JTextField();
-        eliminarAnime = new javax.swing.JButton();
-        returnTo_menu_3 = new javax.swing.JButton();
-        dialogoEliminar_ano = new javax.swing.JDialog();
-        tituloEliminar_ano = new javax.swing.JLabel();
-        anoText1 = new javax.swing.JLabel();
-        textfieldEliminar_Ano = new javax.swing.JTextField();
-        eliminarAno = new javax.swing.JButton();
-        returnTo_menu_5 = new javax.swing.JButton();
         dialogoModificar_anime = new javax.swing.JDialog();
         tituloModificar_anime1 = new javax.swing.JLabel();
         idAnimeText2 = new javax.swing.JLabel();
@@ -127,24 +105,12 @@ public class Menu_Window extends javax.swing.JFrame
         nuevo = new javax.swing.JLabel();
         viejoInput = new javax.swing.JTextField();
         nuevoInput = new javax.swing.JTextField();
-        outputFiltro = new javax.swing.JDialog();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaFiltrados = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
         errorDialog = new javax.swing.JDialog();
         volverA_menuFrom_error = new javax.swing.JButton();
         tituloError = new javax.swing.JLabel();
         okDialog = new javax.swing.JDialog();
         tituloOk = new javax.swing.JLabel();
         returnTo_menu5 = new javax.swing.JButton();
-        filtradoDoble_dialog = new javax.swing.JDialog();
-        title2ble = new javax.swing.JLabel();
-        genre1_field = new javax.swing.JTextField();
-        genre2_field = new javax.swing.JTextField();
-        genre2_label = new javax.swing.JLabel();
-        genre1_label = new javax.swing.JLabel();
-        doubleFilter_filterButton = new javax.swing.JButton();
-        backTo_menuButton = new javax.swing.JButton();
         botonAgregar_anime = new javax.swing.JButton();
         botonAgregar_ano = new javax.swing.JButton();
         botonMostrar_ano = new javax.swing.JButton();
@@ -162,215 +128,6 @@ public class Menu_Window extends javax.swing.JFrame
         botonFiltrado_2Generos = new javax.swing.JButton();
         usersExcel_button = new javax.swing.JButton();
         usersCSV_button = new javax.swing.JButton();
-
-        dialogoAgregar_ano.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        dialogoAgregar_ano.setAlwaysOnTop(true);
-        dialogoAgregar_ano.setResizable(false);
-        dialogoAgregar_ano.setSize(new java.awt.Dimension(550, 550));
-
-        tituloAdd_ano.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        tituloAdd_ano.setText("Ingrese Año A Agregar");
-
-        anoText.setText("Año");
-
-        toAdd_ano.setOpaque(false);
-
-        addAno.setText("Ingresar");
-        addAno.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                addAnoActionPerformed(evt);
-            }
-        });
-
-        returnTo_menu_2.setText("Volver al Menu");
-        returnTo_menu_2.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                returnTo_menu_2ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout dialogoAgregar_anoLayout = new javax.swing.GroupLayout(dialogoAgregar_ano.getContentPane());
-        dialogoAgregar_ano.getContentPane().setLayout(dialogoAgregar_anoLayout);
-        dialogoAgregar_anoLayout.setHorizontalGroup(
-            dialogoAgregar_anoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogoAgregar_anoLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(anoText, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(dialogoAgregar_anoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dialogoAgregar_anoLayout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(tituloAdd_ano))
-                    .addGroup(dialogoAgregar_anoLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(dialogoAgregar_anoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(toAdd_ano, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(dialogoAgregar_anoLayout.createSequentialGroup()
-                                .addComponent(addAno, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(returnTo_menu_2)))))
-                .addContainerGap(85, Short.MAX_VALUE))
-        );
-        dialogoAgregar_anoLayout.setVerticalGroup(
-            dialogoAgregar_anoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogoAgregar_anoLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(tituloAdd_ano)
-                .addGap(46, 46, 46)
-                .addGroup(dialogoAgregar_anoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(anoText)
-                    .addComponent(toAdd_ano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addGroup(dialogoAgregar_anoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addAno)
-                    .addComponent(returnTo_menu_2))
-                .addGap(64, 64, 64))
-        );
-
-        dialogoEliminar_anime.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        dialogoEliminar_anime.setAlwaysOnTop(true);
-        dialogoEliminar_anime.setResizable(false);
-        dialogoEliminar_anime.setSize(new java.awt.Dimension(550, 550));
-
-        tituloEliminar_anime1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        tituloEliminar_anime1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tituloEliminar_anime1.setText("Ingrese ID del Anime A Eliminar");
-
-        idAnimeText1.setText("ID Anime");
-
-        textfieldEliminar_Anime1.setOpaque(false);
-        textfieldEliminar_Anime1.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                textfieldEliminar_Anime1ActionPerformed(evt);
-            }
-        });
-
-        eliminarAnime.setText("Eliminar");
-        eliminarAnime.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                eliminarAnimeActionPerformed(evt);
-            }
-        });
-
-        returnTo_menu_3.setText("Volver al Menu");
-        returnTo_menu_3.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                returnTo_menu_3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout dialogoEliminar_animeLayout = new javax.swing.GroupLayout(dialogoEliminar_anime.getContentPane());
-        dialogoEliminar_anime.getContentPane().setLayout(dialogoEliminar_animeLayout);
-        dialogoEliminar_animeLayout.setHorizontalGroup(
-            dialogoEliminar_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogoEliminar_animeLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(idAnimeText1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(dialogoEliminar_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(textfieldEliminar_Anime1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(dialogoEliminar_animeLayout.createSequentialGroup()
-                        .addComponent(eliminarAnime, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(returnTo_menu_3)))
-                .addContainerGap(85, Short.MAX_VALUE))
-            .addComponent(tituloEliminar_anime1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        dialogoEliminar_animeLayout.setVerticalGroup(
-            dialogoEliminar_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogoEliminar_animeLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(tituloEliminar_anime1)
-                .addGap(46, 46, 46)
-                .addGroup(dialogoEliminar_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idAnimeText1)
-                    .addComponent(textfieldEliminar_Anime1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addGroup(dialogoEliminar_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eliminarAnime)
-                    .addComponent(returnTo_menu_3))
-                .addGap(64, 64, 64))
-        );
-
-        dialogoEliminar_ano.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        dialogoEliminar_ano.setAlwaysOnTop(true);
-        dialogoEliminar_ano.setResizable(false);
-        dialogoEliminar_ano.setSize(new java.awt.Dimension(550, 550));
-
-        tituloEliminar_ano.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        tituloEliminar_ano.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tituloEliminar_ano.setText("Ingrese Año a Eliminar");
-
-        anoText1.setText("Año");
-
-        textfieldEliminar_Ano.setOpaque(false);
-        textfieldEliminar_Ano.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                textfieldEliminar_AnoActionPerformed(evt);
-            }
-        });
-
-        eliminarAno.setText("Eliminar");
-        eliminarAno.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                eliminarAnoActionPerformed(evt);
-            }
-        });
-
-        returnTo_menu_5.setText("Volver al Menu");
-        returnTo_menu_5.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                returnTo_menu_5ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout dialogoEliminar_anoLayout = new javax.swing.GroupLayout(dialogoEliminar_ano.getContentPane());
-        dialogoEliminar_ano.getContentPane().setLayout(dialogoEliminar_anoLayout);
-        dialogoEliminar_anoLayout.setHorizontalGroup(
-            dialogoEliminar_anoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogoEliminar_anoLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(anoText1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(dialogoEliminar_anoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(textfieldEliminar_Ano, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(dialogoEliminar_anoLayout.createSequentialGroup()
-                        .addComponent(eliminarAno, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(returnTo_menu_5)))
-                .addContainerGap(85, Short.MAX_VALUE))
-            .addComponent(tituloEliminar_ano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        dialogoEliminar_anoLayout.setVerticalGroup(
-            dialogoEliminar_anoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogoEliminar_anoLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(tituloEliminar_ano)
-                .addGap(46, 46, 46)
-                .addGroup(dialogoEliminar_anoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(anoText1)
-                    .addComponent(textfieldEliminar_Ano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addGroup(dialogoEliminar_anoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eliminarAno)
-                    .addComponent(returnTo_menu_5))
-                .addGap(64, 64, 64))
-        );
 
         dialogoModificar_anime.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         dialogoModificar_anime.setAlwaysOnTop(true);
@@ -526,84 +283,6 @@ public class Menu_Window extends javax.swing.JFrame
                 .addGap(30, 30, 30))
         );
 
-        outputFiltro.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        outputFiltro.setAlwaysOnTop(true);
-        outputFiltro.setResizable(false);
-        outputFiltro.setSize(new java.awt.Dimension(1115, 551));
-
-        tablaFiltrados.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
-            },
-            new String []
-            {
-                "ID", "Nombre", "Tipo", "Capitulos", "Duracion", "Clasificacion de contenidos", "Año", "Estudio", "Genero(s)"
-            }
-        )
-        {
-            Class[] types = new Class []
-            {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean []
-            {
-                false, false, false, false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex)
-            {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
-                return canEdit [columnIndex];
-            }
-        });
-        tablaFiltrados.setCellSelectionEnabled(true);
-        tablaFiltrados.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tablaFiltrados);
-        tablaFiltrados.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        if (tablaFiltrados.getColumnModel().getColumnCount() > 0)
-        {
-            tablaFiltrados.getColumnModel().getColumn(0).setPreferredWidth(64);
-            tablaFiltrados.getColumnModel().getColumn(2).setPreferredWidth(16);
-            tablaFiltrados.getColumnModel().getColumn(3).setPreferredWidth(40);
-            tablaFiltrados.getColumnModel().getColumn(6).setPreferredWidth(64);
-        }
-
-        jButton1.setText("Volver al Menu");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout outputFiltroLayout = new javax.swing.GroupLayout(outputFiltro.getContentPane());
-        outputFiltro.getContentPane().setLayout(outputFiltroLayout);
-        outputFiltroLayout.setHorizontalGroup(
-            outputFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1115, Short.MAX_VALUE)
-            .addGroup(outputFiltroLayout.createSequentialGroup()
-                .addGap(499, 499, 499)
-                .addComponent(jButton1))
-        );
-        outputFiltroLayout.setVerticalGroup(
-            outputFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(outputFiltroLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
-                .addGap(35, 35, 35)
-                .addComponent(jButton1)
-                .addContainerGap(41, Short.MAX_VALUE))
-        );
-
         errorDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         errorDialog.setAlwaysOnTop(true);
         errorDialog.setResizable(false);
@@ -683,82 +362,6 @@ public class Menu_Window extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(returnTo_menu5)
                 .addGap(47, 47, 47))
-        );
-
-        filtradoDoble_dialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        filtradoDoble_dialog.setAlwaysOnTop(true);
-        filtradoDoble_dialog.setMinimumSize(new java.awt.Dimension(439, 300));
-        filtradoDoble_dialog.setResizable(false);
-        filtradoDoble_dialog.setSize(new java.awt.Dimension(439, 300));
-
-        title2ble.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        title2ble.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        title2ble.setText("Escriba los 2 Generos");
-        title2ble.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        genre2_label.setText("Genero 2");
-
-        genre1_label.setText("Genero 1");
-
-        doubleFilter_filterButton.setText("Filtrar");
-        doubleFilter_filterButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                doubleFilter_filterButtonActionPerformed(evt);
-            }
-        });
-
-        backTo_menuButton.setText("Volver al Menu");
-        backTo_menuButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                backTo_menuButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout filtradoDoble_dialogLayout = new javax.swing.GroupLayout(filtradoDoble_dialog.getContentPane());
-        filtradoDoble_dialog.getContentPane().setLayout(filtradoDoble_dialogLayout);
-        filtradoDoble_dialogLayout.setHorizontalGroup(
-            filtradoDoble_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, filtradoDoble_dialogLayout.createSequentialGroup()
-                .addContainerGap(104, Short.MAX_VALUE)
-                .addGroup(filtradoDoble_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(title2ble, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(filtradoDoble_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(filtradoDoble_dialogLayout.createSequentialGroup()
-                            .addComponent(doubleFilter_filterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(backTo_menuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(filtradoDoble_dialogLayout.createSequentialGroup()
-                            .addGroup(filtradoDoble_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(genre1_label)
-                                .addComponent(genre2_label))
-                            .addGap(29, 29, 29)
-                            .addGroup(filtradoDoble_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(genre2_field, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                .addComponent(genre1_field)))))
-                .addGap(109, 109, 109))
-        );
-        filtradoDoble_dialogLayout.setVerticalGroup(
-            filtradoDoble_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(filtradoDoble_dialogLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(title2ble)
-                .addGap(53, 53, 53)
-                .addGroup(filtradoDoble_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(genre1_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(genre1_label))
-                .addGap(44, 44, 44)
-                .addGroup(filtradoDoble_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(genre2_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(genre2_label))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addGroup(filtradoDoble_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(doubleFilter_filterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backTo_menuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1054,23 +657,20 @@ public class Menu_Window extends javax.swing.JFrame
         System.exit(0);
     }//GEN-LAST:event_closeBotonActionPerformed
 
-    private void clearFields()
+    @Override
+    public void clearFields()
     {
-        toAdd_ano.setText("");
-        textfieldEliminar_Anime1.setText("");
         textfieldModificar_Anime1.setText("");
         textfieldNuevo_id1.setText("");
-        textfieldEliminar_Ano.setText("");
         viejoInput.setText("");
         nuevoInput.setText("");
-        genre1_field.setText("");
-        genre2_field.setText("");
     }
     
     private void botonAgregar_anoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botonAgregar_anoActionPerformed
     {//GEN-HEADEREND:event_botonAgregar_anoActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
+        dialogoAgregar_ano =new AddYear_Window(this, llamar);
         dialogoAgregar_ano.setVisible(true);
     }//GEN-LAST:event_botonAgregar_anoActionPerformed
 
@@ -1081,13 +681,6 @@ public class Menu_Window extends javax.swing.JFrame
         ventanaFiltrados = new ListarFiltrados_Ventana(0,this,llamar);
         ventanaFiltrados.setVisible(true);
     }//GEN-LAST:event_botonBuscar_porAnoActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
-    {//GEN-HEADEREND:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        outputFiltro.dispose();
-        this.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void volverA_menuFrom_errorActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_volverA_menuFrom_errorActionPerformed
     {//GEN-HEADEREND:event_volverA_menuFrom_errorActionPerformed
@@ -1104,57 +697,12 @@ public class Menu_Window extends javax.swing.JFrame
         ventanaMostrarAnos.setVisible(true);
     }//GEN-LAST:event_botonMostrar_anoActionPerformed
 
-    private void addAnoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addAnoActionPerformed
-    {//GEN-HEADEREND:event_addAnoActionPerformed
-        // TODO add your handling code here:
-        int flag;
-        String inputAno;
-        inputAno =toAdd_ano.getText();
-        flag =llamar.addYear(inputAno);
-        dialogoAgregar_ano.dispose();
-        clearFields();
-        if (flag!=0)
-        {    
-            errorDialog.setVisible(true);
-            return;
-        }
-        this.setVisible(true);
-    }//GEN-LAST:event_addAnoActionPerformed
-
-    private void returnTo_menu_2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_returnTo_menu_2ActionPerformed
-    {//GEN-HEADEREND:event_returnTo_menu_2ActionPerformed
-        // TODO add your handling code here:
-        dialogoAgregar_ano.dispose();
-        clearFields();
-        this.setVisible(true);
-    }//GEN-LAST:event_returnTo_menu_2ActionPerformed
-
     private void botonEliminar_anime1ActionPerformed(java.awt.event.ActionEvent evt) 
     {//GEN-FIRST:event_botonEliminar_anime1ActionPerformed
         this.setVisible(false);
-        this.dialogoEliminar_anime.setVisible(true);
+        dialogoEliminar_anime =new Ventana_EliminarAnime(this,llamar);
+        dialogoEliminar_anime.setVisible(true);
     }//GEN-LAST:event_botonEliminar_anime1ActionPerformed
-
-    private void eliminarAnimeActionPerformed(java.awt.event.ActionEvent evt) 
-    {//GEN-FIRST:event_eliminarAnimeActionPerformed
-        String animeID = this.textfieldEliminar_Anime1.getText();
-        int eliminarID = llamar.eliminarAnime(animeID);
-        this.dialogoEliminar_anime.dispose();
-        if(eliminarID != 0)
-        {
-            errorDialog.setVisible(true);
-            return;
-        }
-        this.setVisible(true);
-        clearFields();
-    }//GEN-LAST:event_eliminarAnimeActionPerformed
-
-    private void returnTo_menu_3ActionPerformed(java.awt.event.ActionEvent evt) 
-    {//GEN-FIRST:event_returnTo_menu_3ActionPerformed
-        dialogoEliminar_anime.dispose();
-        clearFields();
-        this.setVisible(true);
-    }//GEN-LAST:event_returnTo_menu_3ActionPerformed
 
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) 
     {//GEN-FIRST:event_ModificarActionPerformed
@@ -1225,41 +773,11 @@ public class Menu_Window extends javax.swing.JFrame
         this.setVisible(true);
     }//GEN-LAST:event_returnTo_menu5ActionPerformed
 
-    private void eliminarAnoActionPerformed(java.awt.event.ActionEvent evt) 
-    {//GEN-FIRST:event_eliminarAnoActionPerformed
-        String ano = this.textfieldEliminar_Ano.getText();
-        int eliminar = llamar.eliminarAno(ano);
-        this.dialogoEliminar_ano.dispose(); 
-        if(eliminar != 0)
-        {
-            errorDialog.setVisible(true);
-            return;
-        }
-        this.setVisible(true);
-        clearFields();
-    }//GEN-LAST:event_eliminarAnoActionPerformed
-
-    private void returnTo_menu_5ActionPerformed(java.awt.event.ActionEvent evt) 
-    {//GEN-FIRST:event_returnTo_menu_5ActionPerformed
-        dialogoEliminar_ano.dispose();
-        clearFields();
-        this.setVisible(true);
-    }//GEN-LAST:event_returnTo_menu_5ActionPerformed
-
-    private void textfieldEliminar_AnoActionPerformed(java.awt.event.ActionEvent evt) 
-    {//GEN-FIRST:event_textfieldEliminar_AnoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textfieldEliminar_AnoActionPerformed
-
-    private void textfieldEliminar_Anime1ActionPerformed(java.awt.event.ActionEvent evt) 
-    {//GEN-FIRST:event_textfieldEliminar_Anime1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textfieldEliminar_Anime1ActionPerformed
-
     private void botonEliminar_anoActionPerformed(java.awt.event.ActionEvent evt) 
     {//GEN-FIRST:event_botonEliminar_anoActionPerformed
         this.setVisible(false);
-        this.dialogoEliminar_ano.setVisible(true);
+        dialogoEliminar_ano = new Ventana_EliminarAno(this,llamar);
+        dialogoEliminar_ano.setVisible(true);
     }//GEN-LAST:event_botonEliminar_anoActionPerformed
 
     private void botonModificar_anoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botonModificar_anoActionPerformed
@@ -1319,41 +837,9 @@ public class Menu_Window extends javax.swing.JFrame
     {//GEN-HEADEREND:event_botonFiltrado_2GenerosActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
+        filtradoDoble_dialog = new Ventana_FiltradoDoble(this,llamar);
         filtradoDoble_dialog.setVisible(true);
     }//GEN-LAST:event_botonFiltrado_2GenerosActionPerformed
-
-    private void backTo_menuButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_backTo_menuButtonActionPerformed
-    {//GEN-HEADEREND:event_backTo_menuButtonActionPerformed
-        // TODO add your handling code here:
-        clearFields();
-        filtradoDoble_dialog.dispose();
-        this.setVisible(true);
-    }//GEN-LAST:event_backTo_menuButtonActionPerformed
-
-    private void doubleFilter_filterButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_doubleFilter_filterButtonActionPerformed
-    {//GEN-HEADEREND:event_doubleFilter_filterButtonActionPerformed
-        // TODO add your handling code here:
-        String genre1 =genre1_field.getText();
-        String genre2 =genre2_field.getText();
-        filtradoDoble_dialog.dispose();
-        if((genre1.equals("")) || (genre2.equals("")) || (genre1.equals(genre2)))
-        {
-            clearFields();
-            errorDialog.setVisible(true);
-            return;
-        }
-        Object[][] tablita =null;
-        tablita =llamar.filtradoCon_2Generos(tablita,genre1,genre2);
-        if(tablita==null)
-        {
-            clearFields();
-            errorDialog.setVisible(true);
-            return;
-        }
-        rellenarTabla_filtros(tablita,tablaFiltrados);
-        outputFiltro.setVisible(true);
-        clearFields();
-    }//GEN-LAST:event_doubleFilter_filterButtonActionPerformed
 
     private void usersCSV_buttonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_usersCSV_buttonActionPerformed
     {//GEN-HEADEREND:event_usersCSV_buttonActionPerformed
@@ -1388,54 +874,10 @@ public class Menu_Window extends javax.swing.JFrame
             return;
         }
     }//GEN-LAST:event_usersExcel_buttonActionPerformed
-   
-    private int rellenarTabla_filtros(Object tablaFiltros[][], javax.swing.JTable a)
-    {
-        if (tablaFiltros==null)
-        {
-            return(-1);
-        }
-        else
-        {
-            a.setModel(new javax.swing.table.DefaultTableModel
-            (
-                tablaFiltros,
-                new String []
-                {
-                    "ID", "Nombre", "Tipo", "Capitulos", "Duracion", "Clasificacion de contenidos", "Año", "Estudio", "Genero(s)"
-                }
-            )
-            {
-                Class[] types = new Class []
-                {
-                    java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
-                };
-                boolean[] canEdit = new boolean []
-                {
-                    false, false, false, false, false, false, false, false, false
-                };
-
-                public Class getColumnClass(int columnIndex)
-                {
-                    return types [columnIndex];
-                }
-
-                public boolean isCellEditable(int rowIndex, int columnIndex)
-                {
-                    return canEdit [columnIndex];
-                }
-            });
-        }
-        return(0);
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Modificar;
-    private javax.swing.JButton addAno;
     private javax.swing.JButton addTo_listButton;
-    private javax.swing.JLabel anoText;
-    private javax.swing.JLabel anoText1;
-    private javax.swing.JButton backTo_menuButton;
     private javax.swing.JButton botonAgregar_anime;
     private javax.swing.JButton botonAgregar_ano;
     private javax.swing.JButton botonBuscar_porAno;
@@ -1450,50 +892,24 @@ public class Menu_Window extends javax.swing.JFrame
     private javax.swing.JButton botonModificar_ano;
     private javax.swing.JButton botonMostrar_ano;
     private javax.swing.JButton closeBoton;
-    private javax.swing.JDialog dialogoAgregar_ano;
-    private javax.swing.JDialog dialogoEliminar_anime;
-    private javax.swing.JDialog dialogoEliminar_ano;
     private javax.swing.JDialog dialogoModificar_anime;
     private javax.swing.JDialog dialogoModificar_ano;
     private javax.swing.JLabel dialogoModificar_anoTitle;
-    private javax.swing.JButton doubleFilter_filterButton;
-    private javax.swing.JButton eliminarAnime;
-    private javax.swing.JButton eliminarAno;
     private javax.swing.JDialog errorDialog;
-    private javax.swing.JDialog filtradoDoble_dialog;
-    private javax.swing.JTextField genre1_field;
-    private javax.swing.JLabel genre1_label;
-    private javax.swing.JTextField genre2_field;
-    private javax.swing.JLabel genre2_label;
-    private javax.swing.JLabel idAnimeText1;
     private javax.swing.JLabel idAnimeText2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton modifAno;
     private javax.swing.JLabel nuevo;
     private javax.swing.JLabel nuevoIDText3;
     private javax.swing.JTextField nuevoInput;
     private javax.swing.JDialog okDialog;
-    private javax.swing.JDialog outputFiltro;
     private javax.swing.JButton returnTo_menu5;
     private javax.swing.JButton returnTo_menu8;
-    private javax.swing.JButton returnTo_menu_2;
-    private javax.swing.JButton returnTo_menu_3;
     private javax.swing.JButton returnTo_menu_4;
-    private javax.swing.JButton returnTo_menu_5;
-    private javax.swing.JTable tablaFiltrados;
-    private javax.swing.JTextField textfieldEliminar_Anime1;
-    private javax.swing.JTextField textfieldEliminar_Ano;
     private javax.swing.JTextField textfieldModificar_Anime1;
     private javax.swing.JTextField textfieldNuevo_id1;
-    private javax.swing.JLabel title2ble;
-    private javax.swing.JLabel tituloAdd_ano;
-    private javax.swing.JLabel tituloEliminar_anime1;
-    private javax.swing.JLabel tituloEliminar_ano;
     private javax.swing.JLabel tituloError;
     private javax.swing.JLabel tituloModificar_anime1;
     private javax.swing.JLabel tituloOk;
-    private javax.swing.JTextField toAdd_ano;
     private javax.swing.JButton usersCSV_button;
     private javax.swing.JButton usersExcel_button;
     private javax.swing.JLabel viejo;

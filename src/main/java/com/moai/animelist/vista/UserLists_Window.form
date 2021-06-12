@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JDialog" name="hateDialog">
       <Properties>
@@ -619,10 +619,7 @@
     </Container>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[588, 312]"/>
-    </Property>
+    <Property name="defaultCloseOperation" type="int" value="0"/>
     <Property name="resizable" type="boolean" value="false"/>
     <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[588, 312]"/>
@@ -656,7 +653,7 @@
                   <Component id="watchedButton" alignment="0" max="32767" attributes="0"/>
                   <Component id="returnTo_menuFrom_userActions" alignment="0" min="-2" pref="345" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="121" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -673,7 +670,7 @@
               <Component id="hateButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="returnTo_menuFrom_userActions" min="-2" pref="22" max="-2" attributes="0"/>
-              <EmptySpace pref="71" max="32767" attributes="0"/>
+              <EmptySpace pref="83" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

@@ -13,10 +13,10 @@ import javax.swing.JFrame;
  *
  * @author moai
  */
-public class AddAnime_Window extends javax.swing.JFrame
+public class AddAnime_Window extends javax.swing.JFrame implements Interface_LimpiezaVentanas
 {
 
-    final JFrame father;
+    private final JFrame father;
     private final CollectionManagement llamar;
     
     /**
@@ -30,6 +30,7 @@ public class AddAnime_Window extends javax.swing.JFrame
         this.setLocationRelativeTo(null);
     }
 
+    @Override
     public void clearFields()
     {
         id_input.setText("");

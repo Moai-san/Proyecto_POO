@@ -12,45 +12,23 @@ import javax.swing.JFrame;
  *
  * @author moai
  */
-public class ListarFiltrados_Ventana extends javax.swing.JFrame implements Interface_LimpiezaVentanas
+public class Ventana_FiltradoDoble extends javax.swing.JFrame implements Interface_LimpiezaVentanas
 {
+
     private final JFrame father;
-    private final int option;
     private final CollectionManagement llamar;
     
     /**
-     * Creates new form ListarFiltrados
+     * Creates new form Ventana_FiltradoDoble
      */
-    public ListarFiltrados_Ventana(int opt, JFrame padre, CollectionManagement toUse)
+    public Ventana_FiltradoDoble(JFrame padre, CollectionManagement toUse)
     {
         initComponents();
-        this.setLocationRelativeTo(null);
-        errorDialog.setLocationRelativeTo(null);
-        outputFiltro.setLocationRelativeTo(null);
-        option=opt;
-        father=padre;
         llamar =toUse;
-        switch(option)
-        {
-            case 0:
-            {
-                labelCriterio.setText("Año");
-                labelTitulo.setText("Ingrese el Año a buscar");
-                break;
-            }
-            case 1:
-            {
-                labelCriterio.setText("Tipo");
-                labelTitulo.setText("Ingrese el Tipo a buscar");
-                break;
-            }
-            case 2:
-            {
-                labelCriterio.setText("Genero");
-                labelTitulo.setText("Ingrese el Genero a buscar");
-                break;
-            }
-        }
+        father =padre;
+        this.setLocationRelativeTo(null);
+        outputFiltro.setLocationRelativeTo(null);
+        errorDialog.setLocationRelativeTo(null);
     }
 
     /**
@@ -70,11 +48,13 @@ public class ListarFiltrados_Ventana extends javax.swing.JFrame implements Inter
         errorDialog = new javax.swing.JDialog();
         volverA_menuFrom_error = new javax.swing.JButton();
         tituloError = new javax.swing.JLabel();
-        labelTitulo = new javax.swing.JLabel();
-        labelCriterio = new javax.swing.JLabel();
-        botonBuscar = new javax.swing.JButton();
-        returnTo_menu7 = new javax.swing.JButton();
-        input = new javax.swing.JTextField();
+        doubleFilter_filterButton = new javax.swing.JButton();
+        backTo_menuButton = new javax.swing.JButton();
+        genre2_field = new javax.swing.JTextField();
+        genre2_label = new javax.swing.JLabel();
+        genre1_label = new javax.swing.JLabel();
+        genre1_field = new javax.swing.JTextField();
+        title2ble = new javax.swing.JLabel();
 
         outputFiltro.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         outputFiltro.setAlwaysOnTop(true);
@@ -188,86 +168,88 @@ public class ListarFiltrados_Ventana extends javax.swing.JFrame implements Inter
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setAlwaysOnTop(true);
         setResizable(false);
-        setSize(new java.awt.Dimension(430, 300));
+        setSize(new java.awt.Dimension(439, 300));
 
-        labelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        labelTitulo.setText("Ingrese el  a buscar");
-
-        labelCriterio.setText("Criterio");
-
-        botonBuscar.setText("Buscar");
-        botonBuscar.addActionListener(new java.awt.event.ActionListener()
+        doubleFilter_filterButton.setText("Filtrar");
+        doubleFilter_filterButton.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                botonBuscarActionPerformed(evt);
+                doubleFilter_filterButtonActionPerformed(evt);
             }
         });
 
-        returnTo_menu7.setText("Volver al Menu");
-        returnTo_menu7.addActionListener(new java.awt.event.ActionListener()
+        backTo_menuButton.setText("Volver al Menu");
+        backTo_menuButton.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                returnTo_menu7ActionPerformed(evt);
+                backTo_menuButtonActionPerformed(evt);
             }
         });
 
-        input.setOpaque(false);
-        input.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                inputActionPerformed(evt);
-            }
-        });
+        genre2_label.setText("Genero 2");
+
+        genre1_label.setText("Genero 1");
+
+        title2ble.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        title2ble.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title2ble.setText("Escriba los 2 Generos");
+        title2ble.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(returnTo_menu7))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelCriterio)
-                        .addGap(32, 32, 32)
-                        .addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 41, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelTitulo)
-                .addGap(93, 93, 93))
+                .addContainerGap(104, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(title2ble, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(doubleFilter_filterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(backTo_menuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(genre1_label)
+                                .addComponent(genre2_label))
+                            .addGap(29, 29, 29)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(genre2_field, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addComponent(genre1_field)))))
+                .addGap(109, 109, 109))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(labelTitulo)
-                .addGap(48, 48, 48)
+                .addGap(22, 22, 22)
+                .addComponent(title2ble)
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(genre1_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(genre1_label))
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelCriterio))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                    .addComponent(genre2_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(genre2_label))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonBuscar)
-                    .addComponent(returnTo_menu7))
-                .addGap(55, 55, 55))
+                    .addComponent(doubleFilter_filterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backTo_menuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     @Override
     public void clearFields()
     {
-        input.setText("");
+        genre1_field.setText("");
+        genre2_field.setText("");
     }
     
     private int rellenarTabla_filtros(Object tablaFiltros[][], javax.swing.JTable a)
@@ -310,43 +292,45 @@ public class ListarFiltrados_Ventana extends javax.swing.JFrame implements Inter
         return(0);
     }
     
-    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botonBuscarActionPerformed
-    {//GEN-HEADEREND:event_botonBuscarActionPerformed
+    private void doubleFilter_filterButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_doubleFilter_filterButtonActionPerformed
+    {//GEN-HEADEREND:event_doubleFilter_filterButtonActionPerformed
         // TODO add your handling code here:
-        String ano1=input.getText();
-        Object tablaFiltros[][] =null;
-        tablaFiltros =llamar.mostrarPor_filtro(tablaFiltros, ano1, option);
-        int exist =rellenarTabla_filtros(tablaFiltros,tablaFiltrados);
-        clearFields();
-        this.setVisible(false);
-        if(exist!=0)
+        String genre1 =genre1_field.getText();
+        String genre2 =genre2_field.getText();
+        this.dispose();
+        if((genre1.equals("")) || (genre2.equals("")) || (genre1.equals(genre2)))
         {
+            clearFields();
             errorDialog.setVisible(true);
             return;
         }
+        Object[][] tablita =null;
+        tablita =llamar.filtradoCon_2Generos(tablita,genre1,genre2);
+        if(tablita==null)
+        {
+            clearFields();
+            errorDialog.setVisible(true);
+            return;
+        }
+        rellenarTabla_filtros(tablita,tablaFiltrados);
         outputFiltro.setVisible(true);
-    }//GEN-LAST:event_botonBuscarActionPerformed
-
-    private void returnTo_menu7ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_returnTo_menu7ActionPerformed
-    {//GEN-HEADEREND:event_returnTo_menu7ActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
         clearFields();
+    }//GEN-LAST:event_doubleFilter_filterButtonActionPerformed
+
+    private void backTo_menuButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_backTo_menuButtonActionPerformed
+    {//GEN-HEADEREND:event_backTo_menuButtonActionPerformed
+        // TODO add your handling code here:
+        clearFields();
+        this.setVisible(false);
         father.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_returnTo_menu7ActionPerformed
-
-    private void inputActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_inputActionPerformed
-    {//GEN-HEADEREND:event_inputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputActionPerformed
+    }//GEN-LAST:event_backTo_menuButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
     {//GEN-HEADEREND:event_jButton1ActionPerformed
         // TODO add your handling code here:
         outputFiltro.dispose();
-        father.setVisible(true);
-        this.dispose();
+        this.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void volverA_menuFrom_errorActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_volverA_menuFrom_errorActionPerformed
@@ -357,21 +341,19 @@ public class ListarFiltrados_Ventana extends javax.swing.JFrame implements Inter
         this.dispose();
     }//GEN-LAST:event_volverA_menuFrom_errorActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonBuscar;
+    private javax.swing.JButton backTo_menuButton;
+    private javax.swing.JButton doubleFilter_filterButton;
     private javax.swing.JDialog errorDialog;
-    private javax.swing.JTextField input;
+    private javax.swing.JTextField genre1_field;
+    private javax.swing.JLabel genre1_label;
+    private javax.swing.JTextField genre2_field;
+    private javax.swing.JLabel genre2_label;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelCriterio;
-    private javax.swing.JLabel labelTitulo;
     private javax.swing.JDialog outputFiltro;
-    private javax.swing.JButton returnTo_menu7;
     private javax.swing.JTable tablaFiltrados;
+    private javax.swing.JLabel title2ble;
     private javax.swing.JLabel tituloError;
     private javax.swing.JButton volverA_menuFrom_error;
     // End of variables declaration//GEN-END:variables

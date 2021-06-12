@@ -13,7 +13,7 @@ import javax.swing.JFrame;
  *
  * @author moai
  */
-public class UserLists_Window extends javax.swing.JFrame
+public class UserLists_Window extends javax.swing.JFrame implements Interface_LimpiezaVentanas
 {
 
     private final JFrame father;
@@ -34,8 +34,10 @@ public class UserLists_Window extends javax.swing.JFrame
         favDialog.setLocationRelativeTo(null);
         hateDialog.setLocationRelativeTo(null);
         displayWatched_dialog.setLocationRelativeTo(null);
+        errorDialog.setLocationRelativeTo(null);
     }
     
+    @Override
     public void clearFields()
     {
         watchedId_field.setText("");
@@ -627,8 +629,7 @@ public class UserLists_Window extends javax.swing.JFrame
                 .addGap(47, 47, 47))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(588, 312));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
         setSize(new java.awt.Dimension(588, 312));
 
@@ -686,7 +687,7 @@ public class UserLists_Window extends javax.swing.JFrame
                     .addComponent(favButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(watchedButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(returnTo_menuFrom_userActions, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -701,7 +702,7 @@ public class UserLists_Window extends javax.swing.JFrame
                 .addComponent(hateButton)
                 .addGap(18, 18, 18)
                 .addComponent(returnTo_menuFrom_userActions, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         pack();
@@ -888,7 +889,8 @@ public class UserLists_Window extends javax.swing.JFrame
     {//GEN-HEADEREND:event_volverA_menuFrom_errorActionPerformed
         // TODO add your handling code here:
         errorDialog.dispose();
-        this.setVisible(true);
+        father.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_volverA_menuFrom_errorActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BuscarActionPerformed
