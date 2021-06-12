@@ -19,6 +19,7 @@ public class Menu extends javax.swing.JFrame
     private static ReportAnime aniMan;
     private final String username;
     private ListarFiltrados ventanaFiltrados;
+    private addAnime_Window ventanaAdd_Anime;
     
     /**
      *
@@ -32,7 +33,6 @@ public class Menu extends javax.swing.JFrame
         llamar.importUser_data(user.getUsername());
         initComponents();
         setLocationRelativeTo(null);
-        dialogoAdd_anime.setLocationRelativeTo(null);
         dialogoAgregar_ano.setLocationRelativeTo(null);
         dialogoMostrar_anos.setLocationRelativeTo(null);
         outputFiltro.setLocationRelativeTo(null);
@@ -65,7 +65,6 @@ public class Menu extends javax.swing.JFrame
         llamar.importUser_data(user.getUsername());
         initComponents();
         setLocationRelativeTo(null);
-        dialogoAdd_anime.setLocationRelativeTo(null);
         dialogoAgregar_ano.setLocationRelativeTo(null);
         dialogoMostrar_anos.setLocationRelativeTo(null);
         outputFiltro.setLocationRelativeTo(null);
@@ -108,28 +107,6 @@ public class Menu extends javax.swing.JFrame
     private void initComponents()
     {
 
-        dialogoAdd_anime = new javax.swing.JDialog();
-        id_input = new javax.swing.JTextField();
-        name_input = new javax.swing.JTextField();
-        type_input = new javax.swing.JTextField();
-        episodes_input = new javax.swing.JTextField();
-        duration_input = new javax.swing.JTextField();
-        rating_input = new javax.swing.JTextField();
-        year_input = new javax.swing.JTextField();
-        studio_input = new javax.swing.JTextField();
-        genre_input = new javax.swing.JTextField();
-        Ingresar = new javax.swing.JButton();
-        returnTo_menu = new javax.swing.JButton();
-        title = new javax.swing.JLabel();
-        iD_display = new javax.swing.JLabel();
-        nameDisplay = new javax.swing.JLabel();
-        typeDisplay = new javax.swing.JLabel();
-        chaptersDisplay = new javax.swing.JLabel();
-        durationDisplay = new javax.swing.JLabel();
-        ratingDisplay = new javax.swing.JLabel();
-        yearDisplay = new javax.swing.JLabel();
-        studioDisplay = new javax.swing.JLabel();
-        genreDisplay = new javax.swing.JLabel();
         dialogoAgregar_ano = new javax.swing.JDialog();
         tituloAdd_ano = new javax.swing.JLabel();
         anoText = new javax.swing.JLabel();
@@ -245,166 +222,6 @@ public class Menu extends javax.swing.JFrame
         botonFiltrado_2Generos = new javax.swing.JButton();
         usersExcel_button = new javax.swing.JButton();
         usersCSV_button = new javax.swing.JButton();
-
-        dialogoAdd_anime.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        dialogoAdd_anime.setTitle("Ingrese Datos Del Anime A Agregar");
-        dialogoAdd_anime.setAlwaysOnTop(true);
-        dialogoAdd_anime.setFocusable(false);
-        dialogoAdd_anime.setResizable(false);
-        dialogoAdd_anime.setSize(new java.awt.Dimension(550, 550));
-
-        id_input.setFocusable(false);
-
-        name_input.setFocusable(false);
-
-        type_input.setFocusable(false);
-
-        episodes_input.setFocusable(false);
-
-        duration_input.setFocusable(false);
-
-        rating_input.setFocusable(false);
-
-        year_input.setFocusable(false);
-
-        studio_input.setFocusable(false);
-
-        genre_input.setFocusable(false);
-
-        Ingresar.setText("Ingresar");
-        Ingresar.setFocusable(false);
-        Ingresar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                IngresarActionPerformed(evt);
-            }
-        });
-
-        returnTo_menu.setText("Volver al Menu");
-        returnTo_menu.setFocusable(false);
-        returnTo_menu.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                returnTo_menuActionPerformed(evt);
-            }
-        });
-
-        title.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        title.setText("Ingrese Datos Del Anime A Agregar");
-        title.setFocusable(false);
-
-        iD_display.setText("iD");
-        iD_display.setFocusable(false);
-
-        nameDisplay.setText("Nombre");
-        nameDisplay.setFocusable(false);
-
-        typeDisplay.setText("Tipo");
-        typeDisplay.setFocusable(false);
-
-        chaptersDisplay.setText("Capitulos");
-        chaptersDisplay.setFocusable(false);
-
-        durationDisplay.setText("Duracion");
-        durationDisplay.setFocusable(false);
-
-        ratingDisplay.setText("Publico Objetivo");
-        ratingDisplay.setFocusable(false);
-
-        yearDisplay.setText("Año");
-        yearDisplay.setFocusable(false);
-
-        studioDisplay.setText("Estudio");
-        studioDisplay.setFocusable(false);
-
-        genreDisplay.setText("Genero");
-        genreDisplay.setFocusable(false);
-
-        javax.swing.GroupLayout dialogoAdd_animeLayout = new javax.swing.GroupLayout(dialogoAdd_anime.getContentPane());
-        dialogoAdd_anime.getContentPane().setLayout(dialogoAdd_animeLayout);
-        dialogoAdd_animeLayout.setHorizontalGroup(
-            dialogoAdd_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogoAdd_animeLayout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addGroup(dialogoAdd_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(title)
-                    .addGroup(dialogoAdd_animeLayout.createSequentialGroup()
-                        .addGroup(dialogoAdd_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(iD_display, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(studioDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(genreDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(yearDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ratingDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(durationDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(chaptersDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(typeDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nameDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(dialogoAdd_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(dialogoAdd_animeLayout.createSequentialGroup()
-                                .addComponent(Ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(returnTo_menu))
-                            .addComponent(name_input, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(id_input, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(type_input, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(episodes_input, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(duration_input, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rating_input, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(year_input, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(studio_input, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(genre_input, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(115, 115, 115))
-        );
-        dialogoAdd_animeLayout.setVerticalGroup(
-            dialogoAdd_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogoAdd_animeLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(title)
-                .addGap(41, 41, 41)
-                .addGroup(dialogoAdd_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(id_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(iD_display))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(dialogoAdd_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameDisplay)
-                    .addComponent(name_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(dialogoAdd_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(typeDisplay)
-                    .addComponent(type_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(dialogoAdd_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(episodes_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chaptersDisplay))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(dialogoAdd_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(duration_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(durationDisplay))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(dialogoAdd_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rating_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ratingDisplay))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(dialogoAdd_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(year_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(yearDisplay))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(dialogoAdd_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(studio_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(studioDisplay))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(dialogoAdd_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(genre_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(genreDisplay))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                .addGroup(dialogoAdd_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(returnTo_menu)
-                    .addComponent(Ingresar))
-                .addGap(61, 61, 61))
-        );
 
         dialogoAgregar_ano.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         dialogoAgregar_ano.setAlwaysOnTop(true);
@@ -1899,7 +1716,8 @@ public class Menu extends javax.swing.JFrame
     {//GEN-HEADEREND:event_botonAgregar_animeActionPerformed
         // TODO add your handling code here:
             this.setVisible(false);
-            dialogoAdd_anime.setVisible(true);
+            ventanaAdd_Anime =new addAnime_Window(this,llamar);
+            ventanaAdd_Anime.setVisible(true);
     }//GEN-LAST:event_botonAgregar_animeActionPerformed
 
     private void closeBotonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_closeBotonActionPerformed
@@ -1917,15 +1735,6 @@ public class Menu extends javax.swing.JFrame
 
     private void clearFields()
     {
-        id_input.setText("");
-        name_input.setText("");
-        type_input.setText("");
-        episodes_input.setText("");
-        duration_input.setText("");
-        rating_input.setText("");
-        year_input.setText("");
-        studio_input.setText("");
-        genre_input.setText("");
         toAdd_ano.setText("");
         textfieldEliminar_Anime1.setText("");
         textfieldModificar_Anime1.setText("");
@@ -1941,60 +1750,12 @@ public class Menu extends javax.swing.JFrame
         textfieldBuscarId_Anime.setText("");
     }
     
-    private void IngresarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_IngresarActionPerformed
-    {//GEN-HEADEREND:event_IngresarActionPerformed
-        // TODO add your handling code here:
-        int id = Integer.parseInt(id_input.getText());
-        String name = name_input.getText();
-        if(name.startsWith("\"")==false)
-        {
-            if(name.endsWith("\"\n")==false)
-            {
-                name =("\""+name+"\"");
-            }
-        }
-        String type = type_input.getText();
-        int episodes = Integer.parseInt(episodes_input.getText());
-        String duration = duration_input.getText();
-        String rating = rating_input.getText();
-        int year = Integer.parseInt(year_input.getText());
-        String studio = studio_input.getText();
-        if(studio.startsWith("\"")==false)
-        {
-            if(studio.endsWith("\"\n")==false)
-            {
-                studio =("\""+studio+"\"");
-            }
-        }
-        String genre = genre_input.getText();
-        if(genre.startsWith("\"")==false)
-        {
-            if(genre.endsWith("\"\n")==false)
-            {
-                genre =("\""+genre+"\"");
-            }
-        }
-        Anime newanime = new Anime(id,name,type,episodes,duration,rating,year,studio,genre);
-        llamar.addAnime(newanime);
-        this.dialogoAdd_anime.dispose();
-        clearFields();
-        this.setVisible(true);
-    }//GEN-LAST:event_IngresarActionPerformed
-
     private void botonAgregar_anoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botonAgregar_anoActionPerformed
     {//GEN-HEADEREND:event_botonAgregar_anoActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
         dialogoAgregar_ano.setVisible(true);
     }//GEN-LAST:event_botonAgregar_anoActionPerformed
-
-    private void returnTo_menuActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_returnTo_menuActionPerformed
-    {//GEN-HEADEREND:event_returnTo_menuActionPerformed
-        // TODO add your handling code here:
-        this.dialogoAdd_anime.dispose();
-        clearFields();
-        this.setVisible(true);
-    }//GEN-LAST:event_returnTo_menuActionPerformed
 
     private void returnTo_menu_1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_returnTo_menu_1ActionPerformed
     {//GEN-HEADEREND:event_returnTo_menu_1ActionPerformed
@@ -2593,7 +2354,6 @@ public class Menu extends javax.swing.JFrame
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
-    private javax.swing.JButton Ingresar;
     private javax.swing.JButton Modificar;
     private javax.swing.JDialog accionesDe_usuario;
     private javax.swing.JButton addAno;
@@ -2618,9 +2378,7 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JButton botonModificar_anime1;
     private javax.swing.JButton botonModificar_ano;
     private javax.swing.JButton botonMostrar_ano;
-    private javax.swing.JLabel chaptersDisplay;
     private javax.swing.JButton closeBoton;
-    private javax.swing.JDialog dialogoAdd_anime;
     private javax.swing.JDialog dialogoAgregar_ano;
     private javax.swing.JDialog dialogoBuscarId_anime;
     private javax.swing.JDialog dialogoEliminar_anime;
@@ -2633,11 +2391,8 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JButton displayWatched_Button1;
     private javax.swing.JDialog displayWatched_dialog;
     private javax.swing.JButton doubleFilter_filterButton;
-    private javax.swing.JLabel durationDisplay;
-    private javax.swing.JTextField duration_input;
     private javax.swing.JButton eliminarAnime;
     private javax.swing.JButton eliminarAno;
-    private javax.swing.JTextField episodes_input;
     private javax.swing.JDialog errorDialog;
     private javax.swing.JButton favButton;
     private javax.swing.JDialog favDialog;
@@ -2648,38 +2403,29 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JLabel genre1_label;
     private javax.swing.JTextField genre2_field;
     private javax.swing.JLabel genre2_label;
-    private javax.swing.JLabel genreDisplay;
-    private javax.swing.JTextField genre_input;
     private javax.swing.JButton goTo_favButton;
     private javax.swing.JButton goTo_hateButton;
     private javax.swing.JButton hateButton;
     private javax.swing.JDialog hateDialog;
     private javax.swing.JTextField hatedId_field1;
     private javax.swing.JLabel hatedTitle;
-    private javax.swing.JLabel iD_display;
     private javax.swing.JLabel idAnimeText1;
     private javax.swing.JLabel idAnimeText2;
     private javax.swing.JLabel idLabel;
     private javax.swing.JLabel idLabel1;
     private javax.swing.JLabel idLabel2;
-    private javax.swing.JTextField id_input;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton modifAno;
     private javax.swing.JDialog mostrarIdDialog;
-    private javax.swing.JLabel nameDisplay;
-    private javax.swing.JTextField name_input;
     private javax.swing.JLabel nombreAnimeText;
     private javax.swing.JLabel nuevo;
     private javax.swing.JLabel nuevoIDText3;
     private javax.swing.JTextField nuevoInput;
     private javax.swing.JDialog okDialog;
     private javax.swing.JDialog outputFiltro;
-    private javax.swing.JLabel ratingDisplay;
-    private javax.swing.JTextField rating_input;
-    private javax.swing.JButton returnTo_menu;
     private javax.swing.JButton returnTo_menu5;
     private javax.swing.JButton returnTo_menu8;
     private javax.swing.JButton returnTo_menuFrom_userActions;
@@ -2691,8 +2437,6 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JButton return_back;
     private javax.swing.JButton return_back2;
     private javax.swing.JButton searchAnime_button;
-    private javax.swing.JLabel studioDisplay;
-    private javax.swing.JTextField studio_input;
     private javax.swing.JTable tablaDe_anos;
     private javax.swing.JTable tablaFiltrados;
     private javax.swing.JTextField textfieldBuscarId_Anime;
@@ -2700,7 +2444,6 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JTextField textfieldEliminar_Ano;
     private javax.swing.JTextField textfieldModificar_Anime1;
     private javax.swing.JTextField textfieldNuevo_id1;
-    private javax.swing.JLabel title;
     private javax.swing.JLabel title2;
     private javax.swing.JLabel title2ble;
     private javax.swing.JLabel tituloAdd_ano;
@@ -2715,8 +2458,6 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JButton turnBack;
     private javax.swing.JButton turnBack1;
     private javax.swing.JButton turnBack2;
-    private javax.swing.JLabel typeDisplay;
-    private javax.swing.JTextField type_input;
     private javax.swing.JButton usersCSV_button;
     private javax.swing.JButton usersExcel_button;
     private javax.swing.JLabel viejo;
@@ -2727,7 +2468,5 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JTextField watchedId_field;
     private javax.swing.JTable watchedTable;
     private javax.swing.JLabel watchedTitle;
-    private javax.swing.JLabel yearDisplay;
-    private javax.swing.JTextField year_input;
     // End of variables declaration//GEN-END:variables
 }

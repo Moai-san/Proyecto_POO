@@ -14,7 +14,7 @@ import javax.swing.JFrame;
  */
 public class ListarFiltrados extends javax.swing.JFrame
 {
-    final JFrame father;
+    private final JFrame father;
     private final int option;
     private final CollectionManagement llamar;
     
