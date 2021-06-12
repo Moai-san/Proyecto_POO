@@ -2,8 +2,7 @@ package com.moai.animelist.vista;
 
 
 import com.moai.animelist.controlador.GeneraArchivos;
-import com.moai.animelist.modelo.Usuario;
-import com.moai.animelist.modelo.UsuarioComun;
+import com.moai.animelist.modelo.*;
 import java.io.*;
 import java.util.LinkedList;
 import org.apache.poi.xssf.usermodel.*;

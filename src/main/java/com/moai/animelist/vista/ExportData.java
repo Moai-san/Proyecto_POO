@@ -5,8 +5,7 @@
  */
 package com.moai.animelist.vista;
 
-import com.moai.animelist.modelo.AniList;
-import com.moai.animelist.modelo.Anime;
+import com.moai.animelist.modelo.*;
 import java.io.*;
 
 /**

@@ -18,6 +18,7 @@ public class Menu extends javax.swing.JFrame
     private static ReportUsers userMan= new ReportUsers();
     private static ReportAnime aniMan;
     private final String username;
+    private ListarFiltrados ventanaFiltrados;
     
     /**
      *
@@ -34,9 +35,6 @@ public class Menu extends javax.swing.JFrame
         dialogoAdd_anime.setLocationRelativeTo(null);
         dialogoAgregar_ano.setLocationRelativeTo(null);
         dialogoMostrar_anos.setLocationRelativeTo(null);
-        dialogoBuscar_porAnos.setLocationRelativeTo(null);
-        dialogoBuscar_porTipo.setLocationRelativeTo(null);
-        dialogoBuscar_porGenero.setLocationRelativeTo(null);
         outputFiltro.setLocationRelativeTo(null);
         errorDialog.setLocationRelativeTo(null);
         dialogoEliminar_anime.setLocationRelativeTo(null);
@@ -70,9 +68,6 @@ public class Menu extends javax.swing.JFrame
         dialogoAdd_anime.setLocationRelativeTo(null);
         dialogoAgregar_ano.setLocationRelativeTo(null);
         dialogoMostrar_anos.setLocationRelativeTo(null);
-        dialogoBuscar_porAnos.setLocationRelativeTo(null);
-        dialogoBuscar_porTipo.setLocationRelativeTo(null);
-        dialogoBuscar_porGenero.setLocationRelativeTo(null);
         outputFiltro.setLocationRelativeTo(null);
         errorDialog.setLocationRelativeTo(null);
         dialogoEliminar_anime.setLocationRelativeTo(null);
@@ -146,24 +141,6 @@ public class Menu extends javax.swing.JFrame
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaDe_anos = new javax.swing.JTable();
         title2 = new javax.swing.JLabel();
-        dialogoBuscar_porAnos = new javax.swing.JDialog();
-        inputAno = new javax.swing.JTextField();
-        botonBusca_ano = new javax.swing.JButton();
-        jDialog4_title = new javax.swing.JLabel();
-        returnTo_menu7 = new javax.swing.JButton();
-        ano4 = new javax.swing.JLabel();
-        dialogoBuscar_porTipo = new javax.swing.JDialog();
-        inputTipo = new javax.swing.JTextField();
-        botonBusca_Tipo = new javax.swing.JButton();
-        jDialog4_title1 = new javax.swing.JLabel();
-        returnTo_menu9 = new javax.swing.JButton();
-        tipo = new javax.swing.JLabel();
-        dialogoBuscar_porGenero = new javax.swing.JDialog();
-        inputGenero = new javax.swing.JTextField();
-        botonBusca_Genero = new javax.swing.JButton();
-        jDialog4_title2 = new javax.swing.JLabel();
-        returnTo_menu10 = new javax.swing.JButton();
-        genero = new javax.swing.JLabel();
         dialogoEliminar_anime = new javax.swing.JDialog();
         tituloEliminar_anime1 = new javax.swing.JLabel();
         idAnimeText1 = new javax.swing.JLabel();
@@ -272,10 +249,30 @@ public class Menu extends javax.swing.JFrame
         dialogoAdd_anime.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         dialogoAdd_anime.setTitle("Ingrese Datos Del Anime A Agregar");
         dialogoAdd_anime.setAlwaysOnTop(true);
+        dialogoAdd_anime.setFocusable(false);
         dialogoAdd_anime.setResizable(false);
         dialogoAdd_anime.setSize(new java.awt.Dimension(550, 550));
 
+        id_input.setFocusable(false);
+
+        name_input.setFocusable(false);
+
+        type_input.setFocusable(false);
+
+        episodes_input.setFocusable(false);
+
+        duration_input.setFocusable(false);
+
+        rating_input.setFocusable(false);
+
+        year_input.setFocusable(false);
+
+        studio_input.setFocusable(false);
+
+        genre_input.setFocusable(false);
+
         Ingresar.setText("Ingresar");
+        Ingresar.setFocusable(false);
         Ingresar.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -285,6 +282,7 @@ public class Menu extends javax.swing.JFrame
         });
 
         returnTo_menu.setText("Volver al Menu");
+        returnTo_menu.setFocusable(false);
         returnTo_menu.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -295,24 +293,34 @@ public class Menu extends javax.swing.JFrame
 
         title.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         title.setText("Ingrese Datos Del Anime A Agregar");
+        title.setFocusable(false);
 
         iD_display.setText("iD");
+        iD_display.setFocusable(false);
 
         nameDisplay.setText("Nombre");
+        nameDisplay.setFocusable(false);
 
         typeDisplay.setText("Tipo");
+        typeDisplay.setFocusable(false);
 
         chaptersDisplay.setText("Capitulos");
+        chaptersDisplay.setFocusable(false);
 
         durationDisplay.setText("Duracion");
+        durationDisplay.setFocusable(false);
 
         ratingDisplay.setText("Publico Objetivo");
+        ratingDisplay.setFocusable(false);
 
         yearDisplay.setText("Año");
+        yearDisplay.setFocusable(false);
 
         studioDisplay.setText("Estudio");
+        studioDisplay.setFocusable(false);
 
         genreDisplay.setText("Genero");
+        genreDisplay.setFocusable(false);
 
         javax.swing.GroupLayout dialogoAdd_animeLayout = new javax.swing.GroupLayout(dialogoAdd_anime.getContentPane());
         dialogoAdd_anime.getContentPane().setLayout(dialogoAdd_animeLayout);
@@ -545,231 +553,6 @@ public class Menu extends javax.swing.JFrame
                 .addGap(18, 18, 18)
                 .addComponent(returnTo_menu_1)
                 .addGap(25, 25, 25))
-        );
-
-        dialogoBuscar_porAnos.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        dialogoBuscar_porAnos.setAlwaysOnTop(true);
-        dialogoBuscar_porAnos.setResizable(false);
-        dialogoBuscar_porAnos.setSize(new java.awt.Dimension(430, 300));
-
-        inputAno.setOpaque(false);
-        inputAno.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                inputAnoActionPerformed(evt);
-            }
-        });
-
-        botonBusca_ano.setText("Buscar");
-        botonBusca_ano.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                botonBusca_anoActionPerformed(evt);
-            }
-        });
-
-        jDialog4_title.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jDialog4_title.setText("Ingrese el año a buscar");
-
-        returnTo_menu7.setText("Volver al Menu");
-        returnTo_menu7.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                returnTo_menu7ActionPerformed(evt);
-            }
-        });
-
-        ano4.setText("Año");
-
-        javax.swing.GroupLayout dialogoBuscar_porAnosLayout = new javax.swing.GroupLayout(dialogoBuscar_porAnos.getContentPane());
-        dialogoBuscar_porAnos.getContentPane().setLayout(dialogoBuscar_porAnosLayout);
-        dialogoBuscar_porAnosLayout.setHorizontalGroup(
-            dialogoBuscar_porAnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogoBuscar_porAnosLayout.createSequentialGroup()
-                .addGroup(dialogoBuscar_porAnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dialogoBuscar_porAnosLayout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(botonBusca_ano, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(returnTo_menu7))
-                    .addGroup(dialogoBuscar_porAnosLayout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(ano4)
-                        .addGap(52, 52, 52)
-                        .addComponent(inputAno, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 68, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogoBuscar_porAnosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jDialog4_title)
-                .addGap(114, 114, 114))
-        );
-        dialogoBuscar_porAnosLayout.setVerticalGroup(
-            dialogoBuscar_porAnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogoBuscar_porAnosLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jDialog4_title)
-                .addGap(41, 41, 41)
-                .addGroup(dialogoBuscar_porAnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ano4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                .addGroup(dialogoBuscar_porAnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonBusca_ano)
-                    .addComponent(returnTo_menu7))
-                .addGap(55, 55, 55))
-        );
-
-        dialogoBuscar_porTipo.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        dialogoBuscar_porTipo.setAlwaysOnTop(true);
-        dialogoBuscar_porTipo.setResizable(false);
-        dialogoBuscar_porTipo.setSize(new java.awt.Dimension(430, 300));
-
-        inputTipo.setOpaque(false);
-        inputTipo.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                inputTipoActionPerformed(evt);
-            }
-        });
-
-        botonBusca_Tipo.setText("Buscar");
-        botonBusca_Tipo.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                botonBusca_TipoActionPerformed(evt);
-            }
-        });
-
-        jDialog4_title1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jDialog4_title1.setText("Ingrese el año a buscar");
-
-        returnTo_menu9.setText("Volver al Menu");
-        returnTo_menu9.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                returnTo_menu9ActionPerformed(evt);
-            }
-        });
-
-        tipo.setText("Tipo");
-
-        javax.swing.GroupLayout dialogoBuscar_porTipoLayout = new javax.swing.GroupLayout(dialogoBuscar_porTipo.getContentPane());
-        dialogoBuscar_porTipo.getContentPane().setLayout(dialogoBuscar_porTipoLayout);
-        dialogoBuscar_porTipoLayout.setHorizontalGroup(
-            dialogoBuscar_porTipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogoBuscar_porTipoLayout.createSequentialGroup()
-                .addGroup(dialogoBuscar_porTipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dialogoBuscar_porTipoLayout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(botonBusca_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(returnTo_menu9))
-                    .addGroup(dialogoBuscar_porTipoLayout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(tipo)
-                        .addGap(52, 52, 52)
-                        .addComponent(inputTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 67, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogoBuscar_porTipoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jDialog4_title1)
-                .addGap(114, 114, 114))
-        );
-        dialogoBuscar_porTipoLayout.setVerticalGroup(
-            dialogoBuscar_porTipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogoBuscar_porTipoLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jDialog4_title1)
-                .addGap(41, 41, 41)
-                .addGroup(dialogoBuscar_porTipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tipo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                .addGroup(dialogoBuscar_porTipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonBusca_Tipo)
-                    .addComponent(returnTo_menu9))
-                .addGap(55, 55, 55))
-        );
-
-        dialogoBuscar_porGenero.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        dialogoBuscar_porGenero.setAlwaysOnTop(true);
-        dialogoBuscar_porGenero.setResizable(false);
-        dialogoBuscar_porGenero.setSize(new java.awt.Dimension(430, 300));
-
-        inputGenero.setOpaque(false);
-        inputGenero.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                inputGeneroActionPerformed(evt);
-            }
-        });
-
-        botonBusca_Genero.setText("Buscar");
-        botonBusca_Genero.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                botonBusca_GeneroActionPerformed(evt);
-            }
-        });
-
-        jDialog4_title2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jDialog4_title2.setText("Ingrese el genero a buscar");
-
-        returnTo_menu10.setText("Volver al Menu");
-        returnTo_menu10.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                returnTo_menu10ActionPerformed(evt);
-            }
-        });
-
-        genero.setText("Genero");
-
-        javax.swing.GroupLayout dialogoBuscar_porGeneroLayout = new javax.swing.GroupLayout(dialogoBuscar_porGenero.getContentPane());
-        dialogoBuscar_porGenero.getContentPane().setLayout(dialogoBuscar_porGeneroLayout);
-        dialogoBuscar_porGeneroLayout.setHorizontalGroup(
-            dialogoBuscar_porGeneroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogoBuscar_porGeneroLayout.createSequentialGroup()
-                .addGroup(dialogoBuscar_porGeneroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dialogoBuscar_porGeneroLayout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(botonBusca_Genero, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(returnTo_menu10))
-                    .addGroup(dialogoBuscar_porGeneroLayout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(genero)
-                        .addGap(52, 52, 52)
-                        .addComponent(inputGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 49, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogoBuscar_porGeneroLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jDialog4_title2)
-                .addGap(114, 114, 114))
-        );
-        dialogoBuscar_porGeneroLayout.setVerticalGroup(
-            dialogoBuscar_porGeneroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogoBuscar_porGeneroLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jDialog4_title2)
-                .addGap(41, 41, 41)
-                .addGroup(dialogoBuscar_porGeneroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(genero))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                .addGroup(dialogoBuscar_porGeneroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonBusca_Genero)
-                    .addComponent(returnTo_menu10))
-                .addGap(55, 55, 55))
         );
 
         dialogoEliminar_anime.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -2143,9 +1926,6 @@ public class Menu extends javax.swing.JFrame
         year_input.setText("");
         studio_input.setText("");
         genre_input.setText("");
-        inputAno.setText("");
-        inputTipo.setText("");
-        inputGenero.setText("");
         toAdd_ano.setText("");
         textfieldEliminar_Anime1.setText("");
         textfieldModificar_Anime1.setText("");
@@ -2224,28 +2004,12 @@ public class Menu extends javax.swing.JFrame
         this.setVisible(true);
     }//GEN-LAST:event_returnTo_menu_1ActionPerformed
 
-    private void botonBusca_anoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botonBusca_anoActionPerformed
-    {//GEN-HEADEREND:event_botonBusca_anoActionPerformed
-        // TODO add your handling code here:
-        String ano1=inputAno.getText();
-        Object tablaFiltros[][] =null;
-        tablaFiltros =llamar.mostrarPor_filtro(tablaFiltros, ano1, 0);
-        int exist =rellenarTabla_filtros(tablaFiltros,tablaFiltrados);
-        clearFields();
-        dialogoBuscar_porAnos.dispose();
-        if(exist!=0)
-        {
-            errorDialog.setVisible(true);
-            return;
-        }
-        outputFiltro.setVisible(true);
-    }//GEN-LAST:event_botonBusca_anoActionPerformed
-
     private void botonBuscar_porAnoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botonBuscar_porAnoActionPerformed
     {//GEN-HEADEREND:event_botonBuscar_porAnoActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        dialogoBuscar_porAnos.setVisible(true);
+        ventanaFiltrados = new ListarFiltrados(0,this,llamar);
+        ventanaFiltrados.setVisible(true);
     }//GEN-LAST:event_botonBuscar_porAnoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
@@ -2418,14 +2182,6 @@ public class Menu extends javax.swing.JFrame
         this.setVisible(true);
     }//GEN-LAST:event_returnTo_menu5ActionPerformed
 
-    private void returnTo_menu7ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_returnTo_menu7ActionPerformed
-    {//GEN-HEADEREND:event_returnTo_menu7ActionPerformed
-        // TODO add your handling code here:
-        dialogoBuscar_porAnos.dispose();
-        clearFields();
-        this.setVisible(true);
-    }//GEN-LAST:event_returnTo_menu7ActionPerformed
-
     private void eliminarAnoActionPerformed(java.awt.event.ActionEvent evt) 
     {//GEN-FIRST:event_eliminarAnoActionPerformed
         String ano = this.textfieldEliminar_Ano.getText();
@@ -2492,83 +2248,20 @@ public class Menu extends javax.swing.JFrame
         this.setVisible(true);
     }//GEN-LAST:event_returnTo_menu8ActionPerformed
 
-    private void botonBusca_TipoActionPerformed(java.awt.event.ActionEvent evt) 
-    {//GEN-FIRST:event_botonBusca_TipoActionPerformed
-        // TODO add your handling code here:
-        String tipo1 =inputTipo.getText();
-        Object tablaFiltros[][] =null;
-        tablaFiltros =llamar.mostrarPor_filtro(tablaFiltros, tipo1, 1);
-        int exist =rellenarTabla_filtros(tablaFiltros,tablaFiltrados);
-        clearFields();
-        dialogoBuscar_porTipo.dispose();
-        if(exist!=0)
-        {
-            errorDialog.setVisible(true);
-            return;
-        }
-        outputFiltro.setVisible(true);
-    }//GEN-LAST:event_botonBusca_TipoActionPerformed
-
-    private void returnTo_menu9ActionPerformed(java.awt.event.ActionEvent evt) 
-    {//GEN-FIRST:event_returnTo_menu9ActionPerformed
-        // TODO add your handling code here:
-        dialogoBuscar_porTipo.dispose();
-        clearFields();
-        this.setVisible(true);
-    }//GEN-LAST:event_returnTo_menu9ActionPerformed
-
     private void botonBuscar_porTipoActionPerformed(java.awt.event.ActionEvent evt) 
     {//GEN-FIRST:event_botonBuscar_porTipoActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        dialogoBuscar_porTipo.setVisible(true);
+        ventanaFiltrados = new ListarFiltrados(1,this,llamar);
+        ventanaFiltrados.setVisible(true);
     }//GEN-LAST:event_botonBuscar_porTipoActionPerformed
-
-    private void inputTipoActionPerformed(java.awt.event.ActionEvent evt) 
-    {//GEN-FIRST:event_inputTipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputTipoActionPerformed
-
-    private void inputAnoActionPerformed(java.awt.event.ActionEvent evt) 
-    {//GEN-FIRST:event_inputAnoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputAnoActionPerformed
-
-    private void inputGeneroActionPerformed(java.awt.event.ActionEvent evt) 
-    {//GEN-FIRST:event_inputGeneroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputGeneroActionPerformed
-
-    private void botonBusca_GeneroActionPerformed(java.awt.event.ActionEvent evt) 
-    {//GEN-FIRST:event_botonBusca_GeneroActionPerformed
-        // TODO add your handling code here:
-        String genero1 =inputGenero.getText();
-        Object tablaFiltros[][] =null;
-        tablaFiltros =llamar.mostrarPor_filtro(tablaFiltros, genero1, 2);
-        int exist =rellenarTabla_filtros(tablaFiltros,tablaFiltrados);
-        clearFields();
-        dialogoBuscar_porGenero.dispose();
-        if(exist!=0)
-        {
-            errorDialog.setVisible(true);
-            return;
-        }
-        outputFiltro.setVisible(true);
-    }//GEN-LAST:event_botonBusca_GeneroActionPerformed
-
-    private void returnTo_menu10ActionPerformed(java.awt.event.ActionEvent evt) 
-    {//GEN-FIRST:event_returnTo_menu10ActionPerformed
-        // TODO add your handling code here:
-        dialogoBuscar_porGenero.dispose();
-        clearFields();
-        this.setVisible(true);
-    }//GEN-LAST:event_returnTo_menu10ActionPerformed
 
     private void botonBuscar_porGeneroActionPerformed(java.awt.event.ActionEvent evt) 
     {//GEN-FIRST:event_botonBuscar_porGeneroActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        dialogoBuscar_porGenero.setVisible(true);
+        ventanaFiltrados = new ListarFiltrados(2,this,llamar);
+        ventanaFiltrados.setVisible(true);
     }//GEN-LAST:event_botonBuscar_porGeneroActionPerformed
 
     private void addTo_listButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addTo_listButtonActionPerformed
@@ -2909,15 +2602,11 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JButton addTo_listButton;
     private javax.swing.JLabel addTo_userTitle;
     private javax.swing.JButton addTo_watchedList_button;
-    private javax.swing.JLabel ano4;
     private javax.swing.JLabel anoText;
     private javax.swing.JLabel anoText1;
     private javax.swing.JButton backTo_menuButton;
     private javax.swing.JButton botonAgregar_anime;
     private javax.swing.JButton botonAgregar_ano;
-    private javax.swing.JButton botonBusca_Genero;
-    private javax.swing.JButton botonBusca_Tipo;
-    private javax.swing.JButton botonBusca_ano;
     private javax.swing.JButton botonBuscar_porAno;
     private javax.swing.JButton botonBuscar_porGenero;
     private javax.swing.JButton botonBuscar_porTipo;
@@ -2934,9 +2623,6 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JDialog dialogoAdd_anime;
     private javax.swing.JDialog dialogoAgregar_ano;
     private javax.swing.JDialog dialogoBuscarId_anime;
-    private javax.swing.JDialog dialogoBuscar_porAnos;
-    private javax.swing.JDialog dialogoBuscar_porGenero;
-    private javax.swing.JDialog dialogoBuscar_porTipo;
     private javax.swing.JDialog dialogoEliminar_anime;
     private javax.swing.JDialog dialogoEliminar_ano;
     private javax.swing.JDialog dialogoModificar_anime;
@@ -2958,7 +2644,6 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JTextField favedId_field;
     private javax.swing.JLabel favedTitle;
     private javax.swing.JDialog filtradoDoble_dialog;
-    private javax.swing.JLabel genero;
     private javax.swing.JTextField genre1_field;
     private javax.swing.JLabel genre1_label;
     private javax.swing.JTextField genre2_field;
@@ -2978,13 +2663,7 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JLabel idLabel1;
     private javax.swing.JLabel idLabel2;
     private javax.swing.JTextField id_input;
-    private javax.swing.JTextField inputAno;
-    private javax.swing.JTextField inputGenero;
-    private javax.swing.JTextField inputTipo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jDialog4_title;
-    private javax.swing.JLabel jDialog4_title1;
-    private javax.swing.JLabel jDialog4_title2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -3001,11 +2680,8 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JLabel ratingDisplay;
     private javax.swing.JTextField rating_input;
     private javax.swing.JButton returnTo_menu;
-    private javax.swing.JButton returnTo_menu10;
     private javax.swing.JButton returnTo_menu5;
-    private javax.swing.JButton returnTo_menu7;
     private javax.swing.JButton returnTo_menu8;
-    private javax.swing.JButton returnTo_menu9;
     private javax.swing.JButton returnTo_menuFrom_userActions;
     private javax.swing.JButton returnTo_menu_1;
     private javax.swing.JButton returnTo_menu_2;
@@ -3024,7 +2700,6 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JTextField textfieldEliminar_Ano;
     private javax.swing.JTextField textfieldModificar_Anime1;
     private javax.swing.JTextField textfieldNuevo_id1;
-    private javax.swing.JLabel tipo;
     private javax.swing.JLabel title;
     private javax.swing.JLabel title2;
     private javax.swing.JLabel title2ble;
