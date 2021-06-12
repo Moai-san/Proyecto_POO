@@ -5,6 +5,10 @@
  */
 package com.moai.animelist.vista;
 
+import com.moai.animelist.controlador.CollectionManagement;
+import com.moai.animelist.modelo.Anime;
+import javax.swing.JFrame;
+
 /**
  *
  * @author moai
@@ -12,14 +16,74 @@ package com.moai.animelist.vista;
 public class UserLists_Window extends javax.swing.JFrame
 {
 
+    private final JFrame father;
+    private final CollectionManagement llamar;
+    
     /**
      * Creates new form UserLists_Window
      */
-    public UserLists_Window()
+    public UserLists_Window(JFrame padre, CollectionManagement toUse)
     {
         initComponents();
+        father =padre;
+        llamar =toUse;
+        this.setLocationRelativeTo(null);
+        watchedDialog.setLocationRelativeTo(null);
+        dialogoBuscarId_anime.setLocationRelativeTo(null);
+        mostrarIdDialog.setLocationRelativeTo(null);
+        favDialog.setLocationRelativeTo(null);
+        hateDialog.setLocationRelativeTo(null);
+        displayWatched_dialog.setLocationRelativeTo(null);
     }
+    
+    public void clearFields()
+    {
+        watchedId_field.setText("");
+        favedId_field.setText("");
+        hatedId_field1.setText("");
+        textfieldBuscarId_Anime.setText("");
+    }
+    
+    private int rellenarTabla_filtros(Object tablaFiltros[][], javax.swing.JTable a)
+    {
+        if (tablaFiltros==null)
+        {
+            return(-1);
+        }
+        else
+        {
+            a.setModel(new javax.swing.table.DefaultTableModel
+            (
+                tablaFiltros,
+                new String []
+                {
+                    "ID", "Nombre", "Tipo", "Capitulos", "Duracion", "Clasificacion de contenidos", "Año", "Estudio", "Genero(s)"
+                }
+            )
+            {
+                Class[] types = new Class []
+                {
+                    java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                };
+                boolean[] canEdit = new boolean []
+                {
+                    false, false, false, false, false, false, false, false, false
+                };
 
+                public Class getColumnClass(int columnIndex)
+                {
+                    return types [columnIndex];
+                }
+
+                public boolean isCellEditable(int rowIndex, int columnIndex)
+                {
+                    return canEdit [columnIndex];
+                }
+            });
+        }
+        return(0);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,67 +94,876 @@ public class UserLists_Window extends javax.swing.JFrame
     private void initComponents()
     {
 
+        hateDialog = new javax.swing.JDialog();
+        idLabel2 = new javax.swing.JLabel();
+        addButton_hated = new javax.swing.JButton();
+        turnBack2 = new javax.swing.JButton();
+        displayWatched_Button1 = new javax.swing.JButton();
+        hatedTitle = new javax.swing.JLabel();
+        hatedId_field1 = new javax.swing.JTextField();
+        favDialog = new javax.swing.JDialog();
+        favedTitle = new javax.swing.JLabel();
+        favedId_field = new javax.swing.JTextField();
+        idLabel1 = new javax.swing.JLabel();
+        addButton_faved = new javax.swing.JButton();
+        turnBack1 = new javax.swing.JButton();
+        displayWatched_Button = new javax.swing.JButton();
+        watchedDialog = new javax.swing.JDialog();
+        watchedTitle = new javax.swing.JLabel();
+        watchedId_field = new javax.swing.JTextField();
+        idLabel = new javax.swing.JLabel();
+        turnBack = new javax.swing.JButton();
+        searchAnime_button = new javax.swing.JButton();
+        addTo_watchedList_button = new javax.swing.JButton();
+        displayWatched_dialog = new javax.swing.JDialog();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        watchedTable = new javax.swing.JTable();
+        goTo_favButton = new javax.swing.JButton();
+        goTo_hateButton = new javax.swing.JButton();
+        errorDialog = new javax.swing.JDialog();
+        volverA_menuFrom_error = new javax.swing.JButton();
+        tituloError = new javax.swing.JLabel();
+        dialogoBuscarId_anime = new javax.swing.JDialog();
+        tituloBuscarId_anime = new javax.swing.JLabel();
+        nombreAnimeText = new javax.swing.JLabel();
+        textfieldBuscarId_Anime = new javax.swing.JTextField();
+        Buscar = new javax.swing.JButton();
+        return_back2 = new javax.swing.JButton();
+        mostrarIdDialog = new javax.swing.JDialog();
+        tituloMostrarId = new javax.swing.JLabel();
+        return_back = new javax.swing.JButton();
+        returnTo_menuFrom_userActions = new javax.swing.JButton();
+        hateButton = new javax.swing.JButton();
+        favButton = new javax.swing.JButton();
+        watchedButton = new javax.swing.JButton();
+        addTo_userTitle = new javax.swing.JLabel();
+
+        hateDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        hateDialog.setAlwaysOnTop(true);
+        hateDialog.setResizable(false);
+        hateDialog.setSize(new java.awt.Dimension(407, 309));
+
+        idLabel2.setText("ID");
+
+        addButton_hated.setText("Ingresar");
+        addButton_hated.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                addButton_hatedActionPerformed(evt);
+            }
+        });
+
+        turnBack2.setText("Volver al Menu");
+        turnBack2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                turnBack2ActionPerformed(evt);
+            }
+        });
+
+        displayWatched_Button1.setText("Si no sabe el ID, presione aqui!");
+        displayWatched_Button1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                displayWatched_Button1ActionPerformed(evt);
+            }
+        });
+
+        hatedTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        hatedTitle.setText("Ingrese el ID del Anime Odiado");
+
+        hatedId_field1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                hatedId_field1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout hateDialogLayout = new javax.swing.GroupLayout(hateDialog.getContentPane());
+        hateDialog.getContentPane().setLayout(hateDialogLayout);
+        hateDialogLayout.setHorizontalGroup(
+            hateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hateDialogLayout.createSequentialGroup()
+                .addContainerGap(79, Short.MAX_VALUE)
+                .addGroup(hateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(displayWatched_Button1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(hateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hateDialogLayout.createSequentialGroup()
+                            .addComponent(addButton_hated, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(turnBack2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hateDialogLayout.createSequentialGroup()
+                            .addComponent(idLabel2)
+                            .addGap(18, 18, 18)
+                            .addComponent(hatedId_field1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(84, 84, 84))
+            .addGroup(hateDialogLayout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(hatedTitle)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        hateDialogLayout.setVerticalGroup(
+            hateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(hateDialogLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(hatedTitle)
+                .addGap(51, 51, 51)
+                .addComponent(displayWatched_Button1)
+                .addGap(43, 43, 43)
+                .addGroup(hateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hatedId_field1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idLabel2))
+                .addGap(48, 48, 48)
+                .addGroup(hateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(turnBack2)
+                    .addComponent(addButton_hated))
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
+
+        favDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        favDialog.setAlwaysOnTop(true);
+        favDialog.setResizable(false);
+        favDialog.setSize(new java.awt.Dimension(407, 309));
+
+        favedTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        favedTitle.setText("Ingrese el ID del Anime Favorito");
+
+        favedId_field.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                favedId_fieldActionPerformed(evt);
+            }
+        });
+
+        idLabel1.setText("ID");
+
+        addButton_faved.setText("Ingresar");
+        addButton_faved.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                addButton_favedActionPerformed(evt);
+            }
+        });
+
+        turnBack1.setText("Volver al Menu");
+        turnBack1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                turnBack1ActionPerformed(evt);
+            }
+        });
+
+        displayWatched_Button.setText("Si no sabe el ID, presione aqui!");
+        displayWatched_Button.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                displayWatched_ButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout favDialogLayout = new javax.swing.GroupLayout(favDialog.getContentPane());
+        favDialog.getContentPane().setLayout(favDialogLayout);
+        favDialogLayout.setHorizontalGroup(
+            favDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, favDialogLayout.createSequentialGroup()
+                .addContainerGap(79, Short.MAX_VALUE)
+                .addGroup(favDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(displayWatched_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(favDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, favDialogLayout.createSequentialGroup()
+                            .addComponent(addButton_faved, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(turnBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, favDialogLayout.createSequentialGroup()
+                            .addComponent(idLabel1)
+                            .addGap(18, 18, 18)
+                            .addComponent(favedId_field, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(84, 84, 84))
+            .addGroup(favDialogLayout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(favedTitle)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        favDialogLayout.setVerticalGroup(
+            favDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(favDialogLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(favedTitle)
+                .addGap(51, 51, 51)
+                .addComponent(displayWatched_Button)
+                .addGap(43, 43, 43)
+                .addGroup(favDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(favedId_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idLabel1))
+                .addGap(48, 48, 48)
+                .addGroup(favDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(turnBack1)
+                    .addComponent(addButton_faved))
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
+
+        watchedDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        watchedDialog.setAlwaysOnTop(true);
+        watchedDialog.setResizable(false);
+        watchedDialog.setSize(new java.awt.Dimension(407, 309));
+
+        watchedTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        watchedTitle.setText("Ingrese el ID del Anime Visto");
+
+        watchedId_field.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                watchedId_fieldActionPerformed(evt);
+            }
+        });
+
+        idLabel.setText("ID");
+
+        turnBack.setText("Volver al Menu");
+        turnBack.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                turnBackActionPerformed(evt);
+            }
+        });
+
+        searchAnime_button.setText("Si no sabe el ID, presione aqui!");
+        searchAnime_button.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                searchAnime_buttonActionPerformed(evt);
+            }
+        });
+
+        addTo_watchedList_button.setText("Ingresar");
+        addTo_watchedList_button.setPreferredSize(new java.awt.Dimension(110, 22));
+        addTo_watchedList_button.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                addTo_watchedList_buttonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout watchedDialogLayout = new javax.swing.GroupLayout(watchedDialog.getContentPane());
+        watchedDialog.getContentPane().setLayout(watchedDialogLayout);
+        watchedDialogLayout.setHorizontalGroup(
+            watchedDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, watchedDialogLayout.createSequentialGroup()
+                .addContainerGap(86, Short.MAX_VALUE)
+                .addGroup(watchedDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(watchedTitle)
+                    .addGroup(watchedDialogLayout.createSequentialGroup()
+                        .addGroup(watchedDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(searchAnime_button, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(watchedDialogLayout.createSequentialGroup()
+                                .addComponent(idLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(watchedDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(watchedDialogLayout.createSequentialGroup()
+                                        .addComponent(addTo_watchedList_button, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(21, 21, 21)
+                                        .addComponent(turnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(watchedId_field))))
+                        .addGap(9, 9, 9)))
+                .addGap(75, 75, 75))
+        );
+        watchedDialogLayout.setVerticalGroup(
+            watchedDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(watchedDialogLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(watchedTitle)
+                .addGap(51, 51, 51)
+                .addComponent(searchAnime_button)
+                .addGap(43, 43, 43)
+                .addGroup(watchedDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(watchedId_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idLabel))
+                .addGap(48, 48, 48)
+                .addGroup(watchedDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(turnBack)
+                    .addComponent(addTo_watchedList_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(56, Short.MAX_VALUE))
+        );
+
+        displayWatched_dialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        displayWatched_dialog.setAlwaysOnTop(true);
+        displayWatched_dialog.setResizable(false);
+        displayWatched_dialog.setSize(new java.awt.Dimension(1115, 551));
+
+        jScrollPane3.setPreferredSize(new java.awt.Dimension(1115, 400));
+
+        watchedTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String []
+            {
+                "Id", "Nombre", "Tipo", "Capitulos", "Duracion", "Clasificacion de Contenidos", "Año", "Estudio(s)", "Genero(s)"
+            }
+        )
+        {
+            Class[] types = new Class []
+            {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean []
+            {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex)
+            {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(watchedTable);
+
+        goTo_favButton.setText("Ir a Añadir a Favoritos");
+        goTo_favButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                goTo_favButtonActionPerformed(evt);
+            }
+        });
+
+        goTo_hateButton.setText("Ir a Añadir a Odiados");
+        goTo_hateButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                goTo_hateButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout displayWatched_dialogLayout = new javax.swing.GroupLayout(displayWatched_dialog.getContentPane());
+        displayWatched_dialog.getContentPane().setLayout(displayWatched_dialogLayout);
+        displayWatched_dialogLayout.setHorizontalGroup(
+            displayWatched_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(displayWatched_dialogLayout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayWatched_dialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(goTo_favButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(145, 145, 145)
+                .addComponent(goTo_hateButton)
+                .addGap(356, 356, 356))
+        );
+        displayWatched_dialogLayout.setVerticalGroup(
+            displayWatched_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(displayWatched_dialogLayout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addGroup(displayWatched_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(goTo_favButton)
+                    .addComponent(goTo_hateButton))
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
+
+        errorDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        errorDialog.setAlwaysOnTop(true);
+        errorDialog.setResizable(false);
+        errorDialog.setSize(new java.awt.Dimension(400, 210));
+
+        volverA_menuFrom_error.setText("Volver al Menu");
+        volverA_menuFrom_error.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                volverA_menuFrom_errorActionPerformed(evt);
+            }
+        });
+
+        tituloError.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tituloError.setText("ERROR!!");
+
+        javax.swing.GroupLayout errorDialogLayout = new javax.swing.GroupLayout(errorDialog.getContentPane());
+        errorDialog.getContentPane().setLayout(errorDialogLayout);
+        errorDialogLayout.setHorizontalGroup(
+            errorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(errorDialogLayout.createSequentialGroup()
+                .addGroup(errorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(errorDialogLayout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(volverA_menuFrom_error, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(errorDialogLayout.createSequentialGroup()
+                        .addGap(167, 167, 167)
+                        .addComponent(tituloError)))
+                .addContainerGap(125, Short.MAX_VALUE))
+        );
+        errorDialogLayout.setVerticalGroup(
+            errorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(errorDialogLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(tituloError)
+                .addGap(76, 76, 76)
+                .addComponent(volverA_menuFrom_error)
+                .addContainerGap(57, Short.MAX_VALUE))
+        );
+
+        dialogoBuscarId_anime.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        dialogoBuscarId_anime.setAlwaysOnTop(true);
+        dialogoBuscarId_anime.setResizable(false);
+        dialogoBuscarId_anime.setSize(new java.awt.Dimension(550, 550));
+
+        tituloBuscarId_anime.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tituloBuscarId_anime.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tituloBuscarId_anime.setText("Ingrese el nombre del Anime");
+
+        nombreAnimeText.setText("Nombre Anime");
+
+        textfieldBuscarId_Anime.setOpaque(false);
+
+        Buscar.setText("Buscar");
+        Buscar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                BuscarActionPerformed(evt);
+            }
+        });
+
+        return_back2.setText("Volver atras");
+        return_back2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                return_back2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dialogoBuscarId_animeLayout = new javax.swing.GroupLayout(dialogoBuscarId_anime.getContentPane());
+        dialogoBuscarId_anime.getContentPane().setLayout(dialogoBuscarId_animeLayout);
+        dialogoBuscarId_animeLayout.setHorizontalGroup(
+            dialogoBuscarId_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tituloBuscarId_anime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(dialogoBuscarId_animeLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(nombreAnimeText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(dialogoBuscarId_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(textfieldBuscarId_Anime, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(dialogoBuscarId_animeLayout.createSequentialGroup()
+                        .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(return_back2)))
+                .addContainerGap(85, Short.MAX_VALUE))
+        );
+        dialogoBuscarId_animeLayout.setVerticalGroup(
+            dialogoBuscarId_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogoBuscarId_animeLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(tituloBuscarId_anime)
+                .addGap(46, 46, 46)
+                .addGroup(dialogoBuscarId_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreAnimeText)
+                    .addComponent(textfieldBuscarId_Anime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addGroup(dialogoBuscarId_animeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Buscar)
+                    .addComponent(return_back2))
+                .addGap(64, 64, 64))
+        );
+
+        mostrarIdDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        mostrarIdDialog.setAlwaysOnTop(true);
+        mostrarIdDialog.setResizable(false);
+        mostrarIdDialog.setSize(new java.awt.Dimension(400, 210));
+
+        tituloMostrarId.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tituloMostrarId.setText("El id es");
+
+        return_back.setText("Volver atrás");
+        return_back.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                return_backActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout mostrarIdDialogLayout = new javax.swing.GroupLayout(mostrarIdDialog.getContentPane());
+        mostrarIdDialog.getContentPane().setLayout(mostrarIdDialogLayout);
+        mostrarIdDialogLayout.setHorizontalGroup(
+            mostrarIdDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mostrarIdDialogLayout.createSequentialGroup()
+                .addGap(121, 121, 121)
+                .addComponent(return_back, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mostrarIdDialogLayout.createSequentialGroup()
+                .addContainerGap(101, Short.MAX_VALUE)
+                .addComponent(tituloMostrarId, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81))
+        );
+        mostrarIdDialogLayout.setVerticalGroup(
+            mostrarIdDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mostrarIdDialogLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(tituloMostrarId, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addComponent(return_back)
+                .addGap(47, 47, 47))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(588, 312));
+        setResizable(false);
+        setSize(new java.awt.Dimension(588, 312));
+
+        returnTo_menuFrom_userActions.setText("Volver al menu");
+        returnTo_menuFrom_userActions.setMaximumSize(new java.awt.Dimension(345, 22));
+        returnTo_menuFrom_userActions.setMinimumSize(new java.awt.Dimension(345, 22));
+        returnTo_menuFrom_userActions.setPreferredSize(new java.awt.Dimension(345, 22));
+        returnTo_menuFrom_userActions.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                returnTo_menuFrom_userActionsActionPerformed(evt);
+            }
+        });
+
+        hateButton.setText("Anime Odiado");
+        hateButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                hateButtonActionPerformed(evt);
+            }
+        });
+
+        favButton.setText("Anime Favorito");
+        favButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                favButtonActionPerformed(evt);
+            }
+        });
+
+        watchedButton.setText("Anime Visto");
+        watchedButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                watchedButtonActionPerformed(evt);
+            }
+        });
+
+        addTo_userTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        addTo_userTitle.setText("Seleccione lista a la que añadir un anime");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(122, 122, 122)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(addTo_userTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(hateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(favButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(watchedButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(returnTo_menuFrom_userActions, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(addTo_userTitle)
+                .addGap(29, 29, 29)
+                .addComponent(watchedButton)
+                .addGap(18, 18, 18)
+                .addComponent(favButton)
+                .addGap(18, 18, 18)
+                .addComponent(hateButton)
+                .addGap(18, 18, 18)
+                .addComponent(returnTo_menuFrom_userActions, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[])
-    {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                if ("Nimbus".equals(info.getName()))
-                {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex)
-        {
-            java.util.logging.Logger.getLogger(UserLists_Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
-        {
-            java.util.logging.Logger.getLogger(UserLists_Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
-        {
-            java.util.logging.Logger.getLogger(UserLists_Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
-            java.util.logging.Logger.getLogger(UserLists_Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void returnTo_menuFrom_userActionsActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_returnTo_menuFrom_userActionsActionPerformed
+    {//GEN-HEADEREND:event_returnTo_menuFrom_userActionsActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        father.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_returnTo_menuFrom_userActionsActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
+    private void hateButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_hateButtonActionPerformed
+    {//GEN-HEADEREND:event_hateButtonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        hateDialog.setVisible(true);
+    }//GEN-LAST:event_hateButtonActionPerformed
+
+    private void favButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_favButtonActionPerformed
+    {//GEN-HEADEREND:event_favButtonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        favDialog.setVisible(true);
+    }//GEN-LAST:event_favButtonActionPerformed
+
+    private void watchedButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_watchedButtonActionPerformed
+    {//GEN-HEADEREND:event_watchedButtonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        watchedDialog.setVisible(true);
+    }//GEN-LAST:event_watchedButtonActionPerformed
+
+    private void addButton_hatedActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addButton_hatedActionPerformed
+    {//GEN-HEADEREND:event_addButton_hatedActionPerformed
+        // TODO add your handling code here:
+        String id =hatedId_field1.getText();
+        int flag;
+        hateDialog.dispose();
+        if(id.equals(""))
         {
-            public void run()
-            {
-                new UserLists_Window().setVisible(true);
-            }
-        });
-    }
+            clearFields();
+            errorDialog.setVisible(true);
+            return;
+        }
+        Anime toAdd =llamar.buscarAnimePorId(Integer.parseInt(id));
+        flag =llamar.addTo_userList(2, toAdd);
+        if (flag!=0)
+        {
+            errorDialog.setVisible(true);
+            return;
+        }
+        clearFields();
+        this.setVisible(true);
+    }//GEN-LAST:event_addButton_hatedActionPerformed
+
+    private void turnBack2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_turnBack2ActionPerformed
+    {//GEN-HEADEREND:event_turnBack2ActionPerformed
+        // TODO add your handling code here:
+        clearFields();
+        hateDialog.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_turnBack2ActionPerformed
+
+    private void displayWatched_Button1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_displayWatched_Button1ActionPerformed
+    {//GEN-HEADEREND:event_displayWatched_Button1ActionPerformed
+        // TODO add your handling code here:
+        clearFields();
+        Object tablaFiltros[][] =null;
+        tablaFiltros =llamar.llenarTabla_datosUser(tablaFiltros,0);
+        rellenarTabla_filtros(tablaFiltros,watchedTable);
+        hateDialog.dispose();
+        displayWatched_dialog.setVisible(true);
+    }//GEN-LAST:event_displayWatched_Button1ActionPerformed
+
+    private void hatedId_field1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_hatedId_field1ActionPerformed
+    {//GEN-HEADEREND:event_hatedId_field1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hatedId_field1ActionPerformed
+
+    private void favedId_fieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_favedId_fieldActionPerformed
+    {//GEN-HEADEREND:event_favedId_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_favedId_fieldActionPerformed
+
+    private void addButton_favedActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addButton_favedActionPerformed
+    {//GEN-HEADEREND:event_addButton_favedActionPerformed
+        // TODO add your handling code here:
+        String id =favedId_field.getText();
+        int flag;
+        favDialog.dispose();
+        if(id.equals(""))
+        {
+            clearFields();
+            errorDialog.setVisible(true);
+            return;
+        }
+        Anime toAdd =llamar.buscarAnimePorId(Integer.parseInt(id));
+        flag =llamar.addTo_userList(1, toAdd);
+        if (flag!=0)
+        {
+            errorDialog.setVisible(true);
+            return;
+        }
+        clearFields();
+        this.setVisible(true);
+    }//GEN-LAST:event_addButton_favedActionPerformed
+
+    private void turnBack1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_turnBack1ActionPerformed
+    {//GEN-HEADEREND:event_turnBack1ActionPerformed
+        // TODO add your handling code here:
+        clearFields();
+        favDialog.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_turnBack1ActionPerformed
+
+    private void displayWatched_ButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_displayWatched_ButtonActionPerformed
+    {//GEN-HEADEREND:event_displayWatched_ButtonActionPerformed
+        // TODO add your handling code here:
+        clearFields();
+        Object tablaFiltros[][] =null;
+        tablaFiltros =llamar.llenarTabla_datosUser(tablaFiltros,0);
+        rellenarTabla_filtros(tablaFiltros,watchedTable);
+        favDialog.dispose();
+        displayWatched_dialog.setVisible(true);
+    }//GEN-LAST:event_displayWatched_ButtonActionPerformed
+
+    private void watchedId_fieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_watchedId_fieldActionPerformed
+    {//GEN-HEADEREND:event_watchedId_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_watchedId_fieldActionPerformed
+
+    private void turnBackActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_turnBackActionPerformed
+    {//GEN-HEADEREND:event_turnBackActionPerformed
+        // TODO add your handling code here:
+        clearFields();
+        watchedDialog.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_turnBackActionPerformed
+
+    private void searchAnime_buttonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_searchAnime_buttonActionPerformed
+    {//GEN-HEADEREND:event_searchAnime_buttonActionPerformed
+        watchedDialog.dispose();
+        dialogoBuscarId_anime.setVisible(true);
+    }//GEN-LAST:event_searchAnime_buttonActionPerformed
+
+    private void addTo_watchedList_buttonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addTo_watchedList_buttonActionPerformed
+    {//GEN-HEADEREND:event_addTo_watchedList_buttonActionPerformed
+        // TODO add your handling code here:
+        String id =watchedId_field.getText();
+        clearFields();
+        watchedDialog.dispose();
+        if (id.equals(""))
+        {
+            errorDialog.setVisible(true);
+            return;
+        }
+        Anime toAdd =llamar.buscarAnimePorId(Integer.parseInt(id));
+        if (toAdd==null)
+        {
+            errorDialog.setVisible(true);
+            return;
+        }
+        llamar.addTo_userList(0,toAdd);
+        this.setVisible(true);
+    }//GEN-LAST:event_addTo_watchedList_buttonActionPerformed
+
+    private void goTo_favButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_goTo_favButtonActionPerformed
+    {//GEN-HEADEREND:event_goTo_favButtonActionPerformed
+        // TODO add your handling code here:
+        displayWatched_dialog.dispose();
+        favDialog.setVisible(true);
+    }//GEN-LAST:event_goTo_favButtonActionPerformed
+
+    private void goTo_hateButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_goTo_hateButtonActionPerformed
+    {//GEN-HEADEREND:event_goTo_hateButtonActionPerformed
+        // TODO add your handling code here:
+        displayWatched_dialog.dispose();
+        hateDialog.setVisible(true);
+    }//GEN-LAST:event_goTo_hateButtonActionPerformed
+
+    private void volverA_menuFrom_errorActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_volverA_menuFrom_errorActionPerformed
+    {//GEN-HEADEREND:event_volverA_menuFrom_errorActionPerformed
+        // TODO add your handling code here:
+        errorDialog.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_volverA_menuFrom_errorActionPerformed
+
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BuscarActionPerformed
+    {//GEN-HEADEREND:event_BuscarActionPerformed
+        String nombreAnime = textfieldBuscarId_Anime.getText();
+        Anime animu = llamar.buscarAnimePorNombre("\""+nombreAnime+"\"");
+        dialogoBuscarId_anime.dispose();
+        if(animu == null)
+        {
+            clearFields();
+            errorDialog.setVisible(true);
+            return;
+        }
+        int id = animu.getMal_id();
+        tituloMostrarId.setText("El id es: " + id);
+        clearFields();
+        mostrarIdDialog.setVisible(true);
+    }//GEN-LAST:event_BuscarActionPerformed
+
+    private void return_back2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_return_back2ActionPerformed
+    {//GEN-HEADEREND:event_return_back2ActionPerformed
+        clearFields();
+        dialogoBuscarId_anime.dispose();
+        watchedDialog.setVisible(true);
+    }//GEN-LAST:event_return_back2ActionPerformed
+
+    private void return_backActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_return_backActionPerformed
+    {//GEN-HEADEREND:event_return_backActionPerformed
+        mostrarIdDialog.dispose();
+        dialogoBuscarId_anime.setVisible(true);
+    }//GEN-LAST:event_return_backActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Buscar;
+    private javax.swing.JButton addButton_faved;
+    private javax.swing.JButton addButton_hated;
+    private javax.swing.JLabel addTo_userTitle;
+    private javax.swing.JButton addTo_watchedList_button;
+    private javax.swing.JDialog dialogoBuscarId_anime;
+    private javax.swing.JButton displayWatched_Button;
+    private javax.swing.JButton displayWatched_Button1;
+    private javax.swing.JDialog displayWatched_dialog;
+    private javax.swing.JDialog errorDialog;
+    private javax.swing.JButton favButton;
+    private javax.swing.JDialog favDialog;
+    private javax.swing.JTextField favedId_field;
+    private javax.swing.JLabel favedTitle;
+    private javax.swing.JButton goTo_favButton;
+    private javax.swing.JButton goTo_hateButton;
+    private javax.swing.JButton hateButton;
+    private javax.swing.JDialog hateDialog;
+    private javax.swing.JTextField hatedId_field1;
+    private javax.swing.JLabel hatedTitle;
+    private javax.swing.JLabel idLabel;
+    private javax.swing.JLabel idLabel1;
+    private javax.swing.JLabel idLabel2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JDialog mostrarIdDialog;
+    private javax.swing.JLabel nombreAnimeText;
+    private javax.swing.JButton returnTo_menuFrom_userActions;
+    private javax.swing.JButton return_back;
+    private javax.swing.JButton return_back2;
+    private javax.swing.JButton searchAnime_button;
+    private javax.swing.JTextField textfieldBuscarId_Anime;
+    private javax.swing.JLabel tituloBuscarId_anime;
+    private javax.swing.JLabel tituloError;
+    private javax.swing.JLabel tituloMostrarId;
+    private javax.swing.JButton turnBack;
+    private javax.swing.JButton turnBack1;
+    private javax.swing.JButton turnBack2;
+    private javax.swing.JButton volverA_menuFrom_error;
+    private javax.swing.JButton watchedButton;
+    private javax.swing.JDialog watchedDialog;
+    private javax.swing.JTextField watchedId_field;
+    private javax.swing.JTable watchedTable;
+    private javax.swing.JLabel watchedTitle;
     // End of variables declaration//GEN-END:variables
 }
