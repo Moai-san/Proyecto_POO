@@ -12,7 +12,7 @@ import javax.swing.JFrame;
  *
  * @author moai
  */
-public class ListarFiltrados extends javax.swing.JFrame
+public class ListarFiltrados_Ventana extends javax.swing.JFrame
 {
     private final JFrame father;
     private final int option;
@@ -21,7 +21,7 @@ public class ListarFiltrados extends javax.swing.JFrame
     /**
      * Creates new form ListarFiltrados
      */
-    public ListarFiltrados(int opt, JFrame padre, CollectionManagement toUse)
+    public ListarFiltrados_Ventana(int opt, JFrame padre, CollectionManagement toUse)
     {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -189,7 +189,6 @@ public class ListarFiltrados extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setAlwaysOnTop(true);
-        setPreferredSize(new java.awt.Dimension(430, 300));
         setResizable(false);
         setSize(new java.awt.Dimension(430, 300));
 

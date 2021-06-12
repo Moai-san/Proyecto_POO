@@ -13,7 +13,7 @@ import javax.swing.JFrame;
  *
  * @author moai
  */
-public class addAnime_Window extends javax.swing.JFrame
+public class AddAnime_Window extends javax.swing.JFrame
 {
 
     final JFrame father;
@@ -22,7 +22,7 @@ public class addAnime_Window extends javax.swing.JFrame
     /**
      * Creates new form addAnime_Window
      */
-    public addAnime_Window(JFrame padre, CollectionManagement toUse)
+    public AddAnime_Window(JFrame padre, CollectionManagement toUse)
     {
         initComponents();
         llamar =toUse;
@@ -75,7 +75,7 @@ public class addAnime_Window extends javax.swing.JFrame
         returnTo_menu = new javax.swing.JButton();
         title = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setAlwaysOnTop(true);
         setResizable(false);
         setSize(new java.awt.Dimension(550, 550));

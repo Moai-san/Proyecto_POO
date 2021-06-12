@@ -12,14 +12,15 @@ import java.io.*;
  * @author maca (Macarena Troncoso)
  */
 
-public class Menu extends javax.swing.JFrame
+public class Menu_Window extends javax.swing.JFrame
 {
     private static CollectionManagement llamar = new CollectionManagement();
     private static ReportUsers userMan= new ReportUsers();
     private static ReportAnime aniMan;
     private final String username;
-    private ListarFiltrados ventanaFiltrados;
-    private addAnime_Window ventanaAdd_Anime;
+    private ListarFiltrados_Ventana ventanaFiltrados;
+    private AddAnime_Window ventanaAdd_Anime;
+    private ListarAnos_Ventana ventanaMostrarAnos;
     
     /**
      *
@@ -27,14 +28,13 @@ public class Menu extends javax.swing.JFrame
      * @throws IOException Error de I/O
      * @throws FileNotFoundException Error de archivo no encontrado
      */
-    public Menu(UsuarioAdministrador user)throws IOException, FileNotFoundException
+    public Menu_Window(UsuarioAdministrador user)throws IOException, FileNotFoundException
     {
         llamar.importCatalogue();
         llamar.importUser_data(user.getUsername());
         initComponents();
         setLocationRelativeTo(null);
         dialogoAgregar_ano.setLocationRelativeTo(null);
-        dialogoMostrar_anos.setLocationRelativeTo(null);
         outputFiltro.setLocationRelativeTo(null);
         errorDialog.setLocationRelativeTo(null);
         dialogoEliminar_anime.setLocationRelativeTo(null);
@@ -59,14 +59,13 @@ public class Menu extends javax.swing.JFrame
      * @throws IOException Error de I/O
      * @throws FileNotFoundException Error de archivo no encontrado
      */
-    public Menu(UsuarioComun user)throws IOException, FileNotFoundException
+    public Menu_Window(UsuarioComun user)throws IOException, FileNotFoundException
     {
         llamar.importCatalogue();
         llamar.importUser_data(user.getUsername());
         initComponents();
         setLocationRelativeTo(null);
         dialogoAgregar_ano.setLocationRelativeTo(null);
-        dialogoMostrar_anos.setLocationRelativeTo(null);
         outputFiltro.setLocationRelativeTo(null);
         errorDialog.setLocationRelativeTo(null);
         dialogoEliminar_anime.setLocationRelativeTo(null);
@@ -113,11 +112,6 @@ public class Menu extends javax.swing.JFrame
         toAdd_ano = new javax.swing.JTextField();
         addAno = new javax.swing.JButton();
         returnTo_menu_2 = new javax.swing.JButton();
-        dialogoMostrar_anos = new javax.swing.JDialog();
-        returnTo_menu_1 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tablaDe_anos = new javax.swing.JTable();
-        title2 = new javax.swing.JLabel();
         dialogoEliminar_anime = new javax.swing.JDialog();
         tituloEliminar_anime1 = new javax.swing.JLabel();
         idAnimeText1 = new javax.swing.JLabel();
@@ -288,88 +282,6 @@ public class Menu extends javax.swing.JFrame
                     .addComponent(addAno)
                     .addComponent(returnTo_menu_2))
                 .addGap(64, 64, 64))
-        );
-
-        dialogoMostrar_anos.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        dialogoMostrar_anos.setAlwaysOnTop(true);
-        dialogoMostrar_anos.setResizable(false);
-        dialogoMostrar_anos.setSize(new java.awt.Dimension(200, 300));
-
-        returnTo_menu_1.setText("Volver al Menu");
-        returnTo_menu_1.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                returnTo_menu_1ActionPerformed(evt);
-            }
-        });
-
-        tablaDe_anos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
-                {null}
-            },
-            new String []
-            {
-                "Año"
-            }
-        )
-        {
-            Class[] types = new Class []
-            {
-                java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean []
-            {
-                false
-            };
-
-            public Class getColumnClass(int columnIndex)
-            {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(tablaDe_anos);
-        if (tablaDe_anos.getColumnModel().getColumnCount() > 0)
-        {
-            tablaDe_anos.getColumnModel().getColumn(0).setResizable(false);
-        }
-
-        title2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        title2.setText("Lista de Años");
-
-        javax.swing.GroupLayout dialogoMostrar_anosLayout = new javax.swing.GroupLayout(dialogoMostrar_anos.getContentPane());
-        dialogoMostrar_anos.getContentPane().setLayout(dialogoMostrar_anosLayout);
-        dialogoMostrar_anosLayout.setHorizontalGroup(
-            dialogoMostrar_anosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogoMostrar_anosLayout.createSequentialGroup()
-                .addGroup(dialogoMostrar_anosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dialogoMostrar_anosLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(dialogoMostrar_anosLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(returnTo_menu_1))
-                    .addGroup(dialogoMostrar_anosLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(title2)))
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-        dialogoMostrar_anosLayout.setVerticalGroup(
-            dialogoMostrar_anosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogoMostrar_anosLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(title2)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(returnTo_menu_1)
-                .addGap(25, 25, 25))
         );
 
         dialogoEliminar_anime.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -1716,7 +1628,7 @@ public class Menu extends javax.swing.JFrame
     {//GEN-HEADEREND:event_botonAgregar_animeActionPerformed
         // TODO add your handling code here:
             this.setVisible(false);
-            ventanaAdd_Anime =new addAnime_Window(this,llamar);
+            ventanaAdd_Anime =new AddAnime_Window(this,llamar);
             ventanaAdd_Anime.setVisible(true);
     }//GEN-LAST:event_botonAgregar_animeActionPerformed
 
@@ -1757,19 +1669,11 @@ public class Menu extends javax.swing.JFrame
         dialogoAgregar_ano.setVisible(true);
     }//GEN-LAST:event_botonAgregar_anoActionPerformed
 
-    private void returnTo_menu_1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_returnTo_menu_1ActionPerformed
-    {//GEN-HEADEREND:event_returnTo_menu_1ActionPerformed
-        // TODO add your handling code here:
-        dialogoMostrar_anos.dispose();
-        clearFields();
-        this.setVisible(true);
-    }//GEN-LAST:event_returnTo_menu_1ActionPerformed
-
     private void botonBuscar_porAnoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botonBuscar_porAnoActionPerformed
     {//GEN-HEADEREND:event_botonBuscar_porAnoActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        ventanaFiltrados = new ListarFiltrados(0,this,llamar);
+        ventanaFiltrados = new ListarFiltrados_Ventana(0,this,llamar);
         ventanaFiltrados.setVisible(true);
     }//GEN-LAST:event_botonBuscar_porAnoActionPerformed
 
@@ -1791,35 +1695,8 @@ public class Menu extends javax.swing.JFrame
     {//GEN-HEADEREND:event_botonMostrar_anoActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        tablaDe_anos.setModel(new javax.swing.table.DefaultTableModel
-        (
-            llamar.getYears(),
-            new String []
-            {
-                "Año"
-            }
-        )
-        {
-            Class[] types = new Class []
-            {
-                java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean []
-            {
-                false
-            };
-
-            public Class getColumnClass(int columnIndex)
-            {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
-                return canEdit [columnIndex];
-            }
-        });
-        dialogoMostrar_anos.setVisible(true);
+        ventanaMostrarAnos = new ListarAnos_Ventana(this, llamar);
+        ventanaMostrarAnos.setVisible(true);
     }//GEN-LAST:event_botonMostrar_anoActionPerformed
 
     private void addAnoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addAnoActionPerformed
@@ -2013,7 +1890,7 @@ public class Menu extends javax.swing.JFrame
     {//GEN-FIRST:event_botonBuscar_porTipoActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        ventanaFiltrados = new ListarFiltrados(1,this,llamar);
+        ventanaFiltrados = new ListarFiltrados_Ventana(1,this,llamar);
         ventanaFiltrados.setVisible(true);
     }//GEN-LAST:event_botonBuscar_porTipoActionPerformed
 
@@ -2021,7 +1898,7 @@ public class Menu extends javax.swing.JFrame
     {//GEN-FIRST:event_botonBuscar_porGeneroActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        ventanaFiltrados = new ListarFiltrados(2,this,llamar);
+        ventanaFiltrados = new ListarFiltrados_Ventana(2,this,llamar);
         ventanaFiltrados.setVisible(true);
     }//GEN-LAST:event_botonBuscar_porGeneroActionPerformed
 
@@ -2386,7 +2263,6 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JDialog dialogoModificar_anime;
     private javax.swing.JDialog dialogoModificar_ano;
     private javax.swing.JLabel dialogoModificar_anoTitle;
-    private javax.swing.JDialog dialogoMostrar_anos;
     private javax.swing.JButton displayWatched_Button;
     private javax.swing.JButton displayWatched_Button1;
     private javax.swing.JDialog displayWatched_dialog;
@@ -2416,7 +2292,6 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JLabel idLabel2;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton modifAno;
     private javax.swing.JDialog mostrarIdDialog;
@@ -2429,7 +2304,6 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JButton returnTo_menu5;
     private javax.swing.JButton returnTo_menu8;
     private javax.swing.JButton returnTo_menuFrom_userActions;
-    private javax.swing.JButton returnTo_menu_1;
     private javax.swing.JButton returnTo_menu_2;
     private javax.swing.JButton returnTo_menu_3;
     private javax.swing.JButton returnTo_menu_4;
@@ -2437,14 +2311,12 @@ public class Menu extends javax.swing.JFrame
     private javax.swing.JButton return_back;
     private javax.swing.JButton return_back2;
     private javax.swing.JButton searchAnime_button;
-    private javax.swing.JTable tablaDe_anos;
     private javax.swing.JTable tablaFiltrados;
     private javax.swing.JTextField textfieldBuscarId_Anime;
     private javax.swing.JTextField textfieldEliminar_Anime1;
     private javax.swing.JTextField textfieldEliminar_Ano;
     private javax.swing.JTextField textfieldModificar_Anime1;
     private javax.swing.JTextField textfieldNuevo_id1;
-    private javax.swing.JLabel title2;
     private javax.swing.JLabel title2ble;
     private javax.swing.JLabel tituloAdd_ano;
     private javax.swing.JLabel tituloBuscarId_anime;

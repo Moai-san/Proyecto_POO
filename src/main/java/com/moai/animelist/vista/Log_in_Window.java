@@ -11,7 +11,7 @@ import java.io.*;
  * @author maca (Macarena Troncoso)
  */
 
-public class Log_in extends javax.swing.JFrame
+public class Log_in_Window extends javax.swing.JFrame
 {
     private static User_Management llamar =new User_Management();
     private String username;
@@ -19,7 +19,7 @@ public class Log_in extends javax.swing.JFrame
     /**
      * Creates new form Log_in
      */
-    public Log_in()
+    public Log_in_Window()
     {
         initComponents();
         setLocationRelativeTo(null);
@@ -323,14 +323,14 @@ public class Log_in extends javax.swing.JFrame
         this.setVisible(false);
         try
         {
-            Menu menu;
+            Menu_Window menu;
             if (username.equals("admin"))
             {
-                menu = new Menu(new UsuarioAdministrador("admin","admin"));
+                menu = new Menu_Window(new UsuarioAdministrador("admin","admin"));
             }
             else
             {
-                menu = new Menu(new UsuarioComun(flag,pwd));
+                menu = new Menu_Window(new UsuarioComun(flag,pwd));
             }
             menu.setVisible(true);
             dispose();
