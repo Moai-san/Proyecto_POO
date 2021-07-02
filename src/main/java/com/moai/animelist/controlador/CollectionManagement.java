@@ -5,7 +5,6 @@ import java.util.*;
 import java.io.*;
 
 /**
- *
  * @author moai-san (Leonardo Gonzalez)
  * @author nlago (Nicolás Lagos)
  * @author maca (Macarena Troncoso)
@@ -14,8 +13,9 @@ import java.io.*;
 public class CollectionManagement
 {
     //Variables de instancia
+    
     //Catalogo sin filtrar
-    private AniList catalogue =new AniList();
+    private AniList catalogue = new AniList();
     //Listas de usuario
     private AniList watched = new AniList();
     private AniList faved = new AniList();
@@ -23,7 +23,7 @@ public class CollectionManagement
     //Tops a nivel aplicacion
     private TopMap most_faved = new TopMap();
     private TopMap most_hated = new TopMap();
-    
+    //Categorias de busquedas
     private AniMap genreMap = new AniMap();
     private AniMap typeMap = new AniMap();
     private AniMap yearMap = new AniMap();
@@ -31,7 +31,7 @@ public class CollectionManagement
     //Constructor
 
     /**
-     *
+     * Constructor de la clase CollectionManagement, usada para instanciar una variable
      */
     public CollectionManagement()
     {
@@ -40,12 +40,11 @@ public class CollectionManagement
     //Metodos
     
 //<editor-fold defaultstate="collapsed" desc=" funciones para llenado de colecciones ">
-
     /**
-     *
+     * Metodo que añade un anime a las colecciones del programa
+     * 
      * @param toAdd Estructura Anime
      */
-    //Añade anime (se ira modificando segun se creen estructuras de datos nuevas, por ahora solo ingresa al catalogo
     public void addAnime(Anime toAdd)
     {
         String generos = (toAdd.getGenre());
@@ -141,11 +140,11 @@ public class CollectionManagement
     }
 
     /**
-     *
+     * Metodo que importa los animes desde una base de datos interna al catalogo
+     * 
      * @throws FileNotFoundException Error de archivo no encontrado
      * @throws IOException Error de I/O
      */
-    //importa catalogo
     public void importCatalogue() throws FileNotFoundException,IOException
     {
         CSV animeCSV =new CSV("DB"); //archivo csv
@@ -169,7 +168,8 @@ public class CollectionManagement
     }
 
     /**
-     *
+     * Metodo que importa los animes desde una base de datos externa al catalogo
+     * 
      * @param animeCSV Base de datos CSV
      * @param linea Linea del CSV
      * @throws FileNotFoundException Error de archivo no encontrado
@@ -195,7 +195,8 @@ public class CollectionManagement
     }
 
     /**
-     *
+     * Metodo que revisa si un anime existe mediante la ID
+     * 
      * @param id Id del Anime
      * @param lista Lista en la que se busca
      * @return Si existe el anime en la lista o no
@@ -216,7 +217,8 @@ public class CollectionManagement
     }
     
     /**
-     *
+     * Metodo que añade un año a la coleccion de años
+     * 
      * @param ano Año a agregar
      * @return Estado de la accion (Exito o Fracaso)
      */
@@ -237,7 +239,8 @@ public class CollectionManagement
     }
     
     /**
-     *
+     * Metodo que añade un anime a una de las listas Top
+     * 
      * @param option Lista a la que se debe agregar
      * @param toAdd Estructura Anime
      */
@@ -335,7 +338,8 @@ public class CollectionManagement
     }
     
     /**
-     *
+     * Metodo que añade un anime a una lista de Usuario
+     * 
      * @param option Lista a la que se debe agregar (Visto, Favorito, Odiado) del Usuario
      * @param toAdd Estructura Anime
      * @return Estado de la accion (Exito o Fracaso)
@@ -382,7 +386,8 @@ public class CollectionManagement
     }
     
     /**
-     *
+     * Metodo que importa desde un archivo las listas de Usuario
+     * 
      * @param username Nombre del Usuario
      * @throws FileNotFoundException Error de archivo no encontrado
      * @throws IOException Error de I/O
@@ -503,9 +508,9 @@ public class CollectionManagement
 //</editor-fold>
     
 //<editor-fold defaultstate="collapsed" desc=" Funciones de Busqueda ">
-
     /**
-     *
+     * Metodo que busca un anime en el catalogo mediante ID
+     * 
      * @param id Id del Anime
      * @return Estructura Anime
      */
@@ -526,7 +531,8 @@ public class CollectionManagement
     }
     
     /**
-     *
+     * Metodo que busca un anime en el catalogo mediante Nombre
+     * 
      * @param nombre Nombre del Anime
      * @return Estructura Anime
      */
@@ -549,13 +555,12 @@ public class CollectionManagement
     }
 
     /**
-     *
+     * Metodo que busca un anime en la lista de todos los usuarios
+     * 
      * @param option Opcion de lista
      * @param id Id del Anime
      * @return Array de 2 Objects de lista global (Cantidad de gente, Anime)
      */
-    //retorna un array de 2 object, donde la primera casilla es el numero de gente que lo tiene en su lista, y la casilla 2 es el anime,
-    //en caso de no estar en ninguna lista, retorna null
     public Object[] searchFrom_globalList(int option, int id)//buscar dentro de tops
     {
         //declaraciones
@@ -582,7 +587,8 @@ public class CollectionManagement
     }
     
     /**
-     *
+     * Metodo que rellena una tabla con todos los años dentro de la categoria de años
+     * 
      * @return Array de 2 Objects de todos los años de emision 
      */
     public Object[][] getYears()
@@ -605,7 +611,8 @@ public class CollectionManagement
     }
 
     /**
-     *
+     * Metodo que rellena una tabla con todos los animes con cierto criterio
+     * 
      * @param tabla Array de 2 Objects vacio
      * @param filtro Filtro de busqueda especifico (Tipo especifico, Año especifico, Genero especifico)
      * @param a Filtro de busqueda (Tipo, Año, Genero)
@@ -705,7 +712,8 @@ public class CollectionManagement
     }
     
     /**
-     *
+     * Metodo que rellena una tabla con todos los animes de una lista del Usuario
+     * 
      * @param tabla Array de 2 Objects vacio
      * @param option Filtro de busqueda (Visto, Favorito, Odiado)
      * @return Array de 2 Objects de todos los animes que estan en la lista
@@ -789,7 +797,8 @@ public class CollectionManagement
     }
     
     /**
-     *
+     * Metodo que rellena una tabla con todos los animes que cumplen con 2 criterios
+     * 
      * @param tabla Array de 2 Objects vacio
      * @param filtro1 Filtro de busqueda de Genero 1
      * @param filtro2 Filtro de busqueda de Genero 2
@@ -841,12 +850,48 @@ public class CollectionManagement
         }
         return tabla;
     }
+    
+    /**
+     * Metodo que rellena una tabla con todos los animes del catalogo
+     * 
+     * @param tabla Array de 2 Objects vacio
+     * @return Array de 2 Objects de todos los animes del catalogo
+     */
+    public Object[][] mostrarAnimes (Object tabla[][])
+    {
+        int j = 0;
+        TreeMap<Integer, Anime> sorteo = new TreeMap<Integer, Anime>();
+        tabla = new Object[catalogue.size()][9];
+        
+        for(int i = 0; i < catalogue.size(); i++) 
+        {
+            Anime anime = catalogue.get(i);
+            sorteo.put(anime.getMal_id(), anime);
+        }
+        
+        for(Map.Entry<Integer, Anime> entry : sorteo.entrySet()) 
+        {
+            Anime anime = entry.getValue();
+            tabla [j][0]=anime.getMal_id();
+            tabla [j][1]=anime.getName();
+            tabla [j][2]=anime.getType();
+            tabla [j][3]=anime.getEpisodes();
+            tabla [j][4]=anime.getDuration();
+            tabla [j][5]=anime.getRating();
+            tabla [j][6]=anime.getYear();
+            tabla [j][7]=anime.getStudio();
+            tabla [j][8]=anime.getGenre();
+            j++;
+        }
+
+        return tabla;
+    }
 //</editor-fold>
     
 //<editor-fold defaultstate="collapsed" desc=" Funciones de eliminacion ">
-
     /**
-     *
+     * Metodo que transforma una variable String a int y llama al metodo de eliminacion en colecciones
+     * 
      * @param stringID Id del Anime en tipo String
      * @return Estado de la accion (Exito o Fracaso)
      */
@@ -857,7 +902,8 @@ public class CollectionManagement
     }
     
     /**
-     *
+     * Metodo que elimina un anime de todas las colecciones existentes
+     * 
      * @param id Id del Anime
      * @return Estado de la accion (Exito o Fracaso)
      */
@@ -898,7 +944,8 @@ public class CollectionManagement
     }
     
     /**
-     *
+     * Metodo que elimina un año y llama al metodo de eliminacion en colecciones
+     * 
      * @param ano Año de emision
      * @return Estado de la accion (Exito o Fracaso)
      */
@@ -933,9 +980,9 @@ public class CollectionManagement
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" Funciones de modificacion ">
-
     /**
-     *
+     * Metodo que modifica un año y sus animes reemplazandolo con otro año
+     * 
      * @param viejo Año actual (modificar)
      * @param nuevo Nuevo Año
      * @return Estado de la accion (Exito o Fracaso)
@@ -973,7 +1020,8 @@ public class CollectionManagement
     }
     
     /**
-     *
+     * Metodo que modifica la ID de un anime reemplazandola con otra ID
+     * 
      * @param stringAnimeID Id del Anime (modificar)
      * @param stringNuevoID Nuevo Id del Anime
      * @return Estado de la accion (Exito o Fracaso)
@@ -1005,25 +1053,44 @@ public class CollectionManagement
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" Getters ">
+    /**
+     * Metodo getter que obtiene la LinkedList de catalogo
+     * 
+     * @return Retorna la lista catalogo de Animes
+     */
     public AniList getCatalogue()
     {
         return catalogue;
     }
     
+    /**
+     * Metodo getter que obtiene la LinkedList de Vistos
+     * 
+     * @return Retorna la lista de Vistos del Usuario
+     */
     public AniList getWatched()
     {
         return watched;
     }
 
+    /**
+     * Metodo getter que obtiene la LinkedList de Favoritos
+     * 
+     * @return Retorna la lista de Favoritos del Usuario
+     */
     public AniList getFaved()
     {
         return faved;
     }
 
+    /**
+     * Metodo getter que obtiene la LinkedList de Odiados
+     * 
+     * @return Retorna la lista de Odiados del Usuario
+     */
     public AniList getHated()
     {
         return hated;
     }
 //</editor-fold>
-
 }

@@ -4,7 +4,6 @@ import com.moai.animelist.modelo.*;
 import java.io.*;
 
 /**
- *
  * @author moai-san (Leonardo Gonzalez)
  * @author nlago (Nicolás Lagos)
  * @author maca (Macarena Troncoso)
@@ -13,12 +12,12 @@ import java.io.*;
 public class User_Management
 {
     /**
-     *
+     * Metodo de creacion de Usuario
+     * 
      * @param username Nombre de Usuario
      * @param password Contraseña de Usuario
      * @return Nombre de Usuario creado
      */
-    // Creacion de usuario
     public String sign_up(String username, String password)
     {
         if((username==null)||(username.equals("")))
@@ -63,13 +62,13 @@ public class User_Management
     }
 
     /**
-     *
+     * Metodo de inicio de sesion
+     * 
      * @param username Nombre de Usuario
      * @param password Contraseña de Usuario
      * @return Nombre de Usuario logueado
      * @throws IOException Error de I/O
      */
-    // Inicio de sesion
     public String log_me(String username, String password) throws IOException
     {
         if(username.equals("admin"))

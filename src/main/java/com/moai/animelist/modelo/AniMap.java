@@ -3,18 +3,18 @@ package com.moai.animelist.modelo;
 import java.util.*;
 
 /**
- * 
  * @author moai-san (Leonardo Gonzalez)
  * @author nlago (Nicolás Lagos)
  * @author maca (Macarena Troncoso)
  */
+
 @SuppressWarnings("unchecked")
 public class AniMap
 {
     private HashMap<Object, TreeMap<Integer, Anime>> Map;
     
     /**
-     *
+     * Constructor de la clase AniMap, usada para instanciar una variable
      */
     public AniMap()
     {
@@ -22,7 +22,8 @@ public class AniMap
     }
     
     /**
-     *
+     * Metodo que añade un treemap de anime al AniMap
+     * 
      * @param datoAnime Llave de los datos a ingresar
      * @param arbol Treemap con los datos a ingresar
      * @return Resultado de la accion (Exito o Fracaso)
@@ -33,7 +34,8 @@ public class AniMap
     }
     
     /**
-     *
+     * Metodo que obtiene un anime del AniMap
+     * 
      * @param datoAnime Llave del dato a buscar
      * @return Los datos que pertenecen a la llave
      */
@@ -43,7 +45,8 @@ public class AniMap
     }
     
     /**
-     *
+     * Metodo que verifica el tamaño del AniMap
+     * 
      * @return El tamaño del mapa (pares de llaves-datos que hay)
      */
     public int size()
@@ -52,7 +55,8 @@ public class AniMap
     }
     
     /**
-     *
+     * Metodo que entrega los valores de llave-datos del AniMap
+     * 
      * @return Los valores de llave-datos que hay en el mapa
      */
     public Set<Map.Entry<Object, TreeMap<Integer, Anime>>> entrySet()
@@ -61,7 +65,8 @@ public class AniMap
     }
     
     /**
-     *
+     * Metodo que elimina un anime del AniMap
+     * 
      * @param dato Llave del mapa a eliminar
      * @return El treemap con el dato eliminado
      */

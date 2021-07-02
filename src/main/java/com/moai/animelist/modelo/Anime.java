@@ -1,11 +1,9 @@
 package com.moai.animelist.modelo;
 
 /**
- * 
  * @author moai-san (Leonardo Gonzalez)
  * @author nlago (Nicolás Lagos)
  * @author maca (Macarena Troncoso)
- * 
  */
 
 public class Anime
@@ -25,7 +23,8 @@ public class Anime
     //Getters
 
     /**
-     *
+     * Metodo getter que obtiene la ID de un anime
+     * 
      * @return Id del anime
      */
     public int getMal_id()
@@ -34,7 +33,8 @@ public class Anime
     }
 
     /**
-     *
+     * Metodo getter que obtiene el Nombre de un anime
+     * 
      * @return Nombre del anime
      */
     public String getName()
@@ -43,7 +43,8 @@ public class Anime
     }
 
     /**
-     *
+     * Metodo getter que obtiene el Tipo de un anime
+     * 
      * @return Tipo de anime
      */
     public String getType()
@@ -52,7 +53,8 @@ public class Anime
     }
 
     /**
-     *
+     * Metodo getter que obtiene los Episodios de un anime
+     * 
      * @return Episodios del anime
      */
     public int getEpisodes()
@@ -61,7 +63,8 @@ public class Anime
     }
 
     /**
-     *
+     * Metodo getter que obtiene la Duracion de un anime
+     * 
      * @return Duracion de capitulos
      */
     public String getDuration()
@@ -70,7 +73,8 @@ public class Anime
     }
 
     /**
-     *
+     * Metodo getter que obtiene el Rating de un anime
+     * 
      * @return Rating del anime
      */
     public String getRating()
@@ -79,7 +83,8 @@ public class Anime
     }
 
     /**
-     *
+     * Metodo getter que obtiene el Año de un anime
+     * 
      * @return Año de emision
      */
     public int getYear()
@@ -88,7 +93,8 @@ public class Anime
     }
 
     /**
-     *
+     * Metodo getter que obtiene el Estudio de un anime
+     * 
      * @return Estudio(s) de animacion
      */
     public String getStudio()
@@ -97,7 +103,8 @@ public class Anime
     }
 
     /**
-     *
+     * Metodo getter que obtiene el Genero de un anime
+     * 
      * @return Genero(s) del anime
      */
     public String getGenre()
@@ -108,7 +115,8 @@ public class Anime
     //Setters
 
     /**
-     *
+     * Metodo setter que ingresa la ID de un anime
+     * 
      * @param mal_id Id del anime
      */
     public void setMal_id(int mal_id)
@@ -117,7 +125,8 @@ public class Anime
     }
 
     /**
-     *
+     * Metodo setter que ingresa el Nombre de un anime
+     * 
      * @param name Nombre del anime
      */
     public void setName(String name)
@@ -126,7 +135,8 @@ public class Anime
     }
 
     /**
-     *
+     * Metodo setter que ingresa el Tipo de un anime
+     * 
      * @param type Tipo de anime
      */
     public void setType(String type)
@@ -135,7 +145,8 @@ public class Anime
     }
 
     /**
-     *
+     * Metodo setter que ingresa los Episodios de un anime
+     * 
      * @param episodes Episodios del anime
      */
     public void setEpisodes(int episodes)
@@ -144,7 +155,8 @@ public class Anime
     }
 
     /**
-     *
+     * Metodo setter que ingresa la Duracion de un anime
+     * 
      * @param duration Duracion de capitulos
      */
     public void setDuration(String duration)
@@ -153,7 +165,8 @@ public class Anime
     }
 
     /**
-     *
+     * Metodo setter que ingresa el Rating de un anime
+     * 
      * @param rating Rating del anime
      */
     public void setRating(String rating)
@@ -162,7 +175,8 @@ public class Anime
     }
 
     /**
-     *
+     * Metodo setter que ingresa el Año de un anime
+     * 
      * @param year Año de emision
      */
     public void setYear(int year)
@@ -171,7 +185,8 @@ public class Anime
     }
 
     /**
-     *
+     * Metodo setter que ingresa el Estudio de un anime
+     * 
      * @param studio Estudio(s) de animacion
      */
     public void setStudio(String studio)
@@ -180,7 +195,8 @@ public class Anime
     }
 
     /**
-     *
+     * Metodo setter que ingresa el Genero de un anime
+     * 
      * @param genre Genero(s) del anime
      */
     public void setGenre(String genre)
@@ -191,7 +207,8 @@ public class Anime
     //Constructor
 
     /**
-     *
+     * Constructor de la clase Anime, usada para instanciar una variable usando una base de datos
+     * 
      * @param animeList Archivo de base de datos CSV 
      * @param linea Linea del CSV
      */
@@ -210,7 +227,8 @@ public class Anime
     }
     
     /**
-     *
+     * Constructor de la clase Anime, usada para instanciar una variable usando variables
+     * 
      * @param mal_id Id del anime
      * @param name Nombre del anime
      * @param type Tipo de anime
@@ -235,7 +253,8 @@ public class Anime
     }
 
     /**
-     *
+     * Constructor de la clase Anime, usada para instanciar una variable usando una Estructura Anime
+     * 
      * @param toCopy Estructura Anime
      */
     public Anime(Anime toCopy)

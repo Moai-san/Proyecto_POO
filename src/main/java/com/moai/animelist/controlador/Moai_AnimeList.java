@@ -1,10 +1,9 @@
-package com.moai.animelist;
+package com.moai.animelist.controlador;
 
 import com.moai.animelist.vista.*;
 import java.io.*;
 
 /**
- *
  * @author moai-san (Leonardo Gonzalez)
  * @author nlago (Nicolás Lagos)
  * @author maca (Macarena Troncoso)
@@ -13,7 +12,8 @@ import java.io.*;
 public class Moai_AnimeList
 {
     /**
-     *
+     * Metodo principal del programa
+     * 
      * @param args[] Argumentos de entrada del main
      * @throws FileNotFoundException Error de archivo no encontrado
      * @throws IOException Error de I/O
@@ -47,6 +47,7 @@ public class Moai_AnimeList
             java.util.logging.Logger.getLogger(Ventana_EliminarAno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             java.util.logging.Logger.getLogger(Ventana_ModificarAnime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             java.util.logging.Logger.getLogger(Ventana_ModificarAno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaMostrarAnimes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
             java.util.logging.Logger.getLogger(Menu_Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -61,6 +62,7 @@ public class Moai_AnimeList
             java.util.logging.Logger.getLogger(Ventana_EliminarAno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             java.util.logging.Logger.getLogger(Ventana_ModificarAnime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             java.util.logging.Logger.getLogger(Ventana_ModificarAno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaMostrarAnimes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
             java.util.logging.Logger.getLogger(Menu_Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -75,6 +77,7 @@ public class Moai_AnimeList
             java.util.logging.Logger.getLogger(Ventana_EliminarAno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             java.util.logging.Logger.getLogger(Ventana_ModificarAnime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             java.util.logging.Logger.getLogger(Ventana_ModificarAno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaMostrarAnimes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
             java.util.logging.Logger.getLogger(Menu_Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -89,6 +92,7 @@ public class Moai_AnimeList
             java.util.logging.Logger.getLogger(Ventana_EliminarAno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             java.util.logging.Logger.getLogger(Ventana_ModificarAnime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             java.util.logging.Logger.getLogger(Ventana_ModificarAno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaMostrarAnimes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         Log_in_Window login =new Log_in_Window();
