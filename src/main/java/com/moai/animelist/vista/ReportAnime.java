@@ -1,29 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.moai.animelist.vista;
 
-import com.moai.animelist.controlador.GeneraArchivos;
+import org.apache.poi.xssf.usermodel.*;
 import com.moai.animelist.modelo.*;
 import java.io.*;
-import org.apache.poi.xssf.usermodel.*;
 
 /**
- *
- * @author moai
+ * @author moai-san (Leonardo Gonzalez)
+ * @author nlago (Nicolás Lagos)
+ * @author maca (Macarena Troncoso)
  */
-public class ReportAnime implements GeneraArchivos
+
+public class ReportAnime implements GeneraArchivosStrategy
 {
     private AniList catalogue;
 
+    /**
+     * Constructor de la clase ReportAnime, usada para instanciar una AniList
+     * 
+     * @param list_toUse Variable AniList
+     */
     public ReportAnime(AniList list_toUse)
     {
         this.catalogue = new AniList(list_toUse);
     }
+    
     /**
-     *
+     * Metodo que exporta el catalogo de animes a archivo Excel
+     * 
      * @throws IOException Error de I/O
      */
     @Override
@@ -106,7 +109,8 @@ public class ReportAnime implements GeneraArchivos
     }
     
     /**
-     *
+     * Metodo que escribe un anime a archivo CSV
+     * 
      * @param animu Estructura Anime
      * @param line Linea de escritura de Archivo
      * @throws IOException Error de I/O
@@ -178,7 +182,8 @@ public class ReportAnime implements GeneraArchivos
     }
     
     /**
-     *
+     * Metodo que exporta el catalogo de animes a archivo CSV
+     * 
      * @throws IOException Error de I/O
      */
     @Override

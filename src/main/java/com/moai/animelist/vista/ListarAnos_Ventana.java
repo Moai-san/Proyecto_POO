@@ -2,18 +2,23 @@ package com.moai.animelist.vista;
 
 import com.moai.animelist.controlador.*;
 import javax.swing.JFrame;
+
 /**
- *
- * @author nlago
+ * @author moai-san (Leonardo Gonzalez)
+ * @author nlago (Nicolás Lagos)
+ * @author maca (Macarena Troncoso)
  */
 
 public class ListarAnos_Ventana extends javax.swing.JFrame 
 {
-    final JFrame father;
+    private final JFrame father;
     private final CollectionManagement llamar;
         
     /**
      * Creates new form ListarAnos
+     * 
+     * @param padre Menu principal
+     * @param funcion Variable de clase CollectionManagement
      */
     public ListarAnos_Ventana(JFrame padre, CollectionManagement funcion)
     {

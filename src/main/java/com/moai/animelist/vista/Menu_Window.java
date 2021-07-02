@@ -1,12 +1,10 @@
 package com.moai.animelist.vista;
 
-//import block
 import com.moai.animelist.controlador.*;
 import com.moai.animelist.modelo.*;
 import java.io.*;
 
 /**
- *
  * @author moai-san (Leonardo Gonzalez)
  * @author nlago (Nicolás Lagos)
  * @author maca (Macarena Troncoso)
@@ -15,8 +13,7 @@ import java.io.*;
 public class Menu_Window extends javax.swing.JFrame
 {
     private static CollectionManagement llamar = new CollectionManagement();
-    private static ReportUsers userMan= new ReportUsers();
-    private static ReportAnime aniMan;
+    private static GeneraArchivosStrategy estrategiaReportes;
     private final String username;
     private ListarFiltrados_Ventana ventanaFiltrados;
     private AddAnime_Window ventanaAdd_Anime;
@@ -28,9 +25,11 @@ public class Menu_Window extends javax.swing.JFrame
     private Ventana_EliminarAno dialogoEliminar_ano;
     private Ventana_ModificarAnime dialogoModificar_anime;
     private Ventana_ModificarAno dialogoModificar_ano;
+    private VentanaMostrarAnimes dialogoMostrarAnimes;
     
     /**
-     *
+     * Constructor de la clase Menu_Window, usada para instanciar un UsuarioAdministrador
+     * 
      * @param user Administrador
      * @throws IOException Error de I/O
      * @throws FileNotFoundException Error de archivo no encontrado
@@ -49,7 +48,8 @@ public class Menu_Window extends javax.swing.JFrame
     }
     
     /**
-     *
+     * Constructor de la clase Menu_Window, usada para instanciar un UsuarioComun
+     * 
      * @param user Usuario comun
      * @throws IOException Error de I/O
      * @throws FileNotFoundException Error de archivo no encontrado
@@ -84,8 +84,7 @@ public class Menu_Window extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         errorDialog = new javax.swing.JDialog();
         volverA_menuFrom_error = new javax.swing.JButton();
@@ -110,6 +109,7 @@ public class Menu_Window extends javax.swing.JFrame
         botonFiltrado_2Generos = new javax.swing.JButton();
         usersExcel_button = new javax.swing.JButton();
         usersCSV_button = new javax.swing.JButton();
+        botonMostrar_anime = new javax.swing.JButton();
 
         errorDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         errorDialog.setAlwaysOnTop(true);
@@ -117,10 +117,8 @@ public class Menu_Window extends javax.swing.JFrame
         errorDialog.setSize(new java.awt.Dimension(400, 210));
 
         volverA_menuFrom_error.setText("Volver al Menu");
-        volverA_menuFrom_error.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        volverA_menuFrom_error.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverA_menuFrom_errorActionPerformed(evt);
             }
         });
@@ -161,10 +159,8 @@ public class Menu_Window extends javax.swing.JFrame
         tituloOk.setText("ACCION COMPLETADA!!");
 
         returnTo_menu5.setText("Volver al Menu");
-        returnTo_menu5.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        returnTo_menu5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 returnTo_menu5ActionPerformed(evt);
             }
         });
@@ -203,10 +199,8 @@ public class Menu_Window extends javax.swing.JFrame
         botonAgregar_anime.setMaximumSize(new java.awt.Dimension(200, 22));
         botonAgregar_anime.setMinimumSize(new java.awt.Dimension(200, 22));
         botonAgregar_anime.setPreferredSize(new java.awt.Dimension(200, 22));
-        botonAgregar_anime.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        botonAgregar_anime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAgregar_animeActionPerformed(evt);
             }
         });
@@ -215,10 +209,8 @@ public class Menu_Window extends javax.swing.JFrame
         botonAgregar_ano.setMaximumSize(new java.awt.Dimension(200, 22));
         botonAgregar_ano.setMinimumSize(new java.awt.Dimension(200, 22));
         botonAgregar_ano.setPreferredSize(new java.awt.Dimension(200, 22));
-        botonAgregar_ano.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        botonAgregar_ano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAgregar_anoActionPerformed(evt);
             }
         });
@@ -227,10 +219,8 @@ public class Menu_Window extends javax.swing.JFrame
         botonMostrar_ano.setMaximumSize(new java.awt.Dimension(200, 22));
         botonMostrar_ano.setMinimumSize(new java.awt.Dimension(200, 22));
         botonMostrar_ano.setPreferredSize(new java.awt.Dimension(200, 22));
-        botonMostrar_ano.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        botonMostrar_ano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonMostrar_anoActionPerformed(evt);
             }
         });
@@ -239,10 +229,8 @@ public class Menu_Window extends javax.swing.JFrame
         botonBuscar_porAno.setMaximumSize(new java.awt.Dimension(200, 22));
         botonBuscar_porAno.setMinimumSize(new java.awt.Dimension(200, 22));
         botonBuscar_porAno.setPreferredSize(new java.awt.Dimension(200, 22));
-        botonBuscar_porAno.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        botonBuscar_porAno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBuscar_porAnoActionPerformed(evt);
             }
         });
@@ -251,10 +239,8 @@ public class Menu_Window extends javax.swing.JFrame
         botonBuscar_porTipo.setMaximumSize(new java.awt.Dimension(200, 22));
         botonBuscar_porTipo.setMinimumSize(new java.awt.Dimension(200, 22));
         botonBuscar_porTipo.setPreferredSize(new java.awt.Dimension(200, 22));
-        botonBuscar_porTipo.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        botonBuscar_porTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBuscar_porTipoActionPerformed(evt);
             }
         });
@@ -263,10 +249,8 @@ public class Menu_Window extends javax.swing.JFrame
         botonBuscar_porGenero.setMaximumSize(new java.awt.Dimension(200, 22));
         botonBuscar_porGenero.setMinimumSize(new java.awt.Dimension(200, 22));
         botonBuscar_porGenero.setPreferredSize(new java.awt.Dimension(200, 22));
-        botonBuscar_porGenero.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        botonBuscar_porGenero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBuscar_porGeneroActionPerformed(evt);
             }
         });
@@ -275,10 +259,8 @@ public class Menu_Window extends javax.swing.JFrame
         botonEliminar_anime1.setMaximumSize(new java.awt.Dimension(200, 22));
         botonEliminar_anime1.setMinimumSize(new java.awt.Dimension(200, 22));
         botonEliminar_anime1.setPreferredSize(new java.awt.Dimension(200, 22));
-        botonEliminar_anime1.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        botonEliminar_anime1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEliminar_anime1ActionPerformed(evt);
             }
         });
@@ -287,10 +269,8 @@ public class Menu_Window extends javax.swing.JFrame
         botonEliminar_ano.setMaximumSize(new java.awt.Dimension(200, 22));
         botonEliminar_ano.setMinimumSize(new java.awt.Dimension(200, 22));
         botonEliminar_ano.setPreferredSize(new java.awt.Dimension(200, 22));
-        botonEliminar_ano.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        botonEliminar_ano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEliminar_anoActionPerformed(evt);
             }
         });
@@ -299,10 +279,8 @@ public class Menu_Window extends javax.swing.JFrame
         botonModificar_anime1.setMaximumSize(new java.awt.Dimension(200, 22));
         botonModificar_anime1.setMinimumSize(new java.awt.Dimension(200, 22));
         botonModificar_anime1.setPreferredSize(new java.awt.Dimension(200, 22));
-        botonModificar_anime1.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        botonModificar_anime1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonModificar_anime1ActionPerformed(evt);
             }
         });
@@ -311,10 +289,8 @@ public class Menu_Window extends javax.swing.JFrame
         botonModificar_ano.setMaximumSize(new java.awt.Dimension(200, 22));
         botonModificar_ano.setMinimumSize(new java.awt.Dimension(200, 22));
         botonModificar_ano.setPreferredSize(new java.awt.Dimension(200, 22));
-        botonModificar_ano.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        botonModificar_ano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonModificar_anoActionPerformed(evt);
             }
         });
@@ -323,10 +299,8 @@ public class Menu_Window extends javax.swing.JFrame
         botonCrear_CSV.setMaximumSize(new java.awt.Dimension(200, 22));
         botonCrear_CSV.setMinimumSize(new java.awt.Dimension(200, 22));
         botonCrear_CSV.setPreferredSize(new java.awt.Dimension(200, 22));
-        botonCrear_CSV.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        botonCrear_CSV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonCrear_CSVActionPerformed(evt);
             }
         });
@@ -335,10 +309,8 @@ public class Menu_Window extends javax.swing.JFrame
         botonCrear_Excel.setMaximumSize(new java.awt.Dimension(200, 22));
         botonCrear_Excel.setMinimumSize(new java.awt.Dimension(200, 22));
         botonCrear_Excel.setPreferredSize(new java.awt.Dimension(200, 22));
-        botonCrear_Excel.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        botonCrear_Excel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonCrear_ExcelActionPerformed(evt);
             }
         });
@@ -347,47 +319,47 @@ public class Menu_Window extends javax.swing.JFrame
         closeBoton.setMaximumSize(new java.awt.Dimension(200, 22));
         closeBoton.setMinimumSize(new java.awt.Dimension(200, 22));
         closeBoton.setPreferredSize(new java.awt.Dimension(200, 22));
-        closeBoton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        closeBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeBotonActionPerformed(evt);
             }
         });
 
         addTo_listButton.setText("Añadir anime a una de mis listas");
-        addTo_listButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        addTo_listButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addTo_listButtonActionPerformed(evt);
             }
         });
 
         botonFiltrado_2Generos.setText("Filtrar Animes de 2 generos");
-        botonFiltrado_2Generos.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        botonFiltrado_2Generos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonFiltrado_2GenerosActionPerformed(evt);
             }
         });
 
         usersExcel_button.setText("Exportar Listado Usuarios a Archivo Excel");
-        usersExcel_button.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        usersExcel_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usersExcel_buttonActionPerformed(evt);
             }
         });
 
         usersCSV_button.setText("Exportar Listado Usuarios a Archivo CSV");
-        usersCSV_button.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        usersCSV_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usersCSV_buttonActionPerformed(evt);
+            }
+        });
+
+        botonMostrar_anime.setText("Mostrar Animes");
+        botonMostrar_anime.setMaximumSize(new java.awt.Dimension(200, 22));
+        botonMostrar_anime.setMinimumSize(new java.awt.Dimension(200, 22));
+        botonMostrar_anime.setPreferredSize(new java.awt.Dimension(200, 22));
+        botonMostrar_anime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonMostrar_animeActionPerformed(evt);
             }
         });
 
@@ -418,7 +390,8 @@ public class Menu_Window extends javax.swing.JFrame
                                     .addComponent(botonBuscar_porAno, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(botonMostrar_ano, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(botonAgregar_ano, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(botonAgregar_anime, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(botonAgregar_anime, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonMostrar_anime, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(96, 96, 96))
         );
         layout.setVerticalGroup(
@@ -426,6 +399,8 @@ public class Menu_Window extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(botonMostrar_ano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(botonMostrar_anime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botonBuscar_porAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -456,9 +431,9 @@ public class Menu_Window extends javax.swing.JFrame
                 .addComponent(usersCSV_button)
                 .addGap(18, 18, 18)
                 .addComponent(usersExcel_button)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
                 .addComponent(closeBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
@@ -536,8 +511,8 @@ public class Menu_Window extends javax.swing.JFrame
         try
         {
             this.setVisible(false);
-            aniMan = new ReportAnime(llamar.getCatalogue());
-            aniMan.crearArchivoCSV();
+            estrategiaReportes = new ReportAnime(llamar.getCatalogue());
+            estrategiaReportes.crearArchivoCSV();
             okDialog.setVisible(true);
         }
         catch(IOException e)
@@ -553,8 +528,8 @@ public class Menu_Window extends javax.swing.JFrame
         try
         {
             this.setVisible(false);
-            aniMan = new ReportAnime(llamar.getCatalogue());
-            aniMan.crearArchivoExcel();
+            estrategiaReportes = new ReportAnime(llamar.getCatalogue());
+            estrategiaReportes.crearArchivoExcel();
             okDialog.setVisible(true);
         }
         catch(IOException e)
@@ -624,7 +599,8 @@ public class Menu_Window extends javax.swing.JFrame
         this.setVisible(false);
         try
         {
-            userMan.crearArchivoCSV();
+            estrategiaReportes =new ReportUsers();
+            estrategiaReportes.crearArchivoCSV();
             okDialog.setVisible(true);
             return;
         }
@@ -641,7 +617,8 @@ public class Menu_Window extends javax.swing.JFrame
         this.setVisible(false);
         try
         {
-            userMan.crearArchivoExcel();
+            estrategiaReportes =new ReportUsers();
+            estrategiaReportes.crearArchivoExcel();
             okDialog.setVisible(true);
             return;
         }
@@ -651,6 +628,13 @@ public class Menu_Window extends javax.swing.JFrame
             return;
         }
     }//GEN-LAST:event_usersExcel_buttonActionPerformed
+
+    private void botonMostrar_animeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrar_animeActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        dialogoMostrarAnimes = new VentanaMostrarAnimes(this, llamar);
+        dialogoMostrarAnimes.setVisible(true);
+    }//GEN-LAST:event_botonMostrar_animeActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addTo_listButton;
@@ -666,6 +650,7 @@ public class Menu_Window extends javax.swing.JFrame
     private javax.swing.JButton botonFiltrado_2Generos;
     private javax.swing.JButton botonModificar_anime1;
     private javax.swing.JButton botonModificar_ano;
+    private javax.swing.JButton botonMostrar_anime;
     private javax.swing.JButton botonMostrar_ano;
     private javax.swing.JButton closeBoton;
     private javax.swing.JDialog errorDialog;

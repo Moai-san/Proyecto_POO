@@ -1,33 +1,30 @@
 package com.moai.animelist.vista;
 
-
-import com.moai.animelist.controlador.GeneraArchivos;
-import com.moai.animelist.modelo.*;
-import java.io.*;
-import java.util.LinkedList;
 import org.apache.poi.xssf.usermodel.*;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import com.moai.animelist.modelo.*;
+import java.util.LinkedList;
+import java.io.*;
 
 /**
- *
- * @author moai
+ * @author moai-san (Leonardo Gonzalez)
+ * @author nlago (Nicolás Lagos)
+ * @author maca (Macarena Troncoso)
  */
-public class ReportUsers implements GeneraArchivos
+
+public class ReportUsers implements GeneraArchivosStrategy
 {
     private LinkedList<Usuario> usuarios =new LinkedList<Usuario>();
 
+    /**
+     * Constructor de la clase ReportUsers, usada para instanciar una variable
+     */
     public ReportUsers()
     {
-    
     }
     
     /**
-     *
+     * Metodo que exporta la lista de los usuarios a archivo Excel
+     * 
      * @throws IOException Error de I/O
      */
     @Override
@@ -55,7 +52,7 @@ public class ReportUsers implements GeneraArchivos
     }
     
     /**
-     *
+     * Metodo que llena la lista de usuarios
      */
     public void llenarLista_usuarios()
     {
@@ -70,7 +67,8 @@ public class ReportUsers implements GeneraArchivos
     }
     
     /**
-     *
+     * Metodo que exporta la lista de los usuarios a archivo CSV
+     * 
      * @throws IOException Error de I/O
      */
     @Override

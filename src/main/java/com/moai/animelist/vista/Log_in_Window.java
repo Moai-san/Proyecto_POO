@@ -5,7 +5,6 @@ import com.moai.animelist.modelo.*;
 import java.io.*;
 
 /**
- *
  * @author moai-san (Leonardo Gonzalez)
  * @author nlago (Nicolás Lagos)
  * @author maca (Macarena Troncoso)

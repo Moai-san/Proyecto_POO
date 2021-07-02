@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.moai.animelist.vista;
 
 import com.moai.animelist.modelo.Anime;
@@ -10,17 +5,21 @@ import com.moai.animelist.controlador.CollectionManagement;
 import javax.swing.JFrame;
 
 /**
- *
- * @author moai
+ * @author moai-san (Leonardo Gonzalez)
+ * @author nlago (Nicolás Lagos)
+ * @author maca (Macarena Troncoso)
  */
+
 public class AddAnime_Window extends javax.swing.JFrame implements Interface_LimpiezaVentanas
 {
-
     private final JFrame father;
     private final CollectionManagement llamar;
     
     /**
      * Creates new form addAnime_Window
+     * 
+     * @param padre Menu principal
+     * @param toUse Variable de clase CollectionManagement
      */
     public AddAnime_Window(JFrame padre, CollectionManagement toUse)
     {
@@ -30,6 +29,9 @@ public class AddAnime_Window extends javax.swing.JFrame implements Interface_Lim
         this.setLocationRelativeTo(null);
     }
 
+    /**
+     * Metodo que limpia el campo de entrada de datos
+     */
     @Override
     public void clearFields()
     {

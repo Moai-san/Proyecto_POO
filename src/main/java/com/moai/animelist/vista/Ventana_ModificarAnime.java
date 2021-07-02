@@ -1,23 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.moai.animelist.vista;
 
 import com.moai.animelist.controlador.CollectionManagement;
 import javax.swing.JFrame;
 
 /**
- *
- * @author moai
+ * @author moai-san (Leonardo Gonzalez)
+ * @author nlago (Nicolás Lagos)
+ * @author maca (Macarena Troncoso)
  */
+
 public class Ventana_ModificarAnime extends javax.swing.JFrame implements Interface_LimpiezaVentanas
 {
     private final JFrame father;
     private final CollectionManagement llamar;
+    
     /**
      * Creates new form Ventana_ModificarAnime
+     * 
+     * @param padre Menu principal
+     * @param toUse Variable de clase CollectionManagement
      */
     public Ventana_ModificarAnime(JFrame padre, CollectionManagement toUse)
     {

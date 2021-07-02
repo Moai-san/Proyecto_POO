@@ -1,23 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.moai.animelist.vista;
 
 import com.moai.animelist.modelo.*;
 import java.io.*;
 
 /**
- *
- * @author moai
+ * @author moai-san (Leonardo Gonzalez)
+ * @author nlago (Nicolás Lagos)
+ * @author maca (Macarena Troncoso)
  */
+
 public class ExportData
 {
     private AniList watched;
     private AniList faved;
     private AniList hated;
     
+    /**
+     * Constructor de la clase ExportData, usada para instanciar una variable
+     * 
+     * @param watchedTo_use Variable AniList
+     * @param favTo_use Variable AniList
+     * @param hateTo_use Variable AniList
+     */
     public ExportData(AniList watchedTo_use,AniList favTo_use,AniList hateTo_use)
     {
         this.watched = new AniList(watchedTo_use);
@@ -26,7 +30,8 @@ public class ExportData
     }
         
     /**
-     *
+     * Metodo que verifica si existe la carpeta
+     * 
      * @param dir Nombre de carpeta
      */
     public void assertFolder_andCreate_ifFalse(String dir)
@@ -39,7 +44,8 @@ public class ExportData
     }
     
     /**
-     *
+     * Metodo que exporta un anime a archivo CSV
+     * 
      * @param animu Estructura Anime
      * @param line Linea de escritura de Archivo
      * @throws IOException Error de I/O
@@ -110,14 +116,12 @@ public class ExportData
         }
     }
     
-    
     /**
-     *
+     * Metodo que exporta los datos y listas del Usuario para tener persistencia
+     * 
      * @param username Nombre de Usuario
      * @throws IOException Error de I/O
      */
-    //modificacion datos usuario para persistencia
-    //exportar listas del usuario (para no perder los datos despues de ejecutar)
     public void export_userData(String username) throws IOException
     {
         FileWriter output;

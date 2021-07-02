@@ -1,15 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.moai.animelist.vista;
 
 /**
- *
- * @author moai
+ * @author moai-san (Leonardo Gonzalez)
+ * @author nlago (Nicolás Lagos)
+ * @author maca (Macarena Troncoso)
  */
+
 public interface Interface_LimpiezaVentanas
 {
+    /**
+     * Metodo de limpieza de campo de entrada
+     */
     public void clearFields();
 }
