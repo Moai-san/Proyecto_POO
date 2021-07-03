@@ -106,6 +106,7 @@ public class ReportAnime implements GeneraArchivosStrategy
         // Se crea el excel con el nombre Moai_AnimeList_Excel y los datos de la variable libro
         FileOutputStream excel = new FileOutputStream("Moai_AnimeList_Excel.xlsx");
         libro.write(excel);
+        libro.close();
     }
     
     /**
@@ -192,6 +193,20 @@ public class ReportAnime implements GeneraArchivosStrategy
         // Se crea el CSV con el nombre Moai_AnimeList_CSV
         FileWriter line = new FileWriter("Moai_AnimeList_CSV.csv");
         // Ciclo que se mueve por las columnas
+        for (int i = 0; i < catalogue.size(); i++)
+        {
+            // Se crea una variable anime con los datos correspondientes
+            Anime animu = catalogue.get(i);
+            writeAnime_intoCSV(animu,line);
+        }
+        line.flush();
+        line.close();
+    }
+    
+    //sobrecarga para uso interno
+    public void crearArchivoCSV(String name) throws IOException
+    {
+        FileWriter line = new FileWriter(name+".csv");
         for (int i = 0; i < catalogue.size(); i++)
         {
             // Se crea una variable anime con los datos correspondientes

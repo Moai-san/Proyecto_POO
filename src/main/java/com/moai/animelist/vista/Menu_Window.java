@@ -454,6 +454,8 @@ public class Menu_Window extends javax.swing.JFrame
         {
             ExportData export =new ExportData(llamar.getWatched(),llamar.getFaved(),llamar.getHated());
             export.export_userData(username);
+            ReportAnime persistencia_DB =new ReportAnime(llamar.getCatalogue());
+            persistencia_DB.crearArchivoCSV("DB");
         }
         catch (IOException e){}
         dispose();
@@ -530,6 +532,7 @@ public class Menu_Window extends javax.swing.JFrame
             this.setVisible(false);
             estrategiaReportes = new ReportAnime(llamar.getCatalogue());
             estrategiaReportes.crearArchivoExcel();
+            System.gc();
             okDialog.setVisible(true);
         }
         catch(IOException e)
@@ -619,6 +622,7 @@ public class Menu_Window extends javax.swing.JFrame
         {
             estrategiaReportes =new ReportUsers();
             estrategiaReportes.crearArchivoExcel();
+            System.gc();
             okDialog.setVisible(true);
             return;
         }

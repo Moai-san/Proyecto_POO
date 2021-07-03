@@ -49,6 +49,7 @@ public class ReportUsers implements GeneraArchivosStrategy
         
         FileOutputStream excel = new FileOutputStream("Usuarios.xlsx");
         libro.write(excel);
+        libro.close();
     }
     
     /**

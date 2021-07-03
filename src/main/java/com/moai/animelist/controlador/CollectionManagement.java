@@ -156,8 +156,7 @@ public class CollectionManagement
         {
             linea =(null);
             linea =animeCSV.nextLine();
-            
-            if(linea.equals(""))
+            if((linea=="")||(linea==null))
             {
                 break;
             }
@@ -1026,17 +1025,27 @@ public class CollectionManagement
      * @param stringNuevoID Nuevo Id del Anime
      * @return Estado de la accion (Exito o Fracaso)
      */
-    public int modificarID(String stringAnimeID, String stringNuevoID)
+    public void modificarID(String stringAnimeID, String stringNuevoID) throws ExistentDataException, NotExistException, UnexpectedInputException
     { 
-        int animeID = Integer.parseInt(stringAnimeID);
-        int nuevoID = Integer.parseInt(stringNuevoID);
+        int animeID;
+        int nuevoID;
+        try
+        {
+            animeID = Integer.parseInt(stringAnimeID);
+            nuevoID = Integer.parseInt(stringNuevoID);
+        }
+        catch(NumberFormatException a)
+        {
+            throw new UnexpectedInputException();
+        }
+        
         Anime animu = buscarAnimePorId(animeID);
 
         //si es que el ID nuevo ya está ocupado por otro anime se retorna -1
-        if(buscarAnimePorId(nuevoID) != null) return (-1);
+        if(buscarAnimePorId(nuevoID) != null) throw new ExistentDataException();
         
         //si el dato no existe retorna -1
-        if(eliminarAnimeColecciones(animeID) == -1 || animu == null) return (-1);
+        if(eliminarAnimeColecciones(animeID) == -1 || animu == null) throw new NotExistException();
         
         /*Si es que ninguno de los casos anteriores sucedió, siginifica que:
         -hay un anime con el id entregado
@@ -1047,8 +1056,6 @@ public class CollectionManagement
         //lo volvemos a agregar en todas las colecciones
         animu.setMal_id(nuevoID);
         addAnime(animu);
-        
-        return 0;
     }
 //</editor-fold>
 

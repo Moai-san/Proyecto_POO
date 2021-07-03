@@ -1,6 +1,9 @@
 package com.moai.animelist.vista;
 
 import com.moai.animelist.controlador.CollectionManagement;
+import com.moai.animelist.modelo.ExistentDataException;
+import com.moai.animelist.modelo.NotExistException;
+import com.moai.animelist.modelo.UnexpectedInputException;
 import javax.swing.JFrame;
 
 /**
@@ -26,7 +29,9 @@ public class Ventana_ModificarAnime extends javax.swing.JFrame implements Interf
         llamar =toUse;
         father =padre;
         this.setLocationRelativeTo(null);
-        errorDialog.setLocationRelativeTo(null);
+        existentData_errorDialog.setLocationRelativeTo(null);
+        notExist_errorDialog.setLocationRelativeTo(null);
+        unexpectedInput_errorDialog.setLocationRelativeTo(null);
     }
 
     /**
@@ -39,9 +44,16 @@ public class Ventana_ModificarAnime extends javax.swing.JFrame implements Interf
     private void initComponents()
     {
 
-        errorDialog = new javax.swing.JDialog();
+        existentData_errorDialog = new javax.swing.JDialog();
         volverA_menuFrom_error = new javax.swing.JButton();
         tituloError = new javax.swing.JLabel();
+        tituloError3 = new javax.swing.JLabel();
+        unexpectedInput_errorDialog = new javax.swing.JDialog();
+        volverA_menuFrom_error1 = new javax.swing.JButton();
+        tituloError1 = new javax.swing.JLabel();
+        notExist_errorDialog = new javax.swing.JDialog();
+        volverA_menuFrom_error2 = new javax.swing.JButton();
+        tituloError2 = new javax.swing.JLabel();
         returnTo_menu_4 = new javax.swing.JButton();
         Modificar = new javax.swing.JButton();
         textfieldNuevo_id1 = new javax.swing.JTextField();
@@ -50,10 +62,10 @@ public class Ventana_ModificarAnime extends javax.swing.JFrame implements Interf
         nuevoIDText3 = new javax.swing.JLabel();
         tituloModificar_anime1 = new javax.swing.JLabel();
 
-        errorDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        errorDialog.setAlwaysOnTop(true);
-        errorDialog.setResizable(false);
-        errorDialog.setSize(new java.awt.Dimension(400, 210));
+        existentData_errorDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        existentData_errorDialog.setAlwaysOnTop(true);
+        existentData_errorDialog.setResizable(false);
+        existentData_errorDialog.setSize(new java.awt.Dimension(400, 210));
 
         volverA_menuFrom_error.setText("Volver al Menu");
         volverA_menuFrom_error.addActionListener(new java.awt.event.ActionListener()
@@ -65,35 +77,123 @@ public class Ventana_ModificarAnime extends javax.swing.JFrame implements Interf
         });
 
         tituloError.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        tituloError.setText("ERROR!!");
+        tituloError.setText("ID ELEGIDA YA EXISTE!!!");
 
-        javax.swing.GroupLayout errorDialogLayout = new javax.swing.GroupLayout(errorDialog.getContentPane());
-        errorDialog.getContentPane().setLayout(errorDialogLayout);
-        errorDialogLayout.setHorizontalGroup(
-            errorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(errorDialogLayout.createSequentialGroup()
-                .addGroup(errorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(errorDialogLayout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addComponent(volverA_menuFrom_error, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(errorDialogLayout.createSequentialGroup()
-                        .addGap(167, 167, 167)
-                        .addComponent(tituloError)))
-                .addContainerGap(125, Short.MAX_VALUE))
+        tituloError3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tituloError3.setText("NO SE MODIFICARON LOS DATOS");
+
+        javax.swing.GroupLayout existentData_errorDialogLayout = new javax.swing.GroupLayout(existentData_errorDialog.getContentPane());
+        existentData_errorDialog.getContentPane().setLayout(existentData_errorDialogLayout);
+        existentData_errorDialogLayout.setHorizontalGroup(
+            existentData_errorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(existentData_errorDialogLayout.createSequentialGroup()
+                .addGroup(existentData_errorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(existentData_errorDialogLayout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(tituloError3))
+                    .addGroup(existentData_errorDialogLayout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(tituloError))
+                    .addGroup(existentData_errorDialogLayout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addComponent(volverA_menuFrom_error, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
-        errorDialogLayout.setVerticalGroup(
-            errorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(errorDialogLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+        existentData_errorDialogLayout.setVerticalGroup(
+            existentData_errorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(existentData_errorDialogLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
                 .addComponent(tituloError)
-                .addGap(76, 76, 76)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tituloError3)
+                .addGap(63, 63, 63)
                 .addComponent(volverA_menuFrom_error)
+                .addContainerGap(57, Short.MAX_VALUE))
+        );
+
+        unexpectedInput_errorDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        unexpectedInput_errorDialog.setAlwaysOnTop(true);
+        unexpectedInput_errorDialog.setResizable(false);
+        unexpectedInput_errorDialog.setSize(new java.awt.Dimension(400, 210));
+
+        volverA_menuFrom_error1.setText("Volver al Menu");
+        volverA_menuFrom_error1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                volverA_menuFrom_error1ActionPerformed(evt);
+            }
+        });
+
+        tituloError1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tituloError1.setText("VERIFIQUE LOS ID INGRESADOS");
+
+        javax.swing.GroupLayout unexpectedInput_errorDialogLayout = new javax.swing.GroupLayout(unexpectedInput_errorDialog.getContentPane());
+        unexpectedInput_errorDialog.getContentPane().setLayout(unexpectedInput_errorDialogLayout);
+        unexpectedInput_errorDialogLayout.setHorizontalGroup(
+            unexpectedInput_errorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(unexpectedInput_errorDialogLayout.createSequentialGroup()
+                .addGap(123, 123, 123)
+                .addComponent(volverA_menuFrom_error1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, unexpectedInput_errorDialogLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(tituloError1)
+                .addGap(62, 62, 62))
+        );
+        unexpectedInput_errorDialogLayout.setVerticalGroup(
+            unexpectedInput_errorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(unexpectedInput_errorDialogLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(tituloError1)
+                .addGap(81, 81, 81)
+                .addComponent(volverA_menuFrom_error1)
+                .addContainerGap(57, Short.MAX_VALUE))
+        );
+
+        notExist_errorDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        notExist_errorDialog.setAlwaysOnTop(true);
+        notExist_errorDialog.setResizable(false);
+        notExist_errorDialog.setSize(new java.awt.Dimension(400, 210));
+
+        volverA_menuFrom_error2.setText("Volver al Menu");
+        volverA_menuFrom_error2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                volverA_menuFrom_error2ActionPerformed(evt);
+            }
+        });
+
+        tituloError2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tituloError2.setText("ANIME A MODIFICAR NO EXISTE!!!");
+
+        javax.swing.GroupLayout notExist_errorDialogLayout = new javax.swing.GroupLayout(notExist_errorDialog.getContentPane());
+        notExist_errorDialog.getContentPane().setLayout(notExist_errorDialogLayout);
+        notExist_errorDialogLayout.setHorizontalGroup(
+            notExist_errorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(notExist_errorDialogLayout.createSequentialGroup()
+                .addGroup(notExist_errorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(notExist_errorDialogLayout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(volverA_menuFrom_error2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(notExist_errorDialogLayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(tituloError2)))
+                .addContainerGap(51, Short.MAX_VALUE))
+        );
+        notExist_errorDialogLayout.setVerticalGroup(
+            notExist_errorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(notExist_errorDialogLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(tituloError2)
+                .addGap(82, 82, 82)
+                .addComponent(volverA_menuFrom_error2)
                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setAlwaysOnTop(true);
-        setPreferredSize(new java.awt.Dimension(446, 270));
         setResizable(false);
         setSize(new java.awt.Dimension(446, 270));
 
@@ -193,10 +293,23 @@ public class Ventana_ModificarAnime extends javax.swing.JFrame implements Interf
         this.setVisible(false);
         String animeID = textfieldModificar_Anime1.getText();
         String nuevoID = textfieldNuevo_id1.getText();
-        int modificarID = llamar.modificarID(animeID, nuevoID);
-        if(modificarID != 0)
+        try
         {
-            errorDialog.setVisible(true);
+            llamar.modificarID(animeID, nuevoID);
+        }
+        catch(UnexpectedInputException a)
+        {
+            unexpectedInput_errorDialog.setVisible(true);
+            return;
+        }
+        catch(ExistentDataException i)
+        {
+            existentData_errorDialog.setVisible(true);
+            return;
+        }
+        catch(NotExistException u)
+        {
+            notExist_errorDialog.setVisible(true);
             return;
         }
         father.setVisible(true);
@@ -207,21 +320,44 @@ public class Ventana_ModificarAnime extends javax.swing.JFrame implements Interf
     private void volverA_menuFrom_errorActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_volverA_menuFrom_errorActionPerformed
     {//GEN-HEADEREND:event_volverA_menuFrom_errorActionPerformed
         // TODO add your handling code here:
-        errorDialog.dispose();
+        existentData_errorDialog.dispose();
         father.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_volverA_menuFrom_errorActionPerformed
 
+    private void volverA_menuFrom_error1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_volverA_menuFrom_error1ActionPerformed
+    {//GEN-HEADEREND:event_volverA_menuFrom_error1ActionPerformed
+        // TODO add your handling code here:
+        unexpectedInput_errorDialog.dispose();
+        father.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_volverA_menuFrom_error1ActionPerformed
+
+    private void volverA_menuFrom_error2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_volverA_menuFrom_error2ActionPerformed
+    {//GEN-HEADEREND:event_volverA_menuFrom_error2ActionPerformed
+        // TODO add your handling code here:
+        notExist_errorDialog.dispose();
+        father.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_volverA_menuFrom_error2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Modificar;
-    private javax.swing.JDialog errorDialog;
+    private javax.swing.JDialog existentData_errorDialog;
     private javax.swing.JLabel idAnimeText2;
+    private javax.swing.JDialog notExist_errorDialog;
     private javax.swing.JLabel nuevoIDText3;
     private javax.swing.JButton returnTo_menu_4;
     private javax.swing.JTextField textfieldModificar_Anime1;
     private javax.swing.JTextField textfieldNuevo_id1;
     private javax.swing.JLabel tituloError;
+    private javax.swing.JLabel tituloError1;
+    private javax.swing.JLabel tituloError2;
+    private javax.swing.JLabel tituloError3;
     private javax.swing.JLabel tituloModificar_anime1;
+    private javax.swing.JDialog unexpectedInput_errorDialog;
     private javax.swing.JButton volverA_menuFrom_error;
+    private javax.swing.JButton volverA_menuFrom_error1;
+    private javax.swing.JButton volverA_menuFrom_error2;
     // End of variables declaration//GEN-END:variables
 }
